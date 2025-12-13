@@ -4,13 +4,14 @@
 format: jb-book
 root: intro
 parts:
-  - caption: Course Info
-    chapters:
-      - file: syllabus
-      - file: schedule
-      - file: faq
-  - caption: Readings
-    chapters:
-      - file: markdown
-      - file: notebooks
-      - file: markdown-notebooks
+- caption: Course Info
+  chapters:
+  - file: syllabus.md
+  - file: schedule.md
+  - file: AI_policy.md
+  - file: faq.md
+
+- caption: Supplementary
+  chapters:
+  - file: glossary.md
+  
