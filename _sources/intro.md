@@ -6,7 +6,7 @@
 ![office](https://img.shields.io/badge/Office-Fairchild%202E38-red)
 [![web](https://img.shields.io/badge/Web-stanbaek.github.io-orange)](https://stanbaek.github.io)
 
-[![name](https://img.shields.io/badge/Instructor-LtCol%20Matthew%20Booth-blue)]
+![name](https://img.shields.io/badge/Instructor-LtCol%20Matthew%20Booth-blue)
 ![office](https://img.shields.io/badge/Office-Fairchild%202E36A-red)
 
 

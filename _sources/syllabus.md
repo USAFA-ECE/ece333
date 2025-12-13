@@ -1,4 +1,4 @@
-# 📌 ECE346 Syllabus
+# 📌 ECE333 Syllabus
 
 ## Course Goals
 Provide cadets with fundamental knowledge and skills to design and develop machine learning algorithms to solve robotic problems.
