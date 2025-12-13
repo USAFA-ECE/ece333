@@ -16,9 +16,9 @@ The **Grade distribution** for this course is shown below.
 
 |     Prog               |             |     Final              |             |
 |------------------------|-------------|------------------------|-------------|
-|     GR (1)             |     30%     |     GRs (2)            |     20%     |
-|     Homework           |     60%     |     Homework           |     45%     |
-|     Quizzes            |     10%     |     Quizzes            |     10%     |
+|     GR (1)             |     40%     |     GRs (3)            |     45%     |
+|     Homework           |     40%     |     Homework           |     20%     |
+|     PEX                |     20%     |     PEX                |     10%     |
 |                        |             |     Final              |     25%     |
 |     Total              |     100%    |     Total              |     100%    |
 
@@ -35,7 +35,6 @@ Electrical and Computer Engineering courses are contract graded using the follow
 | 90 <= A- < 93   | 83 <= B < 87   | 73 <= C < 77    | 0 <= F < 60   | 
 |                 | 80 <= B- < 83  | 70 <= C- < 73   |               |
 
-You must complete all minimum functionalities on projects in order to complete the course.  Even if an assignment is so late that no credit will be received, the assignment must be completed to the satisfaction of the instructor to prevent a grade of “Incomplete.”
 
 ## Primary Communication and Control (C2)
 All communication and course materials will be provided through a course and section Team. Additionally, videos will be uploaded to a YouTube channel for your convenience. Lastly, Bitbucket will be used for cadets to provide their source code for homework and laboratory assignments.

@@ -1,4 +1,4 @@
-# ECE 346 Engineering Math
+# ECE 333 Signal Processing & Linear Systems
 
 
 ## 👨‍🏫 Instructors
@@ -6,12 +6,12 @@
 ![office](https://img.shields.io/badge/Office-Fairchild%202E38-red)
 [![web](https://img.shields.io/badge/Web-stanbaek.github.io-orange)](https://stanbaek.github.io)
 
-[![name](https://img.shields.io/badge/Instructor-LtCol%20Mathew%20Booth-blue)](https://stanbaek.github.io)
-![office](https://img.shields.io/badge/Office-Fairchild%202E46C-red)
+[![name](https://img.shields.io/badge/Instructor-LtCol%20Matthew%20Booth-blue)]
+![office](https://img.shields.io/badge/Office-Fairchild%202E36A-red)
 
 
 ## 📝 Course information
-- **Course Goal**: Cadets completing ECE 346 should be able to recognize and apply mathematical methods of modeling and solution in engineering practice. Specifically, they should develop the mathematical abilities to succeed in advanced Electrical Engineering courses.
+- **Course Goal**: Cadets completing ECE 333 should be able to recognize and apply mathematical methods of modeling and solution in engineering practice. Specifically, they should develop the mathematical abilities to succeed in advanced Electrical Engineering courses.
 
 - **Prerequisites**: Math 243 and Math 245
 - **Course Text**:  Textbooks can be found [here](syllabus:Textbooks), and reading materials/labs are posted on [Schedule](schedule.md).
@@ -27,8 +27,8 @@
 ## ⏰ Late Policy:  
 **If problems arise with graded assignments, see your instructor in advance**
 
-- The cutoff for **on-time submission is 08:00 🕖 a.m.** on the due date. 
-- Late days are counted in 24-hour periods. Submitting between 08:00:01 on the due date and 08:00:00 the next day is one day late, and so on.
+- The cutoff for **on-time submission is 07:00 🕖 a.m.** on the due date. 
+- Late days are counted in 24-hour periods. Submitting between 08:00:01 on the due date and 07:00:00 the next day is one day late, and so on.
 - You are given **5 grace days (self-granted extensions)** which you can use to give yourself extra time without penalty. No more than **2 grace days** can used for each assignment.
 - Instructor-granted extensions are only considered after all grace days are used and only given in exceptional situations. Computer problems such as hard-drive reimaging are **not** considered as exceptional situations and you must use grace days.
 - Late work handed in when you have run out of grace is 💥 **discounted 20% for the first day late and 10% per day late thereafter**.
