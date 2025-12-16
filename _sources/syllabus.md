@@ -16,9 +16,9 @@ The **Grade distribution** for this course is shown below.
 
 |     Prog               |             |     Final              |             |
 |------------------------|-------------|------------------------|-------------|
-|     GR (1)             |     40%     |     GRs (3)            |     45%     |
-|     Homework           |     45%     |     Homework           |     23%     |
-|     PEX                |     15%     |     PEX                |     7%      |
+|     GR (1)             |     40%     |     GRs (3)            |     36%     |
+|     Homework           |     45%     |     Homework           |     30%     |
+|     PEX                |     15%     |     PEX                |     9%      |
 |                        |             |     Final              |     25%     |
 |     Total              |     100%    |     Total              |     100%    |
 
