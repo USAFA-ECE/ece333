@@ -11,9 +11,9 @@
 
 
 ## 📝 Course information
-- **Course Goal**: Cadets completing ECE 333 should be able to recognize and apply mathematical methods of modeling and solution in engineering practice. Specifically, they should develop the mathematical abilities to succeed in advanced Electrical Engineering courses.
+- **Course Goal**: Cadets will learn how to apply impulse response, Fourier, and state-variable analysis techniques to analyze and design linear time-invariant systems.
 
-- **Prerequisites**: Math 243 and Math 245
+- **Prerequisites**: ECE 332
 - **Course Text**:  Textbooks can be found [here](syllabus:Textbooks), and reading materials/labs are posted on [Schedule](schedule.md).
 - **Syllabus**: Posted [here](syllabus.md).
 - **Course Schedule**: Posted [here](schedule.md) and subject to change.

@@ -1,11 +1,11 @@
 # 📌 ECE333 Syllabus
 
 ## Course Goals
-Provide cadets with fundamental knowledge and skills to design and develop machine learning algorithms to solve robotic problems.
+Cadets will learn how to apply impulse response, Fourier, and state-variable analysis techniques to analyze and design linear time-invariant systems.
 
 ## Course Prerequisites
 
-Math 243 and Math 245
+ECE 333
 
 ## Course Schedule
 The course schedule is [here](schedule.md)
@@ -44,9 +44,7 @@ All communication and course materials will be provided through a course and sec
 ## Textbooks
 **Required**
 
-K. H. Rosen, <a href="https://www.mheducation.com/highered/product/Discrete-Mathematics-and-Its-Applications-Rosen.html" target="_blank"> _Discrete Mathematics and Its Applications_</a>, 8th ed. New York, NY, USA: McGraw-Hill, 2019.
-
-D. P. Bertsekas and J. N. Tsitsiklis, <a href="http://athenasc.com/probbook.html" target="_blank">*Introduction to Probability*</a>, 2nd ed. Belmont, MA, USA: Athena Scientific, 2008.
+B.P. Lathi and Roger Green, <a href="https://global.oup.com/ushe/product/signal-processing-and-linear-systems-9780190299040?cc=us&lang=en&" target="_blank"> _Signal Processing and Linear systems_</a>, 2th ed. New York, NY, USA: Oxford University Press, 2021.
 
 ## Collaboration Policy
 
