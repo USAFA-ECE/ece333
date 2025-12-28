@@ -24,7 +24,7 @@ The **Grade distribution** for this course is shown below.
 |     Total              |     100%    |     Total              |     100%    |
 
 ```{image} ./figures/GradeDistribution.png
-:width: 560
+:width: 660
 :align: center
 ```
 
