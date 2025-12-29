@@ -5,7 +5,7 @@ Cadets will learn how to apply impulse response, Fourier, and state-variable ana
 
 ## Course Prerequisites
 
-ECE 333
+ECE 332
 
 ## Course Schedule
 The course schedule is [here](schedule.md)
