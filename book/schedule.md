@@ -5,7 +5,7 @@ This schedule is subject to change as appropriate.
 ```
 **Last Updated: 7 Sep 2025**
 
-|Lsn|                                   |  Reading      | Due             |
+|Lsn| Topics                            |  Reading      | Due             |
 |---|-----------------------------------|---------------|-----------------|
 |1  | Course Intro                      |               |                 |
 |2  | Complex Exponential and Sinusoids | B1-B5         |                 |
