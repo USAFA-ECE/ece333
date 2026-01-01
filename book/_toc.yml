@@ -9,9 +9,8 @@ parts:
   - file: syllabus.md
   - file: schedule.md
   - file: AI_policy.md
-  - file: faq.md
 
 - caption: Supplementary
   chapters:
   - url: https://stanbaek.github.io/ComplexFunctions.html
-  title: Complex Functions
+    title: Complex Functions
