@@ -13,5 +13,5 @@ parts:
 
 - caption: Supplementary
   chapters:
-  - file: glossary.md
-  
+  - url: https://stanbaek.github.io/ComplexFunctions.html
+  title: Complex Functions
