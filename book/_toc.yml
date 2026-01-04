@@ -14,3 +14,4 @@ parts:
   chapters:
   - url: https://stanbaek.github.io/ComplexFunctions.html
     title: Complex Functions
+  - file: integration.md
