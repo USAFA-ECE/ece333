@@ -63,6 +63,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'integration';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -183,12 +185,6 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference external" href="https://stanbaek.github.io/ComplexFunctions.html">Complex Functions</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Integration by Parts</a></li>
-
-
-
-
-
-
 </ul>
 
     </div>
@@ -384,61 +380,53 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Integration by Parts</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#where-integration-by-parts-comes-from">1. Where Integration by Parts Comes From</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-from-the-product-rule">(Starting from the Product Rule)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-derivation-matters-for-struggling-students">Why this derivation matters for struggling students</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-integration-by-parts-comes-from">1. Where Integration by Parts Comes From</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-from-the-product-rule">(Starting from the Product Rule)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-second-derivation">2. A Second Derivation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-differentials">(Using Differentials)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-integration-by-parts-actually-does">3. What Integration by Parts Actually Does</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fully-worked-examples">4. Fully Worked Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#with-explanations-for-students-who-struggle">(With Explanations for Students Who Struggle)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">Example 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#int-x-e-x-dx"><span class="math notranslate nohighlight">\(\int x e^x\,dx\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2">Example 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#int-x-cos-x-dx"><span class="math notranslate nohighlight">\(\int x\cos x\,dx\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3">Example 3:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#int-ln-x-dx"><span class="math notranslate nohighlight">\(\int \ln x\,dx\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4">Example 4</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#int-ln-x-2-dx"><span class="math notranslate nohighlight">\(\int \ln(x+2)\,dx\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5">Example 5</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#int-x-2-e-x-dx"><span class="math notranslate nohighlight">\(\int x^2 e^x\,dx\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-6">Example 6</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#int-e-x-cos-x-dx"><span class="math notranslate nohighlight">\(\int e^x \cos x\,dx\)</span></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-second-derivation">2. A Second Derivation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-differentials">(Using Differentials)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-helps">Why this helps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-thoughts">5. Final Thoughts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-set">6. Practice Problem Set</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-a-basic-integration-by-parts">Part A — Basic Integration by Parts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-b-repeated-integration-by-parts">Part B — Repeated Integration by Parts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-c-looping-integrals">Part C — Looping Integrals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-d-simplify-first">Part D — Simplify First</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-e-challenge-problems">Part E — Challenge Problems</a></li>
 </ul>
 </li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-choose-u-and-dv">3. How to Choose (u) and (dv)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-liate-works">Why LIATE works</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-integration-by-parts-actually-does">4. What Integration by Parts <em>Actually</em> Does</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fully-worked-examples">5. Fully Worked Examples</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#with-explanations-for-students-who-struggle">(With Explanations for Students Who Struggle)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">Example 1:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-x-e-x-dx">(\int x e^x,dx)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-works">Why this works</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2">Example 2:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-x-cos-x-dx">(\int x\cos x,dx)</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3">Example 3:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-ln-x-dx">(\int \ln x,dx)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-substitution-fails-here">Why substitution fails here</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4">Example 4:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-ln-x-2-dx">(\int \ln(x+2),dx)</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5">Example 5:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-x-2-e-x-dx">(\int x^2 e^x,dx)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern">Pattern</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-6">Example 6:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-e-x-cos-x-dx">(\int e^x \cos x,dx)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-matters">Why this matters</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-thoughts">6. Final Thoughts</a></li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -451,380 +439,323 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="integration-by-parts">
 <h1>Integration by Parts<a class="headerlink" href="#integration-by-parts" title="Permalink to this heading">#</a></h1>
-<p>A Gentle but Thorough Walkthrough</p>
+<p><strong>A Gentle but Thorough Walkthrough</strong></p>
 <p>Integration by parts is one of those techniques that shows up everywhere: differential equations, signal processing, probability, and even physics. It’s the calculus equivalent of a Swiss‑army knife. The idea is simple, but using it well takes practice — and that’s exactly what this guide is for.</p>
-<p>Below, I’ll walk through the intuition, the formula, and a series of worked examples. These examples come from a set of class notes, but I’ve expanded them with explanations, commentary, and checks so that anyone reading your blog can follow along.</p>
-</section>
+<p>Below, I’ll walk through the intuition, the formula, and a series of worked examples. These examples come from a set of class notes in ECE 346, but I’ve expanded them with explanations, commentary, and checks so that anyone reading your blog can follow along.</p>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="where-integration-by-parts-comes-from">
-<h1>1. Where Integration by Parts Comes From<a class="headerlink" href="#where-integration-by-parts-comes-from" title="Permalink to this heading">#</a></h1>
+<section id="where-integration-by-parts-comes-from">
+<h2>1. Where Integration by Parts Comes From<a class="headerlink" href="#where-integration-by-parts-comes-from" title="Permalink to this heading">#</a></h2>
 <section id="starting-from-the-product-rule">
-<h2>(Starting from the Product Rule)<a class="headerlink" href="#starting-from-the-product-rule" title="Permalink to this heading">#</a></h2>
-<p>Many students memorize the formula:</p>
-<p>[
-\int u,dv = uv - \int v,du
-]</p>
-<p>but have no idea where it comes from. Let’s fix that by starting from something you already know well: <strong>the product rule</strong>.</p>
-<p>The product rule says:</p>
-<p>[
-\frac{d}{dx}(u(x)v(x)) = u’(x)v(x) + u(x)v’(x)
-]</p>
-<p>Now integrate both sides with respect to (x):</p>
-<p>[
-\int \frac{d}{dx}(uv),dx = \int u’v,dx + \int uv’,dx
-]</p>
-<p>The left side simplifies immediately:</p>
-<p>[
-\int \frac{d}{dx}(uv),dx = uv
-]</p>
-<p>So we have:</p>
-<p>[
-uv = \int u’v,dx + \int uv’,dx
-]</p>
-<p>Rearrange to isolate (\int uv’,dx):</p>
-<p>[
-\int uv’,dx = uv - \int u’v,dx
-]</p>
-<p>Now rename:</p>
-<ul class="simple">
-<li><p>(dv = v’ dx)</p></li>
-<li><p>(du = u’ dx)</p></li>
-</ul>
-<p>Then:</p>
-<p>[
-\int u,dv = uv - \int v,du
-]</p>
-<p>This is the integration‑by‑parts formula.</p>
-<section id="why-this-derivation-matters-for-struggling-students">
-<h3>Why this derivation matters for struggling students<a class="headerlink" href="#why-this-derivation-matters-for-struggling-students" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>It shows the formula is <strong>not magic</strong> — it’s just the product rule written backwards.</p></li>
-<li><p>It explains why the formula always produces <strong>two terms</strong>: a product (uv) and a new integral.</p></li>
-<li><p>It highlights the goal: make the new integral <strong>simpler</strong> than the original.</p></li>
-</ul>
-</section>
-</section>
-</section>
-<hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="a-second-derivation">
-<h1>2. A Second Derivation<a class="headerlink" href="#a-second-derivation" title="Permalink to this heading">#</a></h1>
-<section id="using-differentials">
-<h2>(Using Differentials)<a class="headerlink" href="#using-differentials" title="Permalink to this heading">#</a></h2>
-<p>Some students find the differential viewpoint more intuitive.</p>
-<p>Start with the differential form of the product rule:</p>
-<p>[
-d(uv) = u,dv + v,du
-]</p>
-<p>Now integrate both sides:</p>
-<p>[
-\int d(uv) = \int u,dv + \int v,du
-]</p>
+<h3>(Starting from the Product Rule)<a class="headerlink" href="#starting-from-the-product-rule" title="Permalink to this heading">#</a></h3>
+<p>Most students memorize the formula</p>
+<div class="math notranslate nohighlight">
+\[\int u\,dv = uv - \int v\,du\]</div>
+<p>without ever seeing where it comes from. But it’s nothing more than the <strong>product rule</strong> written in reverse. Start with the product rule:</p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dx}(uv) = u'v + uv'\]</div>
+<p>Integrate both sides:</p>
+<div class="math notranslate nohighlight">
+\[\int \frac{d}{dx}(uv)\,dx = \int u'v\,dx + \int uv'\,dx\]</div>
 <p>The left side simplifies:</p>
-<p>[
-\int d(uv) = uv
-]</p>
-<p>So:</p>
-<p>[
-uv = \int u,dv + \int v,du
-]</p>
+<div class="math notranslate nohighlight">
+\[\int \frac{d}{dx}(uv)\,dx = \int d(uv)\,\frac{dx}{dx}= \int d(uv) =  uv\]</div>
+<p>So we have:</p>
+<div class="math notranslate nohighlight">
+\[uv = \int u'v\,dx + \int uv'\,dx\]</div>
 <p>Rearrange:</p>
-<p>[
-\int u,dv = uv - \int v,du
-]</p>
-<p>Same formula, same meaning — just a different path.</p>
-<section id="why-this-helps">
-<h3>Why this helps<a class="headerlink" href="#why-this-helps" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p>It shows that integration by parts is simply “undoing” the differential of a product.</p></li>
-<li><p>It reinforces that the formula is a <strong>rearrangement</strong>, not a trick.</p></li>
-</ul>
-</section>
-</section>
-</section>
-<hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="how-to-choose-u-and-dv">
-<h1>3. How to Choose (u) and (dv)<a class="headerlink" href="#how-to-choose-u-and-dv" title="Permalink to this heading">#</a></h1>
-<p>Choosing (u) and (dv) is the hardest part for most students.</p>
-<p>A helpful rule of thumb is <strong>LIATE</strong>, which ranks functions by how good they are as (u):</p>
-<ol class="arabic simple">
-<li><p><strong>L</strong>ogarithmic</p></li>
-<li><p><strong>I</strong>nverse trig</p></li>
-<li><p><strong>A</strong>lgebraic</p></li>
-<li><p><strong>T</strong>rig</p></li>
-<li><p><strong>E</strong>xponential</p></li>
-</ol>
-<p>Choose (u) from the earliest category that appears in your integrand.<br />
-The remaining part becomes (dv).</p>
-<section id="why-liate-works">
-<h2>Why LIATE works<a class="headerlink" href="#why-liate-works" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Logarithms and inverse trig functions become <strong>simpler</strong> when differentiated.</p></li>
-<li><p>Algebraic functions (like (x^2)) shrink when differentiated.</p></li>
-<li><p>Trig and exponential functions don’t simplify when differentiated, but they’re easy to integrate.</p></li>
-</ul>
+<div class="math notranslate nohighlight">
+\[\int uv'\,dx = uv - \int u'v\,dx\]</div>
+<p>Now rewrite:</p>
+<div class="math notranslate nohighlight">
+\[v'\,dx = \frac{dv}{dx}dx = dv, \qquad u'\, dx = \frac{du}{dx} dx = du\]</div>
+<p>Then:</p>
+<div class="math notranslate nohighlight">
+\[\int u\,dv = uv - \int v\,du\]</div>
+<p>This is the integration‑by‑parts formula.</p>
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="what-integration-by-parts-actually-does">
-<h1>4. What Integration by Parts <em>Actually</em> Does<a class="headerlink" href="#what-integration-by-parts-actually-does" title="Permalink to this heading">#</a></h1>
+<section id="a-second-derivation">
+<h2>2. A Second Derivation<a class="headerlink" href="#a-second-derivation" title="Permalink to this heading">#</a></h2>
+<section id="using-differentials">
+<h3>(Using Differentials)<a class="headerlink" href="#using-differentials" title="Permalink to this heading">#</a></h3>
+<p>The product rule can also be written as:</p>
+<div class="math notranslate nohighlight">
+\[d(uv) = u\,dv + v\,du\]</div>
+<p>Integrate both sides:</p>
+<div class="math notranslate nohighlight">
+\[\int d(uv) = \int u\,dv + \int v\,du\]</div>
+<p>The left side simplifies:</p>
+<div class="math notranslate nohighlight">
+\[\int d(uv) = uv\]</div>
+<p>So:</p>
+<div class="math notranslate nohighlight">
+\[uv = \int u\,dv + \int v\,du\]</div>
+<p>Rearrange:</p>
+<div class="math notranslate nohighlight">
+\[\int u\,dv = uv - \int v\,du\]</div>
+<p>Same formula, different viewpoint.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="what-integration-by-parts-actually-does">
+<h2>3. What Integration by Parts Actually Does<a class="headerlink" href="#what-integration-by-parts-actually-does" title="Permalink to this heading">#</a></h2>
 <p>When you apply:</p>
-<p>[
-\int u,dv = uv - \int v,du
-]</p>
-<p>you are doing three things:</p>
+<div class="math notranslate nohighlight">
+\[\int u\,dv = uv - \int v\,du\]</div>
+<p>you are:</p>
 <ol class="arabic simple">
-<li><p><strong>Differentiating</strong> (u) → it should get simpler</p></li>
-<li><p><strong>Integrating</strong> (dv) → it should be easy</p></li>
+<li><p><strong>Differentiating</strong> <span class="math notranslate nohighlight">\(u\)</span> → it should get simpler</p></li>
+<li><p><strong>Integrating</strong> <span class="math notranslate nohighlight">\(dv\)</span> → it should be easy</p></li>
 <li><p><strong>Trading</strong> the original integral for a new one</p></li>
 </ol>
-<p>[
-\int v,du
-]</p>
-<p>which you hope is easier.</p>
-<p>This “trade” is the heart of the technique.</p>
+<p>The whole technique is about making the new integral <strong>easier</strong>.</p>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="fully-worked-examples">
-<h1>5. Fully Worked Examples<a class="headerlink" href="#fully-worked-examples" title="Permalink to this heading">#</a></h1>
+<section id="fully-worked-examples">
+<h2>4. Fully Worked Examples<a class="headerlink" href="#fully-worked-examples" title="Permalink to this heading">#</a></h2>
+</section>
 <section id="with-explanations-for-students-who-struggle">
 <h2>(With Explanations for Students Who Struggle)<a class="headerlink" href="#with-explanations-for-students-who-struggle" title="Permalink to this heading">#</a></h2>
-</section>
 <hr class="docutils" />
 <section id="example-1">
-<h2>Example 1:<a class="headerlink" href="#example-1" title="Permalink to this heading">#</a></h2>
+<h3>Example 1<a class="headerlink" href="#example-1" title="Permalink to this heading">#</a></h3>
 <section id="int-x-e-x-dx">
-<h3>(\int x e^x,dx)<a class="headerlink" href="#int-x-e-x-dx" title="Permalink to this heading">#</a></h3>
+<h4><span class="math notranslate nohighlight">\(\int x e^x\,dx\)</span><a class="headerlink" href="#int-x-e-x-dx" title="Permalink to this heading">#</a></h4>
 <p>Choose:</p>
-<p>[
-u = x, \qquad dv = e^x dx
-]</p>
-<p>Then:</p>
-<p>[
-du = dx, \qquad v = e^x
-]</p>
-<p>Apply the formula:</p>
-<p>[
-\int x e^x dx = x e^x - \int e^x dx
-]</p>
-<p>[
-= x e^x - e^x + C
-]</p>
-<p>Factor:</p>
-<p>[
-= e^x(x - 1) + C
-]</p>
-</section>
-<section id="why-this-works">
-<h3>Why this works<a class="headerlink" href="#why-this-works" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Differentiating (x) simplifies it.</p></li>
-<li><p>Integrating (e^x) is easy.</p></li>
-<li><p>The new integral (\int e^x dx) is much simpler.</p></li>
+<li><p><span class="math notranslate nohighlight">\(u = x\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dv = e^x dx\)</span></p></li>
 </ul>
+<p>Then:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(du = dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v = e^x\)</span></p></li>
+</ul>
+<p>Apply:</p>
+<div class="math notranslate nohighlight">
+\[\int x e^x dx = x e^x - \int e^x dx\]</div>
+<div class="math notranslate nohighlight">
+\[= x e^x - e^x + C\]</div>
+<p>Factor:</p>
+<div class="math notranslate nohighlight">
+\[= e^x(x - 1) + C\]</div>
 </section>
 </section>
 <hr class="docutils" />
 <section id="example-2">
-<h2>Example 2:<a class="headerlink" href="#example-2" title="Permalink to this heading">#</a></h2>
+<h3>Example 2<a class="headerlink" href="#example-2" title="Permalink to this heading">#</a></h3>
 <section id="int-x-cos-x-dx">
-<h3>(\int x\cos x,dx)<a class="headerlink" href="#int-x-cos-x-dx" title="Permalink to this heading">#</a></h3>
+<h4><span class="math notranslate nohighlight">\(\int x\cos x\,dx\)</span><a class="headerlink" href="#int-x-cos-x-dx" title="Permalink to this heading">#</a></h4>
 <p>Choose:</p>
-<p>[
-u = x, \qquad dv = \cos x,dx
-]</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u = x\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dv = \cos x\,dx\)</span></p></li>
+</ul>
 <p>Then:</p>
-<p>[
-du = dx, \qquad v = \sin x
-]</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(du = dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v = \sin x\)</span></p></li>
+</ul>
 <p>Apply:</p>
-<p>[
-\int x\cos x,dx = x\sin x - \int \sin x,dx
-]</p>
-<p>[
-= x\sin x + \cos x + C
-]</p>
+<div class="math notranslate nohighlight">
+\[\int x\cos x\,dx = x\sin x - \int \sin x\,dx\]</div>
+<div class="math notranslate nohighlight">
+\[= x\sin x + \cos x + C\]</div>
 </section>
 </section>
 <hr class="docutils" />
 <section id="example-3">
-<h2>Example 3:<a class="headerlink" href="#example-3" title="Permalink to this heading">#</a></h2>
+<h3>Example 3:<a class="headerlink" href="#example-3" title="Permalink to this heading">#</a></h3>
 <section id="int-ln-x-dx">
-<h3>(\int \ln x,dx)<a class="headerlink" href="#int-ln-x-dx" title="Permalink to this heading">#</a></h3>
+<h4><span class="math notranslate nohighlight">\(\int \ln x\,dx\)</span><a class="headerlink" href="#int-ln-x-dx" title="Permalink to this heading">#</a></h4>
 <p>Rewrite:</p>
-<p>[
-\int \ln x,dx = \int \ln x \cdot 1,dx
-]</p>
+<div class="math notranslate nohighlight">
+\[\int \ln x\,dx = \int \ln x \cdot 1\,dx\]</div>
 <p>Choose:</p>
-<p>[
-u = \ln x, \qquad dv = dx
-]</p>
-<p>Then:</p>
-<p>[
-du = \frac{1}{x}dx, \qquad v = x
-]</p>
-<p>Apply:</p>
-<p>[
-\int \ln x,dx = x\ln x - \int x\cdot \frac{1}{x},dx
-]</p>
-<p>[
-= x\ln x - x + C
-]</p>
-</section>
-<section id="why-substitution-fails-here">
-<h3>Why substitution fails here<a class="headerlink" href="#why-substitution-fails-here" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>There is no simple (u)-substitution.</p></li>
-<li><p>Integration by parts works because (\ln x) becomes simpler when differentiated.</p></li>
+<li><p><span class="math notranslate nohighlight">\(u = \ln x\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dv = dx\)</span></p></li>
 </ul>
+<p>Then:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(du = \frac{1}{x}dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v = x\)</span></p></li>
+</ul>
+<p>Apply:</p>
+<div class="math notranslate nohighlight">
+\[\int \ln x\,dx = x\ln x - \int x\cdot \frac{1}{x}\,dx\]</div>
+<div class="math notranslate nohighlight">
+\[= x\ln x - x + C\]</div>
 </section>
 </section>
 <hr class="docutils" />
 <section id="example-4">
-<h2>Example 4:<a class="headerlink" href="#example-4" title="Permalink to this heading">#</a></h2>
+<h3>Example 4<a class="headerlink" href="#example-4" title="Permalink to this heading">#</a></h3>
 <section id="int-ln-x-2-dx">
-<h3>(\int \ln(x+2),dx)<a class="headerlink" href="#int-ln-x-2-dx" title="Permalink to this heading">#</a></h3>
+<h4><span class="math notranslate nohighlight">\(\int \ln(x+2)\,dx\)</span><a class="headerlink" href="#int-ln-x-2-dx" title="Permalink to this heading">#</a></h4>
 <p>Rewrite:</p>
-<p>[
-\int \ln(x+2),dx = \int \ln(x+2)\cdot 1,dx
-]</p>
+<div class="math notranslate nohighlight">
+\[\int \ln(x+2)\,dx = \int \ln(x+2)\cdot 1\,dx\]</div>
 <p>Choose:</p>
-<p>[
-u = \ln(x+2), \qquad dv = dx
-]</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u = \ln(x+2)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dv = dx\)</span></p></li>
+</ul>
 <p>Then:</p>
-<p>[
-du = \frac{1}{x+2}dx, \qquad v = x
-]</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(du = \frac{1}{x+2}dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v = x\)</span></p></li>
+</ul>
 <p>Apply:</p>
-<p>[
-\int \ln(x+2),dx = x\ln(x+2) - \int x\frac{1}{x+2},dx
-]</p>
-<p>Rewrite the integrand:</p>
-<p>[
-\frac{x}{x+2} = 1 - \frac{2}{x+2}
-]</p>
+<div class="math notranslate nohighlight">
+\[\int \ln(x+2)\,dx = x\ln(x+2) - \int x\frac{1}{x+2}\,dx\]</div>
+<p>Rewrite:</p>
+<div class="math notranslate nohighlight">
+\[\frac{x}{x+2} = 1 - \frac{2}{x+2}\]</div>
 <p>So:</p>
-<p>[
-\int \ln(x+2),dx = x\ln(x+2) - x + 2\ln(x+2) + C
-]</p>
+<div class="math notranslate nohighlight">
+\[\int \ln(x+2)\,dx = x\ln(x+2) - x + 2\ln(x+2) + C\]</div>
 <p>Factor:</p>
-<p>[
-= (x+2)\ln(x+2) - x + C
-]</p>
+<div class="math notranslate nohighlight">
+\[= (x+2)\ln(x+2) - x + C\]</div>
 </section>
 </section>
 <hr class="docutils" />
 <section id="example-5">
-<h2>Example 5:<a class="headerlink" href="#example-5" title="Permalink to this heading">#</a></h2>
+<h3>Example 5<a class="headerlink" href="#example-5" title="Permalink to this heading">#</a></h3>
 <section id="int-x-2-e-x-dx">
-<h3>(\int x^2 e^x,dx)<a class="headerlink" href="#int-x-2-e-x-dx" title="Permalink to this heading">#</a></h3>
+<h4><span class="math notranslate nohighlight">\(\int x^2 e^x\,dx\)</span><a class="headerlink" href="#int-x-2-e-x-dx" title="Permalink to this heading">#</a></h4>
 <p>Choose:</p>
-<p>[
-u = x^2, \qquad dv = e^x dx
-]</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u = x^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dv = e^x dx\)</span></p></li>
+</ul>
 <p>Then:</p>
-<p>[
-du = 2x dx, \qquad v = e^x
-]</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(du = 2x dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v = e^x\)</span></p></li>
+</ul>
 <p>Apply:</p>
-<p>[
-\int x^2 e^x dx = x^2 e^x - \int 2x e^x dx
-]</p>
+<div class="math notranslate nohighlight">
+\[\int x^2 e^x dx = x^2 e^x - \int 2x e^x dx\]</div>
 <p>We already know:</p>
-<p>[
-\int x e^x dx = e^x(x - 1)
-]</p>
+<div class="math notranslate nohighlight">
+\[\int x e^x dx = e^x(x - 1)\]</div>
 <p>So:</p>
-<p>[
-\int x^2 e^x dx = x^2 e^x - 2e^x(x - 1)
-]</p>
-<p>[
-= e^x(x^2 - 2x + 2) + C
-]</p>
-</section>
-<section id="pattern">
-<h3>Pattern<a class="headerlink" href="#pattern" title="Permalink to this heading">#</a></h3>
-<p>Each application reduces the power of (x) by 1.</p>
+<div class="math notranslate nohighlight">
+\[\int x^2 e^x dx = x^2 e^x - 2e^x(x - 1)\]</div>
+<div class="math notranslate nohighlight">
+\[= e^x(x^2 - 2x + 2) + C\]</div>
 </section>
 </section>
 <hr class="docutils" />
 <section id="example-6">
-<h2>Example 6:<a class="headerlink" href="#example-6" title="Permalink to this heading">#</a></h2>
+<h3>Example 6<a class="headerlink" href="#example-6" title="Permalink to this heading">#</a></h3>
 <section id="int-e-x-cos-x-dx">
-<h3>(\int e^x \cos x,dx)<a class="headerlink" href="#int-e-x-cos-x-dx" title="Permalink to this heading">#</a></h3>
+<h4><span class="math notranslate nohighlight">\(\int e^x \cos x\,dx\)</span><a class="headerlink" href="#int-e-x-cos-x-dx" title="Permalink to this heading">#</a></h4>
 <p>Let:</p>
-<p>[
-I = \int e^x \cos x,dx
-]</p>
+<div class="math notranslate nohighlight">
+\[I = \int e^x \cos x\,dx\]</div>
 <p>Choose:</p>
-<p>[
-u = \cos x, \qquad dv = e^x dx
-]</p>
-<p>Then:</p>
-<p>[
-du = -\sin x dx, \qquad v = e^x
-]</p>
-<p>Apply:</p>
-<p>[
-I = e^x\cos x + \int e^x \sin x,dx
-]</p>
-<p>Let:</p>
-<p>[
-J = \int e^x \sin x,dx
-]</p>
-<p>Now integrate (J) by parts:</p>
-<p>Choose:</p>
-<p>[
-u = \sin x, \qquad dv = e^x dx
-]</p>
-<p>Then:</p>
-<p>[
-du = \cos x dx, \qquad v = e^x
-]</p>
-<p>Apply:</p>
-<p>[
-J = e^x\sin x - I
-]</p>
-<p>Substitute back:</p>
-<p>[
-I = e^x\cos x + e^x\sin x - I
-]</p>
-<p>Solve:</p>
-<p>[
-2I = e^x(\sin x + \cos x)
-]</p>
-<p>[
-\boxed{I = \frac{e^x}{2}(\sin x + \cos x) + C}
-]</p>
-</section>
-<section id="why-this-matters">
-<h3>Why this matters<a class="headerlink" href="#why-this-matters" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Some integrals “loop back” to themselves.</p></li>
-<li><p>You solve them algebraically.</p></li>
+<li><p><span class="math notranslate nohighlight">\(u = \cos x\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dv = e^x dx\)</span></p></li>
 </ul>
+<p>Then:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(du = -\sin x dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v = e^x\)</span></p></li>
+</ul>
+<p>Apply:</p>
+<div class="math notranslate nohighlight">
+\[I = e^x\cos x + \int e^x \sin x\,dx\]</div>
+<p>Let:</p>
+<div class="math notranslate nohighlight">
+\[J = \int e^x \sin x\,dx\]</div>
+<p>Now integrate <span class="math notranslate nohighlight">\(J\)</span> by parts:</p>
+<p>Choose:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(u = \sin x\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(dv = e^x dx\)</span></p></li>
+</ul>
+<p>Then:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(du = \cos x dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(v = e^x\)</span></p></li>
+</ul>
+<p>Apply:</p>
+<div class="math notranslate nohighlight">
+\[J = e^x\sin x - I\]</div>
+<p>Substitute back:</p>
+<div class="math notranslate nohighlight">
+\[I = e^x\cos x + e^x\sin x - I\]</div>
+<p>Solve:</p>
+<div class="math notranslate nohighlight">
+\[2I = e^x(\sin x + \cos x)\]</div>
+<div class="math notranslate nohighlight">
+\[I = \frac{e^x}{2}(\sin x + \cos x) + C\]</div>
 </section>
 </section>
 </section>
 <hr class="docutils" />
-<section class="tex2jax_ignore mathjax_ignore" id="final-thoughts">
-<h1>6. Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permalink to this heading">#</a></h1>
-<p>Integration by parts is one of the most flexible tools in calculus. Once you understand:</p>
+<section id="final-thoughts">
+<h2>5. Final Thoughts<a class="headerlink" href="#final-thoughts" title="Permalink to this heading">#</a></h2>
+<p>Integration by parts becomes much easier once you understand:</p>
 <ul class="simple">
 <li><p>where the formula comes from,</p></li>
-<li><p>how to choose (u) and (dv),</p></li>
-<li><p>and what the formula is <em>trying</em> to do,</p></li>
+<li><p>how to choose <span class="math notranslate nohighlight">\(u\)</span> and <span class="math notranslate nohighlight">\(dv\)</span>,</p></li>
+<li><p>and what the formula is <em>trying</em> to do.</p></li>
 </ul>
-<p>the technique becomes far less intimidating.</p>
-<p>The examples above cover the most common patterns you’ll see in homework, exams, and real applications.</p>
-<p>If you’d like, I can add:</p>
-<ul class="simple">
-<li><p>a “common mistakes” section</p></li>
-<li><p>a practice problem set</p></li>
-<li><p>diagrams or graphs</p></li>
-<li><p>a printable PDF version</p></li>
-</ul>
-<p>Just let me know.</p>
+</section>
+<section id="practice-problem-set">
+<h2>6. Practice Problem Set<a class="headerlink" href="#practice-problem-set" title="Permalink to this heading">#</a></h2>
+<section id="part-a-basic-integration-by-parts">
+<h3>Part A — Basic Integration by Parts<a class="headerlink" href="#part-a-basic-integration-by-parts" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\int x e^{2x}\,dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int x\sin x\,dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int \ln x\,dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int x\cos(3x)\,dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int e^x (x+1)\,dx\)</span></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="part-b-repeated-integration-by-parts">
+<h3>Part B — Repeated Integration by Parts<a class="headerlink" href="#part-b-repeated-integration-by-parts" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="6">
+<li><p><span class="math notranslate nohighlight">\(\int x^2 e^x\,dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int x^3 \cos x\,dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int x^2 \ln x\,dx\)</span></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="part-c-looping-integrals">
+<h3>Part C — Looping Integrals<a class="headerlink" href="#part-c-looping-integrals" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="9">
+<li><p><span class="math notranslate nohighlight">\(\int e^x \sin x\,dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int e^{2x}\cos(3x)\,dx\)</span></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="part-d-simplify-first">
+<h3>Part D — Simplify First<a class="headerlink" href="#part-d-simplify-first" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="11">
+<li><p><span class="math notranslate nohighlight">\(\int \frac{x}{x+1}\,dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int x\ln(x^2+1)\,dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int \frac{\ln x}{x}\,dx\)</span></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="part-e-challenge-problems">
+<h3>Part E — Challenge Problems<a class="headerlink" href="#part-e-challenge-problems" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple" start="14">
+<li><p><span class="math notranslate nohighlight">\(\int x e^{-x^2}\,dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int x^2 e^{-x^2}\,dx\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\int \ln(\sin x)\,dx\)</span></p></li>
+</ol>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -882,61 +813,53 @@ I = e^x\cos x + e^x\sin x - I
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Integration by Parts</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#where-integration-by-parts-comes-from">1. Where Integration by Parts Comes From</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-from-the-product-rule">(Starting from the Product Rule)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-derivation-matters-for-struggling-students">Why this derivation matters for struggling students</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-integration-by-parts-comes-from">1. Where Integration by Parts Comes From</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#starting-from-the-product-rule">(Starting from the Product Rule)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-second-derivation">2. A Second Derivation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-differentials">(Using Differentials)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-integration-by-parts-actually-does">3. What Integration by Parts Actually Does</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fully-worked-examples">4. Fully Worked Examples</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#with-explanations-for-students-who-struggle">(With Explanations for Students Who Struggle)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">Example 1</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#int-x-e-x-dx"><span class="math notranslate nohighlight">\(\int x e^x\,dx\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2">Example 2</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#int-x-cos-x-dx"><span class="math notranslate nohighlight">\(\int x\cos x\,dx\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3">Example 3:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#int-ln-x-dx"><span class="math notranslate nohighlight">\(\int \ln x\,dx\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4">Example 4</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#int-ln-x-2-dx"><span class="math notranslate nohighlight">\(\int \ln(x+2)\,dx\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5">Example 5</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#int-x-2-e-x-dx"><span class="math notranslate nohighlight">\(\int x^2 e^x\,dx\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-6">Example 6</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#int-e-x-cos-x-dx"><span class="math notranslate nohighlight">\(\int e^x \cos x\,dx\)</span></a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#a-second-derivation">2. A Second Derivation</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-differentials">(Using Differentials)</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-helps">Why this helps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-thoughts">5. Final Thoughts</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-problem-set">6. Practice Problem Set</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-a-basic-integration-by-parts">Part A — Basic Integration by Parts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-b-repeated-integration-by-parts">Part B — Repeated Integration by Parts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-c-looping-integrals">Part C — Looping Integrals</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-d-simplify-first">Part D — Simplify First</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-e-challenge-problems">Part E — Challenge Problems</a></li>
 </ul>
 </li>
 </ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-choose-u-and-dv">3. How to Choose (u) and (dv)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-liate-works">Why LIATE works</a></li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-integration-by-parts-actually-does">4. What Integration by Parts <em>Actually</em> Does</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#fully-worked-examples">5. Fully Worked Examples</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#with-explanations-for-students-who-struggle">(With Explanations for Students Who Struggle)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-1">Example 1:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-x-e-x-dx">(\int x e^x,dx)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-works">Why this works</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-2">Example 2:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-x-cos-x-dx">(\int x\cos x,dx)</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-3">Example 3:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-ln-x-dx">(\int \ln x,dx)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-substitution-fails-here">Why substitution fails here</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-4">Example 4:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-ln-x-2-dx">(\int \ln(x+2),dx)</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-5">Example 5:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-x-2-e-x-dx">(\int x^2 e^x,dx)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pattern">Pattern</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-6">Example 6:</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-e-x-cos-x-dx">(\int e^x \cos x,dx)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-matters">Why this matters</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#final-thoughts">6. Final Thoughts</a></li>
-</ul>
-
   </nav></div>
 
 </div></div>

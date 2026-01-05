@@ -51,3 +51,7 @@ You are encouraged to use AI tools (such as ChatGPT, Gemini, Copilot, etc.) to *
 
 
 > Disclaimer: The contents of this website are for educational use only and do not necessarily reflect the official policy or position of the United States Air Force Academy, the Department of the Air Force, or the U.S. Government.
+
+
+```{tableofcontents}
+```
