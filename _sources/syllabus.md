@@ -41,12 +41,12 @@ Electrical and Computer Engineering courses are contract graded using the follow
 All communication and course material will be provided through a course/section Team. A Gradescope will be used to provide grades. Lastly, GitHub will be used for cadets to provide their source code for laboratories.
 
 (syllabus:Textbooks)=
-## Textbooks
+## 📚 Textbooks
 **Required**
 
 B.P. Lathi and Roger Green, <a href="https://global.oup.com/ushe/product/signal-processing-and-linear-systems-9780190299040?cc=us&lang=en&" target="_blank"> _Signal Processing and Linear systems_</a>, 2th ed. New York, NY, USA: Oxford University Press, 2021.
 
-## Collaboration Policy
+## 🤝 Collaboration Policy
 
 Unless  specifically directed otherwise, the collaboration policy for this course is:
 
@@ -54,7 +54,7 @@ Unless  specifically directed otherwise, the collaboration policy for this cours
 - GRs are individual efforts. No collaboration is allowed while taking these exams. All electronic devices (phones, smartwatches, computers, tablets, etc.) must be placed out of sight for the duration of the event. If any electronic device is seen during the event, the student will receive a zero for that effort. 
 - Authorized resources include any material from the course site and online sources regarding Python programming syntax only. This does not include any solutions or solution stubs for challenges similar to those asked in any assignments. 
 
-## Documentation Requirements
+## 📄 Documentation Requirements
 
 **Documentation Requirements**: You must document all help received from any sources other than your instructor or instructor-provided course materials (including your textbook). 
 - Each documentation statement must be specific enough to explicitly describe what assistance was provided, how it was used to complete the assignment, and who provided the assistance.
@@ -63,7 +63,7 @@ Unless  specifically directed otherwise, the collaboration policy for this cours
 - Vague documentation statements will result in a 5% deduction on the assignment.
 
 
-## AI Usage Policy
+## 🤖 AI Usage Policy
 
 You are encouraged to use AI tools (such as ChatGPT, Gemini, Copilot, etc.) to **support your understanding** of course concepts—such as reviewing terminology, clarifying ideas, or generating practice problems. However, using AI to **generate answers, code, or reports** for assignments, projects, or exams is strictly prohibited and will be treated as a violation of academic integrity. All submitted work must reflect your own effort and understanding. For the full policy and examples of acceptable vs. unacceptable use, visit: [AI Usage Policy](AI_policy) 
 
