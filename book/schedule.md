@@ -8,7 +8,7 @@ This schedule is subject to change as appropriate.
 |Lsn| Topics                            |  Reading      | Due             |
 |---|-----------------------------------|---------------|-----------------|
 |1  | Course Intro                      |               |                 |
-|2  | Complex Exponential and Sinusoids | B1-B3, [Complex Functions](https://stanbaek.github.io/ComplexFunctions.html)|                 |
+|2  | Complex Exponential and Sinusoids | B1-B3, [Complex Functions](https://stanbaek.github.io/ComplexFunctions.html)| |
 |3  | Introduction to Signals           | 1.1-1.3       | HW1             |
 |4  | Useful Signal Models              | 1.4-1.5       |                 |
 |5  | Classification of Systems         | 1.6-1.7       | HW2             |
