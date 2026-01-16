@@ -1,225 +1,162 @@
 # 📖 Glossary
 
-## Glossary of Logical Terms
-
-### Proposition
-A **proposition** is a declarative statement that is either *true* or *false*, but not both. It makes an assertion about reality and can be evaluated for truth. The linguistic form (English, math symbols, etc.) doesn’t matter; what matters is whether the content has a definite truth value.
-
-**Examples:**
-- "The Earth orbits the Sun" is a proposition because it can be evaluated as true.
-- "The Moon is made of cheese." (False)
-- "2 + 2 = 4" (True)
-
-#### Compound Proposition
-A **compound proposition** is a logical statement formed by combining two or more **simple propositions** using logical connectives such as **and (∧)**, **or (∨)**, **not (¬)**, **if...then (→)**, and **if and only if (↔)**. It expresses a more complex relationship between truth values.
-
-**Examples:**
-- "The Earth orbits the Sun **and** 2 + 2 = 4" — combines two true propositions using ∧.
-- "If it rains, then the ground gets wet" — implication using →.
-- "Either the Moon is made of cheese **or** pigs can fly" — disjunction using ∨.
+Classifying signals as **power signals** or **energy signals** isn’t just a vocabulary exercise — it tells you *how* the signal behaves over time and *which mathematical tools* you can use to analyze it. Engineers do this because different types of signals require different analysis techniques, different transforms, and even different interpretations in physical systems.
 
 ---
 
-#### Simple (Non-Compound) Proposition
-A **simple proposition** is a single declarative statement that does **not** contain any logical connectives. It stands alone and can be evaluated as either *true* or *false*.
+# 🔌 Why the classification matters
 
-**Examples:**
-- "The Earth orbits the Sun" — true
-- "The Moon is made of cheese" — false
-- "2 + 2 = 4" — true
+## 1. **It tells you what kind of system analysis applies**
+- **Energy signals** (finite energy, zero average power) are typically *transient* signals — pulses, bursts, wavelets, Gaussian bumps.
+- **Power signals** (finite average power, infinite energy) are *persistent* or *periodic* — sinusoids, square waves, random stationary processes.
 
----
+Different math applies:
+- Energy signals → **Parseval’s theorem**, energy spectral density  
+- Power signals → **Power spectral density**, autocorrelation, ergodicity
 
-### Propositional Function
-
-A **propositional function** is a statement containing one or more variables that becomes a **proposition** once specific values are substituted for those variables. Until the variables are assigned, the statement is neither true nor false.
-
-**Examples:**
-
-* $P(x):\; x > 5$ — not a proposition until $x$ is given a value.
-* If $x = 7$, then $P(7): 7 > 5$ is **true**.
-* If $x = 3$, then $P(3): 3 > 5$ is **false**.
-* $Q(x,y):\; x + y = 10$ — becomes a proposition once values of $x$ and $y$ are specified.
+You can’t mix the two without changing the framework.
 
 ---
 
-### Predicate
-A **predicate** is essentially the property or relation expressed in a propositional function. In logic, it acts as a function that returns a truth value when applied to one or more subjects. Predicates are the building blocks of propositional functions. In practice, propositional functions and predicates often look the same (P(x), Q(x,y)), but **predicate** emphasizes the meaning (the property/relationship), while **propositional function** emphasizes the form (a function that turns into a proposition when variables are instantiated).
+## 2. **It determines which Fourier transform you’re allowed to use**
+This is a big one.
 
+- Energy signals → **Fourier Transform (FT)** exists directly  
+- Power signals → FT does **not** exist in the usual sense  
+  - Instead you use the **Fourier Series** (for periodic signals)  
+  - Or the **PSD** (for random/stationary signals)
 
-**Examples:**
-- In "Socrates is mortal", "is mortal" is the predicate and "Socrates" is the subject. In predicate logic: Mortal(x) 
-- IsTall(x): "x is tall"
-- Loves(x, y): "x loves y"
-- Prime(n): "n is a prime number"
-
----
-
-### Premise
-In mathematics, a premise is often called a **hypothesis**. In a conditional statement ("If p, then q"), the **antecedent** (the "if" part) is a specific type of premise. Thus, every antecedent is a premise, but not every premise is an antecedent.
-
-**Examples:**
-- "All mammals are warm-blooded."
-- "If it rains, the ground gets wet."
-- "Jane is taller than Tom."
+Example:  
+A pure sinusoid has infinite energy, so its FT is not a normal function — it becomes impulses (Dirac deltas). That’s why we treat it as a **power signal**.
 
 ---
 
-### Conclusion
-A **conclusion** is the proposition that is supported or proven by the premises in an argument.  In a conditional statement ("If p, then q"), the consequence (the "then" part) corresponds to the conclusion of that conditional. Thus, every consequence is a conclusion, but not every conclusion is a consequence.
+## 3. **It matches physical intuition**
+- Energy signals represent things like pulses, radar chirps, communication packets.  
+  You care about **total energy** delivered.
 
-**Examples:**
-- "Therefore, the Earth is round." (based on previous evidence/premises)
-- "Hence, she must be at home."
-- "It follows that all bachelors are unmarried."
+- Power signals represent steady-state sources like AC mains, carriers, clock signals.  
+  You care about **average power** delivered.
 
----
-
-### Argument
-An **argument** is a group of propositions in which some (premises) are intended to support another (conclusion). It's the fundamental structure of reasoning.
-
-**Example:**
-   - Premise: All birds have feathers.  
-   - Premise: A sparrow is a bird.  
-   - Conclusion: Therefore, a sparrow has feathers.
-
-**Example:**
-   - Premise: If you study, you will pass.  
-   - Premise: You studied.  
-   - Conclusion: Therefore, you will pass.
+The classification tells you what the signal *means* physically.
 
 ---
 
-### Inference (Reasoning)
-**Inference**, or **reasoning**, is the process of deriving logical conclusions from premises or known facts.
+## 4. **It prevents mathematical contradictions**
+If you try to compute the energy of a sinusoid:
 
-**Examples:**
-- From "All dogs bark" and "Rex is a dog," we infer "Rex barks."
-- From "If the light is red, stop" and "The light is red," infer "Stop."
-- From "All metals conduct electricity" and "Copper is a metal," infer "Copper conducts electricity."
+\[
+\int_{-\infty}^{\infty} \sin^2(t)\, dt
+\]
 
----
+…it diverges.  
+But its **average power**:
 
-### Validity (Valid)
-An argument is **valid** if the conclusion necessarily follows from the premises. Validity is about form, not the actual truth of the statements.
+\[
+P = \frac{1}{2}
+\]
 
-**Examples:**
-1.  
-   - Premise: All cats are animals.  
-   - Premise: Felix is a cat.  
-   - Conclusion: Felix is an animal. ✅ Valid
+…is perfectly finite.
 
-2.  
-   - Premise: All unicorns are reptiles.  
-   - Premise: Bob is a unicorn.  
-   - Conclusion: Bob is a reptile. ✅ Valid (though premises are false)
-
-3.  
-   - Premise: Some dogs are brown.  
-   - Premise: Rex is brown.  
-   - Conclusion: Rex is a dog. ❌ Invalid (conclusion doesn't logically follow)
+The classification keeps you from applying the wrong integral and getting nonsense.
 
 ---
 
-### Converse
+## 5. **It guides system design**
+In communication systems:
+- Energy signals → used for **symbol detection**, matched filters  
+- Power signals → used for **carrier waves**, modulation, spectral shaping
 
-The **converse** of a conditional proposition $p \to q$ is the statement $q \to p$. It is formed by **swapping** the hypothesis and the conclusion.
-The converse is **not** logically equivalent to the original statement in general.
+In control systems:
+- Energy signals → represent impulses or test inputs  
+- Power signals → represent steady-state forcing
 
-**Examples:**
-
-* Original: "If it rains, then the ground gets wet." ($p \to q$)
-* Converse: "If the ground gets wet, then it rains." ($q \to p$) — This is not always true (sprinklers, for example).
-
----
-
-### Contrapositive
-
-The **contrapositive** of a conditional proposition $p \to q$ is the statement $\sim q \to \sim p$. It is formed by **swapping** and **negating** both the hypothesis and the conclusion.
-The contrapositive **is logically equivalent** to the original statement.
-
-**Examples:**
-
-* Original: "If it rains, then the ground gets wet." ($p \to q$)
-* Contrapositive: "If the ground does not get wet, then it did not rain." ($\sim q \to \sim p$) — Always true if the original is true.
+In DSP:
+- Energy signals → windowed signals, FIR filters  
+- Power signals → periodic signals, IIR filters, spectral estimation
 
 ---
 
-### Inverse
+# 🎯 The one-sentence summary
+We classify signals as power or energy because **each class obeys different mathematical rules, uses different transforms, and represents different physical behaviors**, and mixing them leads to incorrect analysis.
 
-The **inverse** of a conditional proposition $p \to q$ is the statement $\sim p \to \sim q$. It is formed by **negating** both the hypothesis and the conclusion without swapping them.
-The inverse is **not** logically equivalent to the original statement in general.
 
-**Examples:**
+# 🌟 What “the Fourier Transform does **not** exist in the usual sense” really means
 
-* Original: "If it rains, then the ground gets wet." ($p \to q$)
-* Inverse: "If it does not rain, then the ground does not get wet." ($\sim p \to \sim q$) — Not always true (sprinklers again).
+For **energy signals**, the Fourier Transform is defined by the integral:
 
----
+\[
+X(\omega)=\int_{-\infty}^{\infty} x(t)e^{-j\omega t}\,dt
+\]
 
-## Glossary of Proof-Related Terms
+This integral converges **only if** the signal has **finite energy**:
 
-### Theorem
-A **theorem** is a mathematical or logical statement that has been proven to be true based on previously established statements such as axioms, definitions, and earlier theorems.
+\[
+E=\int_{-\infty}^{\infty} |x(t)|^2 dt < \infty.
+\]
 
-**Examples:**
-- Pythagorean Theorem: \( a^2 + b^2 = c^2 \)
-- Fundamental Theorem of Calculus
-- Gödel’s Incompleteness Theorems
+But **power signals** (like sinusoids) have **infinite energy**, so the integral above **diverges**.  
+That’s why we say:
 
----
+> The Fourier Transform does not exist as an ordinary function.
 
-### Proposition (in proof context)
-A **proposition** in the context of proofs is a statement that is proved true using logic and previously proven statements. It is often considered less central or less important than a theorem.
-
-**Examples:**
-- In some texts, a small result that is still worth proving may be called a proposition.
-- "Every finite group of prime order is cyclic."
+It doesn’t mean “no transform exists.”  
+It means the transform is **not a regular function** — it becomes a **distribution** (generalized function).
 
 ---
 
-### Proof
-A **proof** is a logical argument demonstrating the truth of a theorem or proposition, using deductive reasoning from accepted premises, axioms, and previously established results.
+# 🎵 Example: Fourier Transform of \( \cos(\omega_0 t) \)
 
-**Examples:**
-- A direct proof using definitions and logical steps.
-- A proof by contradiction assuming the opposite and deriving a contradiction.
-- An inductive proof involving base cases and inductive steps.
+Try the usual FT integral:
 
----
+\[
+\int_{-\infty}^{\infty} \cos(\omega_0 t)e^{-j\omega t} dt
+\]
 
-### Axiom
-An **axiom** (or **postulate**) is a self-evident or universally accepted principle that does not require proof. It serves as a starting point for logical or mathematical reasoning.
+This integral **does not converge**.  
+The cosine oscillates forever and never decays, so the area under the curve does not settle to a finite value.
 
-**Examples:**
-- In geometry: "Through any two points, there exists exactly one line."
-- In arithmetic: "For any number \( a \), \( a + 0 = a \)."
-- In set theory: "Two sets are equal if they contain the same elements."
+So the FT **cannot** be a normal function.
 
 ---
 
-### Lemma
-A **lemma** is a proven statement used as a stepping stone to prove a larger result (typically a theorem). While it may be useful in its own right, its main role is as a helper theorem.
+# 🚀 But we *can* represent it using distributions
 
-**Examples:**
-- Euclid’s Lemma: If a prime divides a product, it divides at least one factor.
-- Schwarz’s Lemma in complex analysis.
+Using Euler’s identity:
+
+\[
+\cos(\omega_0 t)=\frac{1}{2}\left(e^{j\omega_0 t}+e^{-j\omega_0 t}\right)
+\]
+
+Each exponential has a “transform” in the distribution sense:
+
+\[
+\int_{-\infty}^{\infty} e^{j\omega_0 t} e^{-j\omega t} dt
+= 2\pi \delta(\omega - \omega_0)
+\]
+
+So the “Fourier Transform” of cosine is:
+
+\[
+\mathcal{F}\{\cos(\omega_0 t)\}
+= \pi\left[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)\right].
+\]
+
+This is **not** a function.  
+It is a **pair of impulses**.
+
+That’s what “not in the usual sense” means.
 
 ---
 
-### Corollary
-A **corollary** is a statement that follows readily and with little or no additional proof from a previously proven theorem or proposition.
+# 🧠 Intuition: Why impulses appear
 
-**Examples:**
-- Corollary to the Pythagorean Theorem: If two sides of a triangle are perpendicular, the square of the hypotenuse equals the sum of the squares of the other two sides.
-- Corollary: Every finite subgroup of the multiplicative group of a field is cyclic.
+A sinusoid has:
+- **infinite duration**
+- **constant amplitude**
+- **infinite energy**
+- **finite average power**
 
----
+So instead of spreading energy across frequencies, it concentrates all its power at exactly two frequencies.  
+That’s why the transform becomes impulses.
 
-### Conjecture
-A **conjecture** is a statement that is believed to be true based on observations or evidence but has not yet been proven or disproven.
-
-**Examples:**
-- Goldbach’s Conjecture: Every even integer greater than 2 is the sum of two primes.
-- Collatz Conjecture
-- Twin Prime Conjecture

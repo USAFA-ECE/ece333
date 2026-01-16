@@ -63,8 +63,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'glossary';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -381,35 +379,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glossary-of-logical-terms">Glossary of Logical Terms</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proposition">Proposition</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compound-proposition">Compound Proposition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-non-compound-proposition">Simple (Non-Compound) Proposition</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">📖 Glossary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-classification-matters">🔌 Why the classification matters</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#it-tells-you-what-kind-of-system-analysis-applies">1. <strong>It tells you what kind of system analysis applies</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#it-determines-which-fourier-transform-youre-allowed-to-use">2. <strong>It determines which Fourier transform you’re allowed to use</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#it-matches-physical-intuition">3. <strong>It matches physical intuition</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#it-prevents-mathematical-contradictions">4. <strong>It prevents mathematical contradictions</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#it-guides-system-design">5. <strong>It guides system design</strong></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propositional-function">Propositional Function</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicate">Predicate</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#premise">Premise</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argument">Argument</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inference-reasoning">Inference (Reasoning)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validity-valid">Validity (Valid)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converse">Converse</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contrapositive">Contrapositive</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse">Inverse</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-one-sentence-summary">🎯 The one-sentence summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-fourier-transform-does-not-exist-in-the-usual-sense-really-means">🌟 What “the Fourier Transform does <strong>not</strong> exist in the usual sense” really means</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example-fourier-transform-of-cos-omega-0-t">🎵 Example: Fourier Transform of ( \cos(\omega_0 t) )</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#but-we-can-represent-it-using-distributions">🚀 But we <em>can</em> represent it using distributions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-why-impulses-appear">🧠 Intuition: Why impulses appear</a></li>
 </ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glossary-of-proof-related-terms">Glossary of Proof-Related Terms</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theorem">Theorem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proposition-in-proof-context">Proposition (in proof context)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proof">Proof</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#axiom">Axiom</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lemma">Lemma</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corollary">Corollary</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conjecture">Conjecture</a></li>
-</ul>
-</li>
-</ul>
+
             </nav>
         </div>
     </div>
@@ -422,250 +407,153 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="glossary">
 <h1>📖 Glossary<a class="headerlink" href="#glossary" title="Permalink to this heading">#</a></h1>
-<section id="glossary-of-logical-terms">
-<h2>Glossary of Logical Terms<a class="headerlink" href="#glossary-of-logical-terms" title="Permalink to this heading">#</a></h2>
-<section id="proposition">
-<h3>Proposition<a class="headerlink" href="#proposition" title="Permalink to this heading">#</a></h3>
-<p>A <strong>proposition</strong> is a declarative statement that is either <em>true</em> or <em>false</em>, but not both. It makes an assertion about reality and can be evaluated for truth. The linguistic form (English, math symbols, etc.) doesn’t matter; what matters is whether the content has a definite truth value.</p>
-<p><strong>Examples:</strong></p>
-<ul class="simple">
-<li><p>“The Earth orbits the Sun” is a proposition because it can be evaluated as true.</p></li>
-<li><p>“The Moon is made of cheese.” (False)</p></li>
-<li><p>“2 + 2 = 4” (True)</p></li>
-</ul>
-<section id="compound-proposition">
-<h4>Compound Proposition<a class="headerlink" href="#compound-proposition" title="Permalink to this heading">#</a></h4>
-<p>A <strong>compound proposition</strong> is a logical statement formed by combining two or more <strong>simple propositions</strong> using logical connectives such as <strong>and (∧)</strong>, <strong>or (∨)</strong>, <strong>not (¬)</strong>, <strong>if…then (→)</strong>, and <strong>if and only if (↔)</strong>. It expresses a more complex relationship between truth values.</p>
-<p><strong>Examples:</strong></p>
-<ul class="simple">
-<li><p>“The Earth orbits the Sun <strong>and</strong> 2 + 2 = 4” — combines two true propositions using ∧.</p></li>
-<li><p>“If it rains, then the ground gets wet” — implication using →.</p></li>
-<li><p>“Either the Moon is made of cheese <strong>or</strong> pigs can fly” — disjunction using ∨.</p></li>
-</ul>
+<p>Classifying signals as <strong>power signals</strong> or <strong>energy signals</strong> isn’t just a vocabulary exercise — it tells you <em>how</em> the signal behaves over time and <em>which mathematical tools</em> you can use to analyze it. Engineers do this because different types of signals require different analysis techniques, different transforms, and even different interpretations in physical systems.</p>
 </section>
 <hr class="docutils" />
-<section id="simple-non-compound-proposition">
-<h4>Simple (Non-Compound) Proposition<a class="headerlink" href="#simple-non-compound-proposition" title="Permalink to this heading">#</a></h4>
-<p>A <strong>simple proposition</strong> is a single declarative statement that does <strong>not</strong> contain any logical connectives. It stands alone and can be evaluated as either <em>true</em> or <em>false</em>.</p>
-<p><strong>Examples:</strong></p>
+<section class="tex2jax_ignore mathjax_ignore" id="why-the-classification-matters">
+<h1>🔌 Why the classification matters<a class="headerlink" href="#why-the-classification-matters" title="Permalink to this heading">#</a></h1>
+<section id="it-tells-you-what-kind-of-system-analysis-applies">
+<h2>1. <strong>It tells you what kind of system analysis applies</strong><a class="headerlink" href="#it-tells-you-what-kind-of-system-analysis-applies" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>“The Earth orbits the Sun” — true</p></li>
-<li><p>“The Moon is made of cheese” — false</p></li>
-<li><p>“2 + 2 = 4” — true</p></li>
+<li><p><strong>Energy signals</strong> (finite energy, zero average power) are typically <em>transient</em> signals — pulses, bursts, wavelets, Gaussian bumps.</p></li>
+<li><p><strong>Power signals</strong> (finite average power, infinite energy) are <em>persistent</em> or <em>periodic</em> — sinusoids, square waves, random stationary processes.</p></li>
 </ul>
-</section>
-</section>
-<hr class="docutils" />
-<section id="propositional-function">
-<h3>Propositional Function<a class="headerlink" href="#propositional-function" title="Permalink to this heading">#</a></h3>
-<p>A <strong>propositional function</strong> is a statement containing one or more variables that becomes a <strong>proposition</strong> once specific values are substituted for those variables. Until the variables are assigned, the statement is neither true nor false.</p>
-<p><strong>Examples:</strong></p>
+<p>Different math applies:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(P(x):\; x &gt; 5\)</span> — not a proposition until <span class="math notranslate nohighlight">\(x\)</span> is given a value.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(x = 7\)</span>, then <span class="math notranslate nohighlight">\(P(7): 7 &gt; 5\)</span> is <strong>true</strong>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(x = 3\)</span>, then <span class="math notranslate nohighlight">\(P(3): 3 &gt; 5\)</span> is <strong>false</strong>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(Q(x,y):\; x + y = 10\)</span> — becomes a proposition once values of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are specified.</p></li>
+<li><p>Energy signals → <strong>Parseval’s theorem</strong>, energy spectral density</p></li>
+<li><p>Power signals → <strong>Power spectral density</strong>, autocorrelation, ergodicity</p></li>
 </ul>
+<p>You can’t mix the two without changing the framework.</p>
 </section>
 <hr class="docutils" />
-<section id="predicate">
-<h3>Predicate<a class="headerlink" href="#predicate" title="Permalink to this heading">#</a></h3>
-<p>A <strong>predicate</strong> is essentially the property or relation expressed in a propositional function. In logic, it acts as a function that returns a truth value when applied to one or more subjects. Predicates are the building blocks of propositional functions. In practice, propositional functions and predicates often look the same (P(x), Q(x,y)), but <strong>predicate</strong> emphasizes the meaning (the property/relationship), while <strong>propositional function</strong> emphasizes the form (a function that turns into a proposition when variables are instantiated).</p>
-<p><strong>Examples:</strong></p>
+<section id="it-determines-which-fourier-transform-youre-allowed-to-use">
+<h2>2. <strong>It determines which Fourier transform you’re allowed to use</strong><a class="headerlink" href="#it-determines-which-fourier-transform-youre-allowed-to-use" title="Permalink to this heading">#</a></h2>
+<p>This is a big one.</p>
 <ul class="simple">
-<li><p>In “Socrates is mortal”, “is mortal” is the predicate and “Socrates” is the subject. In predicate logic: Mortal(x)</p></li>
-<li><p>IsTall(x): “x is tall”</p></li>
-<li><p>Loves(x, y): “x loves y”</p></li>
-<li><p>Prime(n): “n is a prime number”</p></li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="premise">
-<h3>Premise<a class="headerlink" href="#premise" title="Permalink to this heading">#</a></h3>
-<p>In mathematics, a premise is often called a <strong>hypothesis</strong>. In a conditional statement (“If p, then q”), the <strong>antecedent</strong> (the “if” part) is a specific type of premise. Thus, every antecedent is a premise, but not every premise is an antecedent.</p>
-<p><strong>Examples:</strong></p>
-<ul class="simple">
-<li><p>“All mammals are warm-blooded.”</p></li>
-<li><p>“If it rains, the ground gets wet.”</p></li>
-<li><p>“Jane is taller than Tom.”</p></li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="conclusion">
-<h3>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">#</a></h3>
-<p>A <strong>conclusion</strong> is the proposition that is supported or proven by the premises in an argument.  In a conditional statement (“If p, then q”), the consequence (the “then” part) corresponds to the conclusion of that conditional. Thus, every consequence is a conclusion, but not every conclusion is a consequence.</p>
-<p><strong>Examples:</strong></p>
-<ul class="simple">
-<li><p>“Therefore, the Earth is round.” (based on previous evidence/premises)</p></li>
-<li><p>“Hence, she must be at home.”</p></li>
-<li><p>“It follows that all bachelors are unmarried.”</p></li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="argument">
-<h3>Argument<a class="headerlink" href="#argument" title="Permalink to this heading">#</a></h3>
-<p>An <strong>argument</strong> is a group of propositions in which some (premises) are intended to support another (conclusion). It’s the fundamental structure of reasoning.</p>
-<p><strong>Example:</strong></p>
-<ul class="simple">
-<li><p>Premise: All birds have feathers.</p></li>
-<li><p>Premise: A sparrow is a bird.</p></li>
-<li><p>Conclusion: Therefore, a sparrow has feathers.</p></li>
-</ul>
-<p><strong>Example:</strong></p>
-<ul class="simple">
-<li><p>Premise: If you study, you will pass.</p></li>
-<li><p>Premise: You studied.</p></li>
-<li><p>Conclusion: Therefore, you will pass.</p></li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="inference-reasoning">
-<h3>Inference (Reasoning)<a class="headerlink" href="#inference-reasoning" title="Permalink to this heading">#</a></h3>
-<p><strong>Inference</strong>, or <strong>reasoning</strong>, is the process of deriving logical conclusions from premises or known facts.</p>
-<p><strong>Examples:</strong></p>
-<ul class="simple">
-<li><p>From “All dogs bark” and “Rex is a dog,” we infer “Rex barks.”</p></li>
-<li><p>From “If the light is red, stop” and “The light is red,” infer “Stop.”</p></li>
-<li><p>From “All metals conduct electricity” and “Copper is a metal,” infer “Copper conducts electricity.”</p></li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="validity-valid">
-<h3>Validity (Valid)<a class="headerlink" href="#validity-valid" title="Permalink to this heading">#</a></h3>
-<p>An argument is <strong>valid</strong> if the conclusion necessarily follows from the premises. Validity is about form, not the actual truth of the statements.</p>
-<p><strong>Examples:</strong>
-1.</p>
-<ul class="simple">
-<li><p>Premise: All cats are animals.</p></li>
-<li><p>Premise: Felix is a cat.</p></li>
-<li><p>Conclusion: Felix is an animal. ✅ Valid</p></li>
-</ul>
-<ol class="arabic simple" start="2">
-<li><ul class="simple">
-<li><p>Premise: All unicorns are reptiles.</p></li>
-<li><p>Premise: Bob is a unicorn.</p></li>
-<li><p>Conclusion: Bob is a reptile. ✅ Valid (though premises are false)</p></li>
+<li><p>Energy signals → <strong>Fourier Transform (FT)</strong> exists directly</p></li>
+<li><p>Power signals → FT does <strong>not</strong> exist in the usual sense</p>
+<ul>
+<li><p>Instead you use the <strong>Fourier Series</strong> (for periodic signals)</p></li>
+<li><p>Or the <strong>PSD</strong> (for random/stationary signals)</p></li>
 </ul>
 </li>
-<li><ul class="simple">
-<li><p>Premise: Some dogs are brown.</p></li>
-<li><p>Premise: Rex is brown.</p></li>
-<li><p>Conclusion: Rex is a dog. ❌ Invalid (conclusion doesn’t logically follow)</p></li>
 </ul>
-</li>
-</ol>
+<p>Example:<br />
+A pure sinusoid has infinite energy, so its FT is not a normal function — it becomes impulses (Dirac deltas). That’s why we treat it as a <strong>power signal</strong>.</p>
 </section>
 <hr class="docutils" />
-<section id="converse">
-<h3>Converse<a class="headerlink" href="#converse" title="Permalink to this heading">#</a></h3>
-<p>The <strong>converse</strong> of a conditional proposition <span class="math notranslate nohighlight">\(p \to q\)</span> is the statement <span class="math notranslate nohighlight">\(q \to p\)</span>. It is formed by <strong>swapping</strong> the hypothesis and the conclusion.
-The converse is <strong>not</strong> logically equivalent to the original statement in general.</p>
-<p><strong>Examples:</strong></p>
+<section id="it-matches-physical-intuition">
+<h2>3. <strong>It matches physical intuition</strong><a class="headerlink" href="#it-matches-physical-intuition" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Original: “If it rains, then the ground gets wet.” (<span class="math notranslate nohighlight">\(p \to q\)</span>)</p></li>
-<li><p>Converse: “If the ground gets wet, then it rains.” (<span class="math notranslate nohighlight">\(q \to p\)</span>) — This is not always true (sprinklers, for example).</p></li>
+<li><p>Energy signals represent things like pulses, radar chirps, communication packets.<br />
+You care about <strong>total energy</strong> delivered.</p></li>
+<li><p>Power signals represent steady-state sources like AC mains, carriers, clock signals.<br />
+You care about <strong>average power</strong> delivered.</p></li>
 </ul>
+<p>The classification tells you what the signal <em>means</em> physically.</p>
 </section>
 <hr class="docutils" />
-<section id="contrapositive">
-<h3>Contrapositive<a class="headerlink" href="#contrapositive" title="Permalink to this heading">#</a></h3>
-<p>The <strong>contrapositive</strong> of a conditional proposition <span class="math notranslate nohighlight">\(p \to q\)</span> is the statement <span class="math notranslate nohighlight">\(\sim q \to \sim p\)</span>. It is formed by <strong>swapping</strong> and <strong>negating</strong> both the hypothesis and the conclusion.
-The contrapositive <strong>is logically equivalent</strong> to the original statement.</p>
-<p><strong>Examples:</strong></p>
-<ul class="simple">
-<li><p>Original: “If it rains, then the ground gets wet.” (<span class="math notranslate nohighlight">\(p \to q\)</span>)</p></li>
-<li><p>Contrapositive: “If the ground does not get wet, then it did not rain.” (<span class="math notranslate nohighlight">\(\sim q \to \sim p\)</span>) — Always true if the original is true.</p></li>
-</ul>
+<section id="it-prevents-mathematical-contradictions">
+<h2>4. <strong>It prevents mathematical contradictions</strong><a class="headerlink" href="#it-prevents-mathematical-contradictions" title="Permalink to this heading">#</a></h2>
+<p>If you try to compute the energy of a sinusoid:</p>
+<p>[
+\int_{-\infty}^{\infty} \sin^2(t), dt
+]</p>
+<p>…it diverges.<br />
+But its <strong>average power</strong>:</p>
+<p>[
+P = \frac{1}{2}
+]</p>
+<p>…is perfectly finite.</p>
+<p>The classification keeps you from applying the wrong integral and getting nonsense.</p>
 </section>
 <hr class="docutils" />
-<section id="inverse">
-<h3>Inverse<a class="headerlink" href="#inverse" title="Permalink to this heading">#</a></h3>
-<p>The <strong>inverse</strong> of a conditional proposition <span class="math notranslate nohighlight">\(p \to q\)</span> is the statement <span class="math notranslate nohighlight">\(\sim p \to \sim q\)</span>. It is formed by <strong>negating</strong> both the hypothesis and the conclusion without swapping them.
-The inverse is <strong>not</strong> logically equivalent to the original statement in general.</p>
-<p><strong>Examples:</strong></p>
+<section id="it-guides-system-design">
+<h2>5. <strong>It guides system design</strong><a class="headerlink" href="#it-guides-system-design" title="Permalink to this heading">#</a></h2>
+<p>In communication systems:</p>
 <ul class="simple">
-<li><p>Original: “If it rains, then the ground gets wet.” (<span class="math notranslate nohighlight">\(p \to q\)</span>)</p></li>
-<li><p>Inverse: “If it does not rain, then the ground does not get wet.” (<span class="math notranslate nohighlight">\(\sim p \to \sim q\)</span>) — Not always true (sprinklers again).</p></li>
+<li><p>Energy signals → used for <strong>symbol detection</strong>, matched filters</p></li>
+<li><p>Power signals → used for <strong>carrier waves</strong>, modulation, spectral shaping</p></li>
+</ul>
+<p>In control systems:</p>
+<ul class="simple">
+<li><p>Energy signals → represent impulses or test inputs</p></li>
+<li><p>Power signals → represent steady-state forcing</p></li>
+</ul>
+<p>In DSP:</p>
+<ul class="simple">
+<li><p>Energy signals → windowed signals, FIR filters</p></li>
+<li><p>Power signals → periodic signals, IIR filters, spectral estimation</p></li>
 </ul>
 </section>
 </section>
 <hr class="docutils" />
-<section id="glossary-of-proof-related-terms">
-<h2>Glossary of Proof-Related Terms<a class="headerlink" href="#glossary-of-proof-related-terms" title="Permalink to this heading">#</a></h2>
-<section id="theorem">
-<h3>Theorem<a class="headerlink" href="#theorem" title="Permalink to this heading">#</a></h3>
-<p>A <strong>theorem</strong> is a mathematical or logical statement that has been proven to be true based on previously established statements such as axioms, definitions, and earlier theorems.</p>
-<p><strong>Examples:</strong></p>
-<ul class="simple">
-<li><p>Pythagorean Theorem: ( a^2 + b^2 = c^2 )</p></li>
-<li><p>Fundamental Theorem of Calculus</p></li>
-<li><p>Gödel’s Incompleteness Theorems</p></li>
-</ul>
+<section class="tex2jax_ignore mathjax_ignore" id="the-one-sentence-summary">
+<h1>🎯 The one-sentence summary<a class="headerlink" href="#the-one-sentence-summary" title="Permalink to this heading">#</a></h1>
+<p>We classify signals as power or energy because <strong>each class obeys different mathematical rules, uses different transforms, and represents different physical behaviors</strong>, and mixing them leads to incorrect analysis.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="what-the-fourier-transform-does-not-exist-in-the-usual-sense-really-means">
+<h1>🌟 What “the Fourier Transform does <strong>not</strong> exist in the usual sense” really means<a class="headerlink" href="#what-the-fourier-transform-does-not-exist-in-the-usual-sense-really-means" title="Permalink to this heading">#</a></h1>
+<p>For <strong>energy signals</strong>, the Fourier Transform is defined by the integral:</p>
+<p>[
+X(\omega)=\int_{-\infty}^{\infty} x(t)e^{-j\omega t},dt
+]</p>
+<p>This integral converges <strong>only if</strong> the signal has <strong>finite energy</strong>:</p>
+<p>[
+E=\int_{-\infty}^{\infty} |x(t)|^2 dt &lt; \infty.
+]</p>
+<p>But <strong>power signals</strong> (like sinusoids) have <strong>infinite energy</strong>, so the integral above <strong>diverges</strong>.<br />
+That’s why we say:</p>
+<blockquote>
+<div><p>The Fourier Transform does not exist as an ordinary function.</p>
+</div></blockquote>
+<p>It doesn’t mean “no transform exists.”<br />
+It means the transform is <strong>not a regular function</strong> — it becomes a <strong>distribution</strong> (generalized function).</p>
 </section>
 <hr class="docutils" />
-<section id="proposition-in-proof-context">
-<h3>Proposition (in proof context)<a class="headerlink" href="#proposition-in-proof-context" title="Permalink to this heading">#</a></h3>
-<p>A <strong>proposition</strong> in the context of proofs is a statement that is proved true using logic and previously proven statements. It is often considered less central or less important than a theorem.</p>
-<p><strong>Examples:</strong></p>
-<ul class="simple">
-<li><p>In some texts, a small result that is still worth proving may be called a proposition.</p></li>
-<li><p>“Every finite group of prime order is cyclic.”</p></li>
-</ul>
+<section class="tex2jax_ignore mathjax_ignore" id="example-fourier-transform-of-cos-omega-0-t">
+<h1>🎵 Example: Fourier Transform of ( \cos(\omega_0 t) )<a class="headerlink" href="#example-fourier-transform-of-cos-omega-0-t" title="Permalink to this heading">#</a></h1>
+<p>Try the usual FT integral:</p>
+<p>[
+\int_{-\infty}^{\infty} \cos(\omega_0 t)e^{-j\omega t} dt
+]</p>
+<p>This integral <strong>does not converge</strong>.<br />
+The cosine oscillates forever and never decays, so the area under the curve does not settle to a finite value.</p>
+<p>So the FT <strong>cannot</strong> be a normal function.</p>
 </section>
 <hr class="docutils" />
-<section id="proof">
-<h3>Proof<a class="headerlink" href="#proof" title="Permalink to this heading">#</a></h3>
-<p>A <strong>proof</strong> is a logical argument demonstrating the truth of a theorem or proposition, using deductive reasoning from accepted premises, axioms, and previously established results.</p>
-<p><strong>Examples:</strong></p>
-<ul class="simple">
-<li><p>A direct proof using definitions and logical steps.</p></li>
-<li><p>A proof by contradiction assuming the opposite and deriving a contradiction.</p></li>
-<li><p>An inductive proof involving base cases and inductive steps.</p></li>
-</ul>
+<section class="tex2jax_ignore mathjax_ignore" id="but-we-can-represent-it-using-distributions">
+<h1>🚀 But we <em>can</em> represent it using distributions<a class="headerlink" href="#but-we-can-represent-it-using-distributions" title="Permalink to this heading">#</a></h1>
+<p>Using Euler’s identity:</p>
+<p>[
+\cos(\omega_0 t)=\frac{1}{2}\left(e^{j\omega_0 t}+e^{-j\omega_0 t}\right)
+]</p>
+<p>Each exponential has a “transform” in the distribution sense:</p>
+<p>[
+\int_{-\infty}^{\infty} e^{j\omega_0 t} e^{-j\omega t} dt
+= 2\pi \delta(\omega - \omega_0)
+]</p>
+<p>So the “Fourier Transform” of cosine is:</p>
+<p>[
+\mathcal{F}{\cos(\omega_0 t)}
+= \pi\left[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)\right].
+]</p>
+<p>This is <strong>not</strong> a function.<br />
+It is a <strong>pair of impulses</strong>.</p>
+<p>That’s what “not in the usual sense” means.</p>
 </section>
 <hr class="docutils" />
-<section id="axiom">
-<h3>Axiom<a class="headerlink" href="#axiom" title="Permalink to this heading">#</a></h3>
-<p>An <strong>axiom</strong> (or <strong>postulate</strong>) is a self-evident or universally accepted principle that does not require proof. It serves as a starting point for logical or mathematical reasoning.</p>
-<p><strong>Examples:</strong></p>
+<section class="tex2jax_ignore mathjax_ignore" id="intuition-why-impulses-appear">
+<h1>🧠 Intuition: Why impulses appear<a class="headerlink" href="#intuition-why-impulses-appear" title="Permalink to this heading">#</a></h1>
+<p>A sinusoid has:</p>
 <ul class="simple">
-<li><p>In geometry: “Through any two points, there exists exactly one line.”</p></li>
-<li><p>In arithmetic: “For any number ( a ), ( a + 0 = a ).”</p></li>
-<li><p>In set theory: “Two sets are equal if they contain the same elements.”</p></li>
+<li><p><strong>infinite duration</strong></p></li>
+<li><p><strong>constant amplitude</strong></p></li>
+<li><p><strong>infinite energy</strong></p></li>
+<li><p><strong>finite average power</strong></p></li>
 </ul>
-</section>
-<hr class="docutils" />
-<section id="lemma">
-<h3>Lemma<a class="headerlink" href="#lemma" title="Permalink to this heading">#</a></h3>
-<p>A <strong>lemma</strong> is a proven statement used as a stepping stone to prove a larger result (typically a theorem). While it may be useful in its own right, its main role is as a helper theorem.</p>
-<p><strong>Examples:</strong></p>
-<ul class="simple">
-<li><p>Euclid’s Lemma: If a prime divides a product, it divides at least one factor.</p></li>
-<li><p>Schwarz’s Lemma in complex analysis.</p></li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="corollary">
-<h3>Corollary<a class="headerlink" href="#corollary" title="Permalink to this heading">#</a></h3>
-<p>A <strong>corollary</strong> is a statement that follows readily and with little or no additional proof from a previously proven theorem or proposition.</p>
-<p><strong>Examples:</strong></p>
-<ul class="simple">
-<li><p>Corollary to the Pythagorean Theorem: If two sides of a triangle are perpendicular, the square of the hypotenuse equals the sum of the squares of the other two sides.</p></li>
-<li><p>Corollary: Every finite subgroup of the multiplicative group of a field is cyclic.</p></li>
-</ul>
-</section>
-<hr class="docutils" />
-<section id="conjecture">
-<h3>Conjecture<a class="headerlink" href="#conjecture" title="Permalink to this heading">#</a></h3>
-<p>A <strong>conjecture</strong> is a statement that is believed to be true based on observations or evidence but has not yet been proven or disproven.</p>
-<p><strong>Examples:</strong></p>
-<ul class="simple">
-<li><p>Goldbach’s Conjecture: Every even integer greater than 2 is the sum of two primes.</p></li>
-<li><p>Collatz Conjecture</p></li>
-<li><p>Twin Prime Conjecture</p></li>
-</ul>
-</section>
-</section>
+<p>So instead of spreading energy across frequencies, it concentrates all its power at exactly two frequencies.<br />
+That’s why the transform becomes impulses.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -714,35 +602,22 @@ The inverse is <strong>not</strong> logically equivalent to the original stateme
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glossary-of-logical-terms">Glossary of Logical Terms</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proposition">Proposition</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compound-proposition">Compound Proposition</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-non-compound-proposition">Simple (Non-Compound) Proposition</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">📖 Glossary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-classification-matters">🔌 Why the classification matters</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#it-tells-you-what-kind-of-system-analysis-applies">1. <strong>It tells you what kind of system analysis applies</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#it-determines-which-fourier-transform-youre-allowed-to-use">2. <strong>It determines which Fourier transform you’re allowed to use</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#it-matches-physical-intuition">3. <strong>It matches physical intuition</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#it-prevents-mathematical-contradictions">4. <strong>It prevents mathematical contradictions</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#it-guides-system-design">5. <strong>It guides system design</strong></a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#propositional-function">Propositional Function</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predicate">Predicate</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#premise">Premise</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#argument">Argument</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inference-reasoning">Inference (Reasoning)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#validity-valid">Validity (Valid)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#converse">Converse</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contrapositive">Contrapositive</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#inverse">Inverse</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#the-one-sentence-summary">🎯 The one-sentence summary</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-the-fourier-transform-does-not-exist-in-the-usual-sense-really-means">🌟 What “the Fourier Transform does <strong>not</strong> exist in the usual sense” really means</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example-fourier-transform-of-cos-omega-0-t">🎵 Example: Fourier Transform of ( \cos(\omega_0 t) )</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#but-we-can-represent-it-using-distributions">🚀 But we <em>can</em> represent it using distributions</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#intuition-why-impulses-appear">🧠 Intuition: Why impulses appear</a></li>
 </ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#glossary-of-proof-related-terms">Glossary of Proof-Related Terms</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#theorem">Theorem</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proposition-in-proof-context">Proposition (in proof context)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proof">Proof</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#axiom">Axiom</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lemma">Lemma</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#corollary">Corollary</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conjecture">Conjecture</a></li>
-</ul>
-</li>
-</ul>
+
   </nav></div>
 
 </div></div>
