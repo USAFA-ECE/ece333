@@ -12,10 +12,10 @@ This schedule is subject to change as appropriate.
 |3  | Introduction to Signals           | 1.1-1.3       | HW1             |
 |4  | Useful Signal Models              | 1.4-1.5       |                 |
 |5  | Classification of Systems         | 1.6-1.7       | HW2             |
-|6  | System Model                      | 1.8-1.9, 1.11 |                 |
+|6  | System Model                      | 1.8, 1.11     |                 |
 |7  | Zero-Input Response               | 2.1-2.2       | HW3             |
-|8  | Delta Functions                   |               | Quiz1 (L1-L7)   |
-|9  | Zero-State Response               | 2.3-2.4       |                 |
+|8  | Delta Functions                   |               |                 |
+|9  | Zero-State Response               | 2.3-2.4       | Quiz1 (L1-L7)   |
 |10 | Convolution                       | 2.5-2.6       | HW4             |
 |11 | Impulse Response                  | 2.7-2.9       |                 |
 |12 | P1: Impulse Response              |               | HW5             |
