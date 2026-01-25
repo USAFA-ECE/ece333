@@ -63,8 +63,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'impulse';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -394,7 +392,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="impulse-response-and-convolution">
+  <section id="impulse-response-and-convolution">
 <h1>Impulse Response and Convolution<a class="headerlink" href="#impulse-response-and-convolution" title="Permalink to this heading">#</a></h1>
 <p>This section develops one of the most important ideas in signals and systems: <strong>the impulse response</strong>. The impulse response provides a complete description of a <strong>linear time-invariant (LTI)</strong> system. Once it is known, the system’s response to <em>any</em> input can be determined using <strong>convolution</strong>.</p>
 <p>The goal of this section is not only to present the formulas, but to build strong intuition for <em>why</em> convolution arises naturally from linearity and time invariance.</p>
@@ -418,18 +416,13 @@ document.write(`
 <hr class="docutils" />
 <section id="discrete-time-impulse-response">
 <h2>2. Discrete-Time Impulse Response<a class="headerlink" href="#discrete-time-impulse-response" title="Permalink to this heading">#</a></h2>
-<figure class="align-center" id="id2">
-<span id="label-lti-system"></span><a class="reference internal image-reference" href="_images/GradeDistribution.png"><img alt="_images/GradeDistribution.png" src="_images/GradeDistribution.png" style="width: 660px;" /></a>
-<figcaption>
-<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Block diagram of a discrete-time LTI system showing input <span class="math notranslate nohighlight">\(x(k)\)</span>, output <span class="math notranslate nohighlight">\(y(k)\)</span>, and impulse input <span class="math notranslate nohighlight">\(\delta(k)\)</span>.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
-<div class="legend">
 <figure class="align-center" id="fig-lti-system">
-<span id="id1"></span><a class="reference internal image-reference" href="_images/GradeDistribution.png"><img alt="_images/GradeDistribution.png" src="_images/GradeDistribution.png" style="width: 660px;" /></a>
+<a class="reference internal image-reference" href="_images/GradeDistribution.png"><img alt="_images/GradeDistribution.png" src="_images/GradeDistribution.png" style="width: 660px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Block diagram of a discrete-time LTI system showing input <span class="math notranslate nohighlight">\(x(k)\)</span>, output <span class="math notranslate nohighlight">\(y(k)\)</span>, and impulse input <span class="math notranslate nohighlight">\(\delta(k)\)</span>.</span><a class="headerlink" href="#fig-lti-system" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Block diagram of a discrete-time LTI system showing input $x(k)$, output $y(k)$, and impulse input $\delta(k)$.</span><a class="headerlink" href="#fig-lti-system" title="Permalink to this image">#</a></p>
 <div class="legend">
 <p>{numref}fig-lti-system illustrates the basic input–output relationship of a discrete-time LTI system. It emphasizes that the impulse response h(k) is defined as the system output when the input is the unit impulse δ(k). This figure sets the foundation for all later analysis.</p>
-<p>We begin with discrete-time systems, since impulses and summations are easier to visualize.</p>
+<p>We begin with discrete-time systems, since impulses and summations are easier to visualize. {numref}fig-lti-system</p>
 <p>Consider a discrete-time LTI system with input ( x(k) ) and output ( y(k) ).</p>
 <p class="rubric">2.1 The Unit Impulse (Kronecker Delta)</p>
 <blockquote>
@@ -630,9 +623,6 @@ y(t) = (x * h)(t).
 <blockquote>
 <div><p><strong>If you know the impulse response, you know the system.</strong></p>
 </div></blockquote>
-</div>
-</figcaption>
-</figure>
 </div>
 </figcaption>
 </figure>
