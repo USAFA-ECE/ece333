@@ -1,0 +1,753 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Impulse Response and Convolution &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'impulse';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Integration by Parts" href="integration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/ece333.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="_static/ece333.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    ECE 333 Signal Processing & Linear Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="syllabus.html">📌 ECE333 Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schedule.html">📆 Course Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AI_policy.html">🤖 AI Usage Policy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Supplementary</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://stanbaek.github.io/ComplexFunctions.html">Complex Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">Integration by Parts</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Impulse Response and Convolution</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/usafa-ece/jupyterbook-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/usafa-ece/jupyterbook-template/issues/new?title=Issue%20on%20page%20%2Fimpulse.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/impulse.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Impulse Response and Convolution</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-impulse-response-is-fundamental">1. Why the Impulse Response Is Fundamental</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time-impulse-response">2. Discrete-Time Impulse Response</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="impulse-response-and-convolution">
+<h1>Impulse Response and Convolution<a class="headerlink" href="#impulse-response-and-convolution" title="Permalink to this heading">#</a></h1>
+<p>This section develops one of the most important ideas in signals and systems: <strong>the impulse response</strong>. The impulse response provides a complete description of a <strong>linear time-invariant (LTI)</strong> system. Once it is known, the system’s response to <em>any</em> input can be determined using <strong>convolution</strong>.</p>
+<p>The goal of this section is not only to present the formulas, but to build strong intuition for <em>why</em> convolution arises naturally from linearity and time invariance.</p>
+<hr class="docutils" />
+<section id="why-the-impulse-response-is-fundamental">
+<h2>1. Why the Impulse Response Is Fundamental<a class="headerlink" href="#why-the-impulse-response-is-fundamental" title="Permalink to this heading">#</a></h2>
+<p>In many engineering systems—electrical circuits, mechanical systems, control systems, and signal processing algorithms—we are interested in understanding how an output signal depends on an input signal.</p>
+<p>For a general system, this relationship can be very complicated. However, for <strong>linear time-invariant (LTI)</strong> systems, there is a remarkable simplification:</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>An LTI system is completely characterized by its impulse response.</p>
+</div>
+<p>This means that if we know how the system responds to a single, idealized input called an <em>impulse</em>, then we can determine how the system responds to <em>any</em> input signal.</p>
+<p>To understand why this is true, we will:</p>
+<ol class="arabic simple">
+<li><p>Define impulse signals</p></li>
+<li><p>Show how arbitrary signals can be built from impulses</p></li>
+<li><p>Use linearity and time invariance to compute the output</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="discrete-time-impulse-response">
+<h2>2. Discrete-Time Impulse Response<a class="headerlink" href="#discrete-time-impulse-response" title="Permalink to this heading">#</a></h2>
+<figure class="align-center" id="id2">
+<span id="label-lti-system"></span><a class="reference internal image-reference" href="_images/GradeDistribution.png"><img alt="_images/GradeDistribution.png" src="_images/GradeDistribution.png" style="width: 660px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Block diagram of a discrete-time LTI system showing input <span class="math notranslate nohighlight">\(x(k)\)</span>, output <span class="math notranslate nohighlight">\(y(k)\)</span>, and impulse input <span class="math notranslate nohighlight">\(\delta(k)\)</span>.</span><a class="headerlink" href="#id2" title="Permalink to this image">#</a></p>
+<div class="legend">
+<figure class="align-center" id="fig-lti-system">
+<span id="id1"></span><a class="reference internal image-reference" href="_images/GradeDistribution.png"><img alt="_images/GradeDistribution.png" src="_images/GradeDistribution.png" style="width: 660px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Block diagram of a discrete-time LTI system showing input <span class="math notranslate nohighlight">\(x(k)\)</span>, output <span class="math notranslate nohighlight">\(y(k)\)</span>, and impulse input <span class="math notranslate nohighlight">\(\delta(k)\)</span>.</span><a class="headerlink" href="#fig-lti-system" title="Permalink to this image">#</a></p>
+<div class="legend">
+<p>{numref}fig-lti-system illustrates the basic input–output relationship of a discrete-time LTI system. It emphasizes that the impulse response h(k) is defined as the system output when the input is the unit impulse δ(k). This figure sets the foundation for all later analysis.</p>
+<p>We begin with discrete-time systems, since impulses and summations are easier to visualize.</p>
+<p>Consider a discrete-time LTI system with input ( x(k) ) and output ( y(k) ).</p>
+<p class="rubric">2.1 The Unit Impulse (Kronecker Delta)</p>
+<blockquote>
+<div><p><strong>Figure 2.2 (insert here):</strong> <em>Stem plot of the discrete-time unit impulse δ(k).</em></p>
+</div></blockquote>
+<p>Figure 2.2 visualizes the unit impulse as a signal that is nonzero at only one time index. This highlights why impulses are useful building blocks: they isolate behavior at a single instant in time.</p>
+<p>The <strong>unit impulse</strong>, also called the <strong>Kronecker delta</strong>, is defined as</p>
+<p>[
+\delta(k) =
+\begin{cases}
+1, &amp; k = 0 <br />
+0, &amp; k \neq 0
+\end{cases}
+]</p>
+<p>The impulse is nonzero at only one time index. Although this signal may seem artificial, it plays a role similar to a <strong>basis vector</strong> in linear algebra.</p>
+<p>When the input to the system is ( \delta(k) ), the output is called the <strong>impulse response</strong>:</p>
+<p>[
+\delta(k) \longrightarrow h(k).
+]</p>
+<p>The impulse response tells us how the system behaves when excited at a single instant in time.</p>
+<hr class="docutils" />
+<p class="rubric">2.2 Time Invariance: Shifting the Impulse</p>
+<blockquote>
+<div><p><strong>Figure 2.3 (insert here):</strong> <em>Illustration showing that a delayed impulse input δ(k−n) produces a delayed output h(k−n).</em></p>
+</div></blockquote>
+<p>Figure 2.3 demonstrates the time-invariance property. When the impulse is shifted in time, the output shifts by the same amount, showing that the system response does not depend on absolute time.</p>
+<p>A system is <strong>time-invariant</strong> if delaying the input by some amount produces an identical delay in the output.</p>
+<p>If
+[
+\delta(k) \longrightarrow h(k),
+]</p>
+<p>then for any integer ( n ),
+[
+\delta(k-n) \longrightarrow h(k-n).
+]</p>
+<p>This property ensures that the system’s behavior does not depend on <em>when</em> the input is applied—only on its shape.</p>
+<hr class="docutils" />
+<p class="rubric">2.3 Linearity: Scaling the Impulse</p>
+<blockquote>
+<div><p><strong>Figure 2.4 (insert here):</strong> <em>Illustration demonstrating scaling: input aδ(k) produces output a·h(k).</em></p>
+</div></blockquote>
+<p>Figure 2.4 illustrates linearity through scaling. Increasing the amplitude of the impulse increases the amplitude of the response by the same factor, reinforcing the proportional nature of linear systems.</p>
+<p>A system is <strong>linear</strong> if it satisfies two properties:</p>
+<ul class="simple">
+<li><p><strong>Scaling:</strong> Scaling the input scales the output</p></li>
+<li><p><strong>Additivity:</strong> The response to a sum of inputs is the sum of the responses</p></li>
+</ul>
+<p>For scaling,
+[
+a,\delta(k) \longrightarrow a,h(k).
+]</p>
+<p>This means that the system responds proportionally to the strength of the input.</p>
+<hr class="docutils" />
+<p class="rubric">3. Decomposition of Discrete-Time Signals</p>
+<blockquote>
+<div><p><strong>Figure 3.1 (insert here):</strong> <em>Example discrete-time signal decomposed into scaled and shifted impulse signals.</em></p>
+</div></blockquote>
+<p>Figure 3.1 shows how an arbitrary discrete-time signal can be expressed as a sum of weighted impulses. Each impulse corresponds to one sample of the signal, making the decomposition visually concrete.</p>
+<p>The key insight that leads to convolution is that <strong>any discrete-time signal can be constructed from shifted impulses</strong>.</p>
+<p class="rubric">3.1 Impulse Decomposition</p>
+<blockquote>
+<div><p><strong>Figure 3.2 (insert here):</strong> <em>Visualization showing how each impulse δ(k−n) isolates the sample value x(n).</em></p>
+</div></blockquote>
+<p>Figure 3.2 emphasizes the sampling property of the impulse. The impulse “picks out” the value of the signal at a specific time index, which is why the impulse decomposition works.</p>
+<p>Let ( x(k) ) be an arbitrary discrete-time signal. Then it can be written as</p>
+<p>[
+x(k) = \sum_{n=-\infty}^{\infty} x(n),\delta(k-n).
+]</p>
+<p>This expression may look strange at first, since it rewrites a signal in a more complicated form. However, it has a very clear interpretation:</p>
+<ul class="simple">
+<li><p>Each impulse ( \delta(k-n) ) is located at time ( n )</p></li>
+<li><p>Each impulse is weighted by the signal value ( x(n) )</p></li>
+</ul>
+<p>The impulse acts as a <em>sampling operator</em>, selecting the value of the signal at a single time index.</p>
+<hr class="docutils" />
+<p class="rubric">3.2 Analogy: Basis Vectors in Linear Algebra</p>
+<p>This idea is closely related to expressing a vector as a linear combination of basis vectors. For example,</p>
+<p class="rubric">[
+\begin{bmatrix} 3 \ 2 \end{bmatrix}</p>
+<p>3\begin{bmatrix} 1 \ 0 \end{bmatrix}
++
+2\begin{bmatrix} 0 \ 1 \end{bmatrix}.
+]</p>
+<p>Here, the unit vectors form a basis for ( \mathbb{R}^2 ). Similarly, shifted impulse signals form a <strong>basis for discrete-time signals</strong>.</p>
+<hr class="docutils" />
+<p class="rubric">4. Discrete-Time Convolution</p>
+<blockquote>
+<div><p><strong>Figure 4.1 (insert here):</strong> <em>Block-diagram interpretation showing summation of scaled and shifted impulse responses forming the output.</em></p>
+</div></blockquote>
+<p>Figure 4.1 visualizes convolution as a superposition process. The output signal is formed by summing multiple shifted copies of the impulse response, each weighted by the input signal values.</p>
+<p>Once the input signal has been decomposed into impulses, computing the output becomes straightforward.</p>
+<p class="rubric">4.1 Response to a Single Impulse</p>
+<p>From the definition of the impulse response,
+[
+\delta(k-n) \longrightarrow h(k-n).
+]</p>
+<p class="rubric">4.2 Response to a Weighted Sum of Impulses</p>
+<p>Using linearity, the response to
+[
+x(n),\delta(k-n)
+]</p>
+<p>is
+[
+x(n),h(k-n).
+]</p>
+<p>Because the system is linear, the total output is the sum of all such responses:</p>
+<p>[
+y(k) = \sum_{n=-\infty}^{\infty} x(n),h(k-n).
+]</p>
+<p>This summation is called <strong>discrete-time convolution</strong>, written compactly as</p>
+<p>[
+y(k) = (x * h)(k).
+]</p>
+<blockquote>
+<div><p><strong>Interpretation:</strong> The output is formed by adding together many shifted copies of the impulse response, each weighted by the input signal.</p>
+</div></blockquote>
+<hr class="docutils" />
+<p class="rubric">5. Continuous-Time Impulse Response</p>
+<blockquote>
+<div><p><strong>Figure 5.1 (insert here):</strong> <em>Continuous-time LTI system responding to a Dirac delta input δ(t) with impulse response h(t).</em></p>
+</div></blockquote>
+<p>Figure 5.1 introduces the impulse response in continuous time. It mirrors the discrete-time case and shows that h(t) is defined as the system output due to a delta-function input.</p>
+<p>The same reasoning applies to continuous-time systems, with sums replaced by integrals.</p>
+<p class="rubric">5.1 The Dirac Delta Function</p>
+<blockquote>
+<div><p><strong>Figure 5.2 (insert here):</strong> <em>Conceptual illustration of the Dirac delta function as a unit-area impulse.</em></p>
+</div></blockquote>
+<p>Figure 5.2 provides intuition for the Dirac delta by emphasizing its unit-area property. Although infinitely narrow and tall, the delta function contributes a finite amount when integrated.</p>
+<p>The <strong>Dirac delta function</strong> ( \delta(t) ) is an idealized impulse with the defining property</p>
+<p>[
+\int_{-\infty}^{\infty} \delta(t),dt = 1.
+]</p>
+<p>Although the delta function is not a function in the traditional sense, it is an extremely useful mathematical tool for analyzing LTI systems.</p>
+<p>When the input to a continuous-time LTI system is ( \delta(t) ), the output is the <strong>impulse response</strong> ( h(t) ).</p>
+<hr class="docutils" />
+<p class="rubric">5.2 Decomposition of Continuous-Time Signals</p>
+<blockquote>
+<div><p><strong>Figure 5.3 (insert here):</strong> <em>Continuous-time signal represented as a superposition of shifted impulses.</em></p>
+</div></blockquote>
+<p>Figure 5.3 illustrates how a continuous-time signal can be viewed as an infinite collection of impulses, each weighted by the signal value at time τ.</p>
+<p>Any continuous-time signal ( x(t) ) can be expressed as a superposition of infinitely many shifted impulses:</p>
+<p>[
+x(t) = \int_{-\infty}^{\infty} x(\tau),\delta(t-\tau),d\tau.
+]</p>
+<p>Each impulse at time ( \tau ) contributes independently to the output.</p>
+<hr class="docutils" />
+<p class="rubric">6. Continuous-Time Convolution</p>
+<blockquote>
+<div><p><strong>Figure 6.1 (insert here):</strong> <em>Graphical depiction of convolution as integration of shifted impulse responses weighted by the input signal.</em></p>
+</div></blockquote>
+<p>Figure 6.1 connects the convolution integral to physical intuition. It shows how the output is obtained by integrating weighted, shifted versions of the impulse response over all time.</p>
+<p>Using linearity and time invariance, the output of a continuous-time LTI system is</p>
+<p>[
+y(t) = \int_{-\infty}^{\infty} x(\tau),h(t-\tau),d\tau.
+]</p>
+<p>This expression is called the <strong>convolution integral</strong>, and is written as</p>
+<p>[
+y(t) = (x * h)(t).
+]</p>
+<p>Convolution provides a universal input–output relationship for all continuous-time LTI systems.</p>
+<hr class="docutils" />
+<p class="rubric">7. Discrete-Time vs. Continuous-Time</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concept</p></th>
+<th class="head"><p>Discrete Time</p></th>
+<th class="head"><p>Continuous Time</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Impulse</p></td>
+<td><p>( \delta(k) )</p></td>
+<td><p>( \delta(t) )</p></td>
+</tr>
+<tr class="row-odd"><td><p>Signal decomposition</p></td>
+<td><p>Summation</p></td>
+<td><p>Integral</p></td>
+</tr>
+<tr class="row-even"><td><p>Impulse response</p></td>
+<td><p>( h(k) )</p></td>
+<td><p>( h(t) )</p></td>
+</tr>
+<tr class="row-odd"><td><p>System output</p></td>
+<td><p>Convolution sum</p></td>
+<td><p>Convolution integral</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<p class="rubric">8. Key Takeaways</p>
+<ul class="simple">
+<li><p>The impulse response completely characterizes an LTI system.</p></li>
+<li><p>Any signal can be decomposed into shifted impulses.</p></li>
+<li><p>Linearity and time invariance lead directly to convolution.</p></li>
+<li><p>Convolution describes how inputs are transformed into outputs in LTI systems.</p></li>
+</ul>
+<blockquote>
+<div><p><strong>If you know the impulse response, you know the system.</strong></p>
+</div></blockquote>
+</div>
+</figcaption>
+</figure>
+</div>
+</figcaption>
+</figure>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="integration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Integration by Parts</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-the-impulse-response-is-fundamental">1. Why the Impulse Response Is Fundamental</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete-time-impulse-response">2. Discrete-Time Impulse Response</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Stan Baek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
