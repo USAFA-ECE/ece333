@@ -14,7 +14,7 @@ This schedule is subject to change as appropriate.
 |5  | Classification of Systems         | 1.6-1.7          | HW2             |
 |6  | System Model                      | 1.8, 1.11        |                 |
 |7  | Zero-Input Response               | 2.1-2.2          | HW3             |
-|8  | Impulse Response                  | 2.3 (pp.163-164) |                 |
+|8  | Impulse Response                  | 2.3 (pp.163-164), Lecture Note|    |
 |9  | Zero-State Response               | 2.4              | Quiz1 (L1-L6)   |
 |10 | Convolution                       | 2.4              | HW4             |
 |11 | Stability                         | 2.5              |                 |
