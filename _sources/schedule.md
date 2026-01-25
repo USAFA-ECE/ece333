@@ -20,7 +20,7 @@ This schedule is subject to change as appropriate.
 |11 | Stability                         | 2.5              |                 |
 |12 | P1: Impulse Response              |                  | HW5             |
 |13 | Review                            |                  | Quiz2 (L7-L11)  |
-|14 | GR 1                              | L1-12            |                 |
+|14 | GR 1 (L1-11)                      |                  |                 |
 |15 | Vectors and Functions             | B6-B7            |                 |
 |16 | Fourier Series                    | 3.1-3.2          | P1              |
 |17 | Orthogonal Signal Sets            | 3.3              | HW6             |
@@ -33,7 +33,7 @@ This schedule is subject to change as appropriate.
 |24 | Amplitude Modulation              | 4.6-4.7          | HW9             |
 |25 | P2: Amplitude Modulation          |                  | Quiz4 (L20-L24) |
 |26 | Review                            |                  |                 |
-|27 | GR 2                              | L13-L24          |                 |
+|27 | GR 2 (L14-L24)                    |                  |                 |
 |28 | Sampling                          | 5.1              |                 |
 |29 | Signal Reconstruction & ADC       | 5.2-5.3          | P2              |
 |30 | Spectral Sampling & DFT           | 5.4-5.5          | HW10            |
@@ -43,7 +43,7 @@ This schedule is subject to change as appropriate.
 |34 | System Realization                | 6.5-6.6          |                 |
 |35 | P3: Sampling                      |                  | HW12            |
 |36 | Review                            |                  | Quiz5 (L28-L34) |
-|37 | GR 3                              |                  |                 |
+|37 | GR 3 (L28-L34)                    |                  |                 |
 |38 | TBD                               |                  |                 |
 |39 | TBD                               |                  | P3              |
 |40 | Course Review                     |                  |                 |  
