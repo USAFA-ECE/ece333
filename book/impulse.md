@@ -37,9 +37,9 @@ To understand why this is true, we will:
 :width: 660px
 :align: center
 :name: fig-lti-system
-
+---
 Block diagram of a discrete-time LTI system showing input $x(k)$, output $y(k)$, and impulse input $\delta(k)$.
-
+```
 
 {numref}fig-lti-system illustrates the basic input–output relationship of a discrete-time LTI system. It emphasizes that the impulse response h(k) is defined as the system output when the input is the unit impulse δ(k). This figure sets the foundation for all later analysis.
 
