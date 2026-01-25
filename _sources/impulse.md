@@ -43,7 +43,7 @@ Block diagram of a discrete-time LTI system showing input $x(k)$, output $y(k)$,
 
 {numref}fig-lti-system illustrates the basic input–output relationship of a discrete-time LTI system. It emphasizes that the impulse response h(k) is defined as the system output when the input is the unit impulse δ(k). This figure sets the foundation for all later analysis.
 
-We begin with discrete-time systems, since impulses and summations are easier to visualize. {numref}fig-lti-system 
+We begin with discrete-time systems, since impulses and summations are easier to visualize. {ref}fig-lti-system 
 
 
 
