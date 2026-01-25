@@ -42,3 +42,17 @@ html:
 # sphinx:
   # extra_extensions:
     # - sphinxcontrib.mermaid
+
+
+parse:
+  myst_enable_extensions:
+    - colon_fence
+    - dollarmath
+    - amsmath
+    - deflist
+    - html_image
+    - linkify
+    - substitution
+    - tasklist
+    - fieldlist
+    - attrs

@@ -29,18 +29,10 @@ To understand why this is true, we will:
 ## 2. Discrete-Time Impulse Response
 
 
-(label-lti-system)=
-```{figure} ./figures/GradeDistribution.png
-:width: 660px
-:align: center
-:name: fig-lti-system
-
-Block diagram of a discrete-time LTI system showing input $x(k)$, output $y(k)$, and impulse input $\delta(k)$.
-
 % > **Figure 2.1 (insert here):** *Block diagram of a discrete-time LTI system showing % input x(k), output y(k), and impulse input δ(k).*
 
 
-(label-lti-system)=
+
 ```{figure} ./figures/GradeDistribution.png
 :width: 660px
 :align: center
@@ -51,7 +43,7 @@ Block diagram of a discrete-time LTI system showing input $x(k)$, output $y(k)$,
 
 {numref}fig-lti-system illustrates the basic input–output relationship of a discrete-time LTI system. It emphasizes that the impulse response h(k) is defined as the system output when the input is the unit impulse δ(k). This figure sets the foundation for all later analysis.
 
-We begin with discrete-time systems, since impulses and summations are easier to visualize.
+We begin with discrete-time systems, since impulses and summations are easier to visualize. {numref}fig-lti-system 
 
 
 
