@@ -64,6 +64,7 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'glossary';</script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -184,8 +185,7 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference external" href="https://stanbaek.github.io/ComplexFunctions.html">Complex Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integration.html">Integration by Parts</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impulse.html">Impulse Response and Convolution</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="impulse.html">Impulse Response</a></li>
 </ul>
 
     </div>
@@ -407,12 +407,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="glossary">
+  <section class="tex2jax_ignore mathjax_ignore" id="glossary">
 <h1>📖 Glossary<a class="headerlink" href="#glossary" title="Permalink to this heading">#</a></h1>
 <p>Classifying signals as <strong>power signals</strong> or <strong>energy signals</strong> isn’t just a vocabulary exercise — it tells you <em>how</em> the signal behaves over time and <em>which mathematical tools</em> you can use to analyze it. Engineers do this because different types of signals require different analysis techniques, different transforms, and even different interpretations in physical systems.</p>
 </section>
 <hr class="docutils" />
-<section id="why-the-classification-matters">
+<section class="tex2jax_ignore mathjax_ignore" id="why-the-classification-matters">
 <h1>🔌 Why the classification matters<a class="headerlink" href="#why-the-classification-matters" title="Permalink to this heading">#</a></h1>
 <section id="it-tells-you-what-kind-of-system-analysis-applies">
 <h2>1. <strong>It tells you what kind of system analysis applies</strong><a class="headerlink" href="#it-tells-you-what-kind-of-system-analysis-applies" title="Permalink to this heading">#</a></h2>
@@ -490,11 +490,11 @@ P = \frac{1}{2}
 </section>
 </section>
 <hr class="docutils" />
-<section id="the-one-sentence-summary">
+<section class="tex2jax_ignore mathjax_ignore" id="the-one-sentence-summary">
 <h1>🎯 The one-sentence summary<a class="headerlink" href="#the-one-sentence-summary" title="Permalink to this heading">#</a></h1>
 <p>We classify signals as power or energy because <strong>each class obeys different mathematical rules, uses different transforms, and represents different physical behaviors</strong>, and mixing them leads to incorrect analysis.</p>
 </section>
-<section id="what-the-fourier-transform-does-not-exist-in-the-usual-sense-really-means">
+<section class="tex2jax_ignore mathjax_ignore" id="what-the-fourier-transform-does-not-exist-in-the-usual-sense-really-means">
 <h1>🌟 What “the Fourier Transform does <strong>not</strong> exist in the usual sense” really means<a class="headerlink" href="#what-the-fourier-transform-does-not-exist-in-the-usual-sense-really-means" title="Permalink to this heading">#</a></h1>
 <p>For <strong>energy signals</strong>, the Fourier Transform is defined by the integral:</p>
 <p>[
@@ -513,7 +513,7 @@ That’s why we say:</p>
 It means the transform is <strong>not a regular function</strong> — it becomes a <strong>distribution</strong> (generalized function).</p>
 </section>
 <hr class="docutils" />
-<section id="example-fourier-transform-of-cos-omega-0-t">
+<section class="tex2jax_ignore mathjax_ignore" id="example-fourier-transform-of-cos-omega-0-t">
 <h1>🎵 Example: Fourier Transform of ( \cos(\omega_0 t) )<a class="headerlink" href="#example-fourier-transform-of-cos-omega-0-t" title="Permalink to this heading">#</a></h1>
 <p>Try the usual FT integral:</p>
 <p>[
@@ -524,7 +524,7 @@ The cosine oscillates forever and never decays, so the area under the curve does
 <p>So the FT <strong>cannot</strong> be a normal function.</p>
 </section>
 <hr class="docutils" />
-<section id="but-we-can-represent-it-using-distributions">
+<section class="tex2jax_ignore mathjax_ignore" id="but-we-can-represent-it-using-distributions">
 <h1>🚀 But we <em>can</em> represent it using distributions<a class="headerlink" href="#but-we-can-represent-it-using-distributions" title="Permalink to this heading">#</a></h1>
 <p>Using Euler’s identity:</p>
 <p>[
@@ -545,7 +545,7 @@ It is a <strong>pair of impulses</strong>.</p>
 <p>That’s what “not in the usual sense” means.</p>
 </section>
 <hr class="docutils" />
-<section id="intuition-why-impulses-appear">
+<section class="tex2jax_ignore mathjax_ignore" id="intuition-why-impulses-appear">
 <h1>🧠 Intuition: Why impulses appear<a class="headerlink" href="#intuition-why-impulses-appear" title="Permalink to this heading">#</a></h1>
 <p>A sinusoid has:</p>
 <ul class="simple">

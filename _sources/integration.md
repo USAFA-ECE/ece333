@@ -93,8 +93,6 @@ The whole technique is about making the new integral **easier**.
 ## 4. Fully Worked Examples  
 ## (With Explanations for Students Who Struggle)
 
----
-
 ### Example 1  
 #### $\int x e^x\,dx$
 
