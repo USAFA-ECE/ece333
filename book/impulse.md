@@ -1,4 +1,4 @@
-# Impulse Response
+# Impulse Response and Convolution
 
 This reading develops one of the most important ideas in signals and systems: **the impulse response**. The impulse response provides a complete description of a **linear time-invariant (LTI)** system. Once it is known, the system's response to *any* input can be determined using **convolution**.
 
