@@ -1,13 +1,13 @@
 # Impulse Response
 
-This section develops one of the most important ideas in signals and systems: **the impulse response**. The impulse response provides a complete description of a **linear time-invariant (LTI)** system. Once it is known, the system’s response to *any* input can be determined using **convolution**.
+This reading develops one of the most important ideas in signals and systems: **the impulse response**. The impulse response provides a complete description of a **linear time-invariant (LTI)** system. Once it is known, the system's response to *any* input can be determined using **convolution**.
 
-The goal of this section is not only to present the formulas, but to build strong intuition for *why* convolution arises naturally from linearity and time invariance.
+The goal here is not only to present the formulas, but to build strong intuition for *why* convolution arises naturally from linearity and time invariance.
 
 ---
 ## 1. Why the Impulse Response Is Fundamental
 
-In many engineering systems - electrical circuits, mechanical systems, control systems, and signal processing algorithms — we are interested in understanding how an output signal depends on an input signal. For example, we may want to predict how the voltage across a circuit responds to an applied current, how the position of a mechanical structure responds to a force, or how a digital filter modifies an incoming sequence of samples.
+In many engineering systems - electrical circuits, mechanical systems, control systems, and signal processing algorithms — we are interested in understanding how a output signal depends on an input signal. For example, we may want to predict how the voltage across a circuit responds to an applied current, how the position of a mechanical structure responds to a force, or how a digital filter modifies an incoming sequence of samples.
 
 For a general system, the relationship between input and output can be extremely complicated. It may depend on nonlinear effects, memory, or changes in system parameters over time. However, for **linear time-invariant (LTI)** systems, there is a remarkable and powerful simplification:
 
@@ -15,9 +15,9 @@ For a general system, the relationship between input and output can be extremely
 An LTI system is completely characterized by its impulse response.
 ```
 
-This means that if we know how the system responds to a single, idealized input called an *impulse*, then we can determine how the system responds to *any* input signal. Rather than analyzing the system separately for every possible input, we only need to understand one special response.
+This means that if we know how the system responds to a single, idealized input called an *impulse*, then we can determine how the system responds to *any* input signal. Rather than analyzing the system separatly for every possible input, we only need to understand one special response.
 
-The impulse response can be thought of as the system’s *fingerprint*. It captures how the system reacts over time, including delays, smoothing effects, oscillations, and decay. Much of signals and systems theory is built around learning how to use this fingerprint to predict system behavior.
+The impulse response can be thought of as the system's *fingerprint*. It captures how the system reacts over time, including delays, smoothing effects, oscillations, and decay. Much of signals and systems theory is built around learning how to use this fingerprint to predict system behavior.
 
 To understand why the impulse response plays such a central role, we proceed in three steps:
 
@@ -31,7 +31,7 @@ Each step relies directly on the defining properties of LTI systems.
 
 ## 2. Discrete-Time Impulse Response
 
-We begin with discrete-time systems, since impulses and summations are easier to visualize and manipulate mathematically. The ideas developed here will later extend naturally to continuous-time systems.
+We begin with discrete-time systems, since impulses and summations are easier to visualize and manipulate mathematically. The ideas developed here will later extend naturally to continuous time systems.
 
 ```{figure} ./figures/LTI_System.png
 :name: fig-lti-system
@@ -54,7 +54,7 @@ $$
 \end{cases}
 $$
 
-Although this signal may appear artificial at first, it plays a role similar to that of a **basis vector** in linear algebra. Just as basis vectors allow us to represent any vector as a weighted sum, impulse signals allow us to represent any discrete-time signal as a weighted sum of shifted impulses.
+Although this signal may appear artificial at first, it plays a role similar to that of a **basis vector** in linear algebra. Just as basis vectors allow us to represent any vector as a weighted sum, impulse signals allow us to represent any discrete-time signal as a weighted sum of shifted (or delayed) impulses.
 
 When the input to the system is the unit impulse, the output is called the **impulse response**:
 
@@ -62,7 +62,7 @@ $$
 \delta(k) \longrightarrow h(k).
 $$
 
-The impulse response describes how the system behaves when it is excited at a single instant in time. It reveals essential properties of the system’s dynamics.
+The impulse response describes how the system behaves when it is excited at a single instant in time. It reveals essential properties of the system's dynamics.
 
 ---
 
@@ -80,7 +80,7 @@ $$
 \delta(k-n) \longrightarrow h(k-n).
 $$
 
-This property ensures that the system’s behavior does not depend on *when* an input is applied, but only on the relative timing between inputs. Time invariance allows us to predict system behavior at all times using a single impulse response.
+This property ensures that the system's behavior does not depend on *when* the input is applied, but only on the relative timing between inputs. Time invariance allows us to predict system behavior at all times using a single impulse response.
 
 ```{figure} ./figures/DelayedImpulseResponse.png
 :name: fig-delayed-impulse-response
@@ -89,7 +89,7 @@ This property ensures that the system’s behavior does not depend on *when* an 
 Illustration showing that a delayed impulse input $\delta(k−n)$ produces a delayed output $h(k−n)$.
 ```
 
-{numref}`fig-delayed-impulse-response` demonstrates the time-invariance property visually. When the impulse input is shifted in time, the output shifts by exactly the same amount.
+{numref}`fig-delayed-impulse-response` demonstrates the time-invariance property visually. When the impulse input is shifted (or delayed) in time, the output shifts (or delays) by exactly the same amount.
 
 ---
 
@@ -102,9 +102,9 @@ A system is **linear** if it satisfies two properties:
 
 For scaling,
 
-[
+$$
 a\delta(k) \longrightarrow a h(k).
-]
+$$
 
 This proportional response is essential for constructing the output corresponding to more complicated inputs.
 
@@ -138,7 +138,7 @@ $$
 x(k) = \sum_{n=-\infty}^{\infty} x(n) \delta(k-n).
 $$
 
-Although this expression may initially appear more complicated than the original signal, it has a clear interpretation. Each impulse $\delta(k-n)$ isolates the signal value at time index $n$, and the coefficient $x(n)$ specifies the strength of that impulse.
+Although this expression may initially appear more complicated than the original signal, it has a clear interpretaiton. Each impulse $\delta(k-n)$ isolates the signal value at time index $n$, and the coefficient $x(n)$ specifies the strength of that impulse.
 
 In this sense, the impulse acts as a **sampling operator**, extracting individual samples of the signal and placing them at the correct time locations.
 
@@ -159,7 +159,7 @@ $$
 $$
 
 
-Here, the unit vectors form a basis for (\mathbb{R}^2). Similarly, shifted impulse signals form a **basis for discrete-time signals**. From this perspective, convolution emerges naturally as the process of combining the system’s responses to each basis element.
+Here, the unit vectors form a basis for $\mathbb{R}^2$. Similarly, shifted impulse signals form a **basis for discrete-time signals**. From this perspective, convolution emerges naturally as the process of combining the system's responses to each basis element.
 
 ---
 
@@ -246,8 +246,6 @@ $$
 
 Discrete-time convolution can be interpreted as a **superposition process**. Each sample of the input signal generates a shifted and scaled copy of the impulse response, and the output at any time $k$ is the sum of all these contributions. In other words, the impulse response acts as a template that is repeatedly shifted, weighted, and added according to the input signal.
 
-This viewpoint will be especially important when we study graphical convolution and extend these ideas to continuous-time systems.
-
 
 ```{important}
 The output is formed by adding together many shifted copies of the impulse response, each weighted by the input signal.
@@ -260,18 +258,6 @@ A helpful real-life analogy for discrete-time convolution is **sound echo in a l
 Now imagine clapping several times with different strengths and at different moments. Each clap produces its own set of echoes, delayed in time and scaled in amplitude according to how loud the clap was. What you actually hear is the **sum of all these echoes overlapping in time**. In this analogy, the claps correspond to the input signal $x(k)$, the echoes correspond to shifted versions of the impulse response $h(k-n)$, and the overall sound you hear corresponds to the output signal $y(k)$.
 
 This analogy highlights the key idea behind convolution: **each input sample excites the system, producing a delayed and scaled response, and the final output is the sum of all such responses**. Convolution is therefore not an abstract mathematical operation, but a natural way to describe how real systems accumulate the effects of past inputs over time.
-
----
-
-
-
-Great — this section is already structurally strong, so the goal here (just like Section 4) is to **slow the reader down**, add **intuition**, and make the math feel *inevitable* rather than abrupt.
-
-Because the canvas update failed again due to the size and math-heavy nature of the replacement, the cleanest and safest approach is the same as before:
-
-👉 **Below is a fully expanded, textbook-quality rewrite of Sections 5–8** that you can paste directly over the existing Sections 5–8 in the canvas.
-
-It matches the tone, depth, and pacing of your expanded discrete-time convolution section.
 
 ---
 
@@ -303,7 +289,7 @@ Unlike ordinary functions, the delta function is zero everywhere except at $t = 
 
 Physically, the delta function models an input that delivers a **_finite amount of energy or impulse over an infinitesimally short time_**. Examples include an idealized hammer strike, a sudden force applied to a mechanical system, or a very short voltage pulse applied to a circuit.
 
-When the input to a continuous-time LTI system is the delta function, the output is defined to be the **impulse response**:
+When the input to a continuous time LTI system is the delta function, the output is defined to be the **impulse response**:
 
 $$
 \delta(t) \longrightarrow h(t).
@@ -315,15 +301,15 @@ The impulse response reveals how the system reacts immediately after being excit
 
 ### 5.2 Decomposition of Continuous-Time Signals
 
-Any continuous-time signal (x(t)) can be expressed as
+Any continuous-time signal $x(t)$ can be expressed as
 
 $$
-x(t) = \int_{-\infty}^{\infty} x(\tau)\delta(t-\tau),d\tau.
+x(t) = \int_{-\infty}^{\infty} x(\tau)\delta(t-\tau)d\tau.
 $$
 
-This expression is the continuous-time counterpart of impulse decomposition in discrete time. Each shifted impulse (\delta(t-\tau)) isolates the value of the signal at time (\tau), while the coefficient (x(\tau)) determines the strength of that impulse.
+This expression is the continuous-time counterpart of impulse decompositon in discrete time. Each shifted (or delayed) impulse $\delta(t-\tau)$ isolates the value of the signal at time $\tau$, while the coefficient $x(\tau)$ determines the strength of that impulse.
 
-Conceptually, this representation says that a continuous-time signal can be constructed by stacking together infinitely many infinitesimal impulses. Each impulse contributes independently to the system output, and the total signal is formed by integrating over all such contributions.
+Conceptually, this representation says that continuous-time signal can be constructed by stacking together infinitely many infinitesimal impulses. Each impulse contributes independently to the system output, and the total signal is formed by integrating over all such contributions.
 
 
 ```{figure} ./figures/ImpulseDecompositionCT.png
@@ -333,7 +319,7 @@ Conceptually, this representation says that a continuous-time signal can be cons
 Continuous-time signal represented as a superposition of shifted impulses.
 ```
 
-{numref}`fig-impulse-decomposition-ct` illustrates a powerful way to think about continuous-time signals as an infinite collection of impulses, each occurring at a different time and weighted by the signal's value at that time.
+{numref}`fig-impulse-decomposition-ct` illustrates a powerful way to think about continuous time signals as an infinite collection of impulses, each occurring at a different time and weighted by the signal's value at that time.
 
 ---
 
@@ -342,7 +328,7 @@ Continuous-time signal represented as a superposition of shifted impulses.
 Using impulse decomposition together with linearity and time invariance, the output of a continuous-time LTI system is given by
 
 $$
-y(t) = \int_{-\infty}^{\infty} x(\tau),h(t-\tau),d\tau.
+y(t) = \int_{-\infty}^{\infty} x(\tau) h(t-\tau) d\tau.
 $$
 
 This expression is called the **convolution integral**. It states that each impulse occurring at time $\tau$ produces a shifted impulse response $h(t-\tau)$, scaled by the input value $x(\tau)$. The output is the accumulation of all such responses over time.
@@ -380,14 +366,12 @@ Although discrete-time and continuous-time systems use different mathematical to
 | Impulse response     | $h(k)$          | $h(t)$               |
 | System output        | Convolution sum | Convolution integral |
 
-Understanding these parallels allows techniques learned in one domain to be transferred naturally to the other.
 
 ---
 
 ## 8. Key Takeaways
 
 * The impulse response completely characterizes an LTI system in both discrete and continuous time.
-* Any signal can be decomposed into a superposition of weighted, shifted impulses.
+* Any signal can be decomposed into a superpostion of weighted, shifted impulses.
 * Linearity and time invariance allow system responses to be constructed through superposition.
 * Convolution describes how inputs are transformed into outputs by accumulating impulse responses over time.
-
