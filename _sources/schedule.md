@@ -3,7 +3,7 @@
 ```{note}
 This schedule is subject to change as appropriate.
 ```
-**Last Updated: 7 Sep 2025**
+**Last Updated: 27 Jan 2026**
 
 |Lsn| Topics                            |  Reading         | Due             |
 |---|-----------------------------------|------------------|-----------------|
