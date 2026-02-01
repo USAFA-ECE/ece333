@@ -10,6 +10,11 @@ parts:
   - file: schedule.md
   - file: AI_policy.md
 
+- caption: Assignments
+  chapters:
+  - file: Assignments/project1.md
+    title: "Project 1: Impulse Response"
+
 - caption: Supplementary
   chapters:
   - url: https://stanbaek.github.io/ComplexFunctions.html
