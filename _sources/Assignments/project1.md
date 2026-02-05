@@ -143,6 +143,4 @@ Briefly reflect on:
 In Project 1 you demonstrated how an abstract mathematical concept—the impulse response—directly connects to physical systems encountered in electrical engineering. By recording real signals and performing convolution in MATLAB, you explored the same principles used to model filters, communications channels, and dynamic systems. Once a system's impulse response is known, its behavior for any input can be predicted.
 
 
-**Written by Lt Col Matthew Booth**
-
 
