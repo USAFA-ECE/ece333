@@ -18,8 +18,8 @@ This schedule is subject to change as appropriate.
 |9  | Zero-State Response               | 2.4              | Quiz1 (L1-L6)   |
 |10 | Convolution                       | 2.4              | HW4             |
 |11 | Stability                         | 2.5              |                 |
-|12 | P1: Impulse Response              |                  | HW5             |
-|13 | Review                            |                  | Quiz2 (L7-L11)  |
+|12 | Review                            |                  | HW5             |
+|13 | [P1: Impulse Response](Assignment/project1.md) |     | Quiz2 (L7-L11)  |
 |14 | GR 1 (L1-11)                      |                  |                 |
 |15 | Vectors and Functions             | B6-B7            |                 |
 |16 | Fourier Series                    | 3.1-3.2          | P1              |
