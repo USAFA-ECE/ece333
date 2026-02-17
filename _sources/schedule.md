@@ -22,7 +22,7 @@ This schedule is subject to change as appropriate.
 |13 | [P1: Impulse Response](Assignments/project1.md) |     | Quiz2 (L7-L11)  |
 |14 | GR 1 (L1-11)                      |                  |                 |
 |15 | Vectors and Functions             | B6-B7            |                 |
-|16 | Fourier Series                    | 3.1-3.2          | P1              |
+|16 | Correlation                       | 3.1-3.2          | P1              |
 |17 | Orthogonal Signal Sets            | 3.3              | HW6             |
 |18 | Trigonometric Fourier Series (FS) | 3.4-3.5          |                 |
 |19 | Exponential FS                    | 3.6              | HW7             |
