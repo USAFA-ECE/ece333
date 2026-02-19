@@ -21,11 +21,11 @@ This schedule is subject to change as appropriate.
 |12 | Review                            |                  | HW5             |
 |13 | [P1: Impulse Response](Assignments/project1.md) |     | Quiz2 (L7-L11)  |
 |14 | GR 1 (L1-11)                      |                  |                 |
-|15 | Vectors and Functions             | B6-B7            |                 |
-|16 | Correlation                       | 3.1-3.2          | P1              |
-|17 | Orthogonal Signal Sets            | 3.3              | HW6             |
-|18 | Trigonometric Fourier Series (FS) | 3.4-3.5          |                 |
-|19 | Exponential FS                    | 3.6              | HW7             |
+|15 | Inner Product                     | B6-B7            |                 |
+|16 | Signals as Vectors                | 3.1              | P1              |
+|17 | Orthogonal Signal Sets            | 3.2-3.3          | HW6             |
+|18 | Trigonometric Fourier Series      | 3.4-3.5          |                 |
+|19 | Exponential Fourier Series        | 3.6              | HW7             |
 |20 | Response to Periodic Inputs       | 3.7-3.9          | Quiz3 (L15-19)  |
 |21 | C-T Fourier Transform (CTFT)      | 4.1-4.2          |                 |
 |22 | Properties of CTFT                | 4.3              | HW8             |
