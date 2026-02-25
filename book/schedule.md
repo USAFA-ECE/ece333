@@ -21,9 +21,9 @@ This schedule is subject to change as appropriate.
 |12 | Review                            |                  | HW5             |
 |13 | [P1: Impulse Response](Assignments/project1.md) |    | Quiz2 (L7-L11)  |
 |14 | GR 1 (L1-11)                      |                  |                 |
-|15 | Vectors and Functions             | B6-B7            |                 |
-|16 | Correlation                       | 3.1-3.2          | P1              |
-|17 | Orthogonal Signal Sets            | 3.3              | HW6             |
+|15 | Inner Product                     | B6-B7            |                 |
+|16 | Signals and Vectors               | 3.1              | P1              |
+|17 | Orthogonal Signal Sets            | 3.2-3.3          | HW6             |
 |18 | Trigonometric Fourier Series (FS) | 3.4              |                 |
 |19 | Convergence of Fourier Series (FS) | 3.5             | HW7             |
 |20 | Exponential FS                    | 3.6              |                 |
