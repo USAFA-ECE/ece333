@@ -28,11 +28,11 @@ This schedule is subject to change as appropriate.
 |19 | Convergence of Fourier Series (FS) | 3.5             | HW7             |
 |20 | Exponential FS                    | 3.6              |                 |
 |21 | Response to Periodic Inputs       | 3.7-3.9          | HW8             |
-|22 | C-T Fourier Transform (CTFT)      | 4.1-4.2          | Quiz3 (L15-20)  |
-|23 | Properties of CTFT                | 4.3              |                 |
-|24 | Signal Transmission               | 4.4-4.5          | HW9             |
-|25 | Amplitude Modulation              | 4.6-4.7          |                 |
-|26 | P2: Amplitude Modulation          |                  | HW10            |
+|22 | C-T Fourier Transform (CTFT)      | 4.1              | Quiz3 (L15-20)  |
+|23 | Transforms of Useful Functions    | 4.2              |                 |
+|24 | Properties of CTFT                | 4.3              | HW9             |
+|25 | Signal Transmission & Filters     | 4.4-4.5          |                 |
+|26 | P2:                               |                  | HW10            |
 |27 | Review                            |                  | Quiz4 (L21-L25) |
 |28 | GR 2 (L15-L25)                    |                  |                 |
 |29 | Sampling                          | 5.1              |                 |
