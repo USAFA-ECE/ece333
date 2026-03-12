@@ -31,8 +31,8 @@ This schedule is subject to change as appropriate.
 |22 | C-T Fourier Transform (CTFT)      | 4.1              | Quiz3 (L15-20)  |
 |23 | Transforms of Useful Functions    | 4.2              |                 |
 |24 | Properties of CTFT                | 4.3              | HW9             |
-|25 | Signal Transmission & Filters     | 4.4-4.5          |                 |
-|26 | P2:                               |                  | HW10            |
+|25 | Ideal and Practical Filters       | 4.5-4.6          |                 |
+|26 | P2: Amplitude Modulation          | 4.7              | HW10            |
 |27 | Review                            |                  | Quiz4 (L21-L25) |
 |28 | GR 2 (L15-L25)                    |                  |                 |
 |29 | Sampling                          | 5.1              |                 |
