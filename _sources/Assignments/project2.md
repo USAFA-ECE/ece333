@@ -1,5 +1,7 @@
 # Demodulation
 
+**NOT READY YET**
+
 ## 1. Intoduction
 
 In modern communication, baseband signals (like voice or music) are rarely transmitted directly. Instead, they are shifted to higher frequencies to allow for efficient transmission and to enable multiple signals to share the same medium without interference—a process called **Frequency Division Multiplexing (FDM)**.
