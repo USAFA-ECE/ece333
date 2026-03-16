@@ -1,0 +1,926 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Demodulation &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Assignments/project2';</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Integration by Parts" href="../integration.html" />
+    <link rel="prev" title="Project 1: Characterizing Systems Using Impulse Responses in MATLAB" href="project1.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/ece333.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <script>document.write(`<img src="../_static/ece333.png" class="logo__image only-dark" alt="My sample book - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    ECE 333 Signal Processing & Linear Systems
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Info</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus.html">📌 ECE333 Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../schedule.html">📆 Course Schedule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AI_policy.html">🤖 AI Usage Policy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="project1.html">Project 1: Impulse Response</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project 2: Amplitude Modulation</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Supplementary</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://stanbaek.github.io/ComplexFunctions.html">Complex Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integration.html">Integration by Parts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../impulse.html">Impulse Response and Convolution</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/usafa-ece/jupyterbook-template" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/usafa-ece/jupyterbook-template/issues/new?title=Issue%20on%20page%20%2FAssignments/project2.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Assignments/project2.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Demodulation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intoduction">1. Intoduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-specifications">1. Signal Specifications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-modulation-am-review">2. Amplitude Modulation (AM) Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-task-the-c4-tone-synthesis">5. Preliminary Task: The C4 Tone Synthesis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesis">5.1 Synthesis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-walkthrough-filter-design-and-modulation">2. Part I: Walkthrough — Filter Design and Modulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesizing-the-c4-piano-tone">2.1 Synthesizing the C4 Piano Tone</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesizing-the-a4-piano-tone-with-decay">2.1 Synthesizing the A4 Piano Tone with Decay</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-design">2.2 Filter Design</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-frequency-response">3.2 Visualizing the Frequency Response</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulation-dsb-sc">1.3 Modulation (DSB-SC)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-deliverables-the-demodulation-challenge">2. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recovery-tasks">2.1 Recovery Tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-requirements">2.2 Submission Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.3 Modulation (DSB-SC)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#provided-signal-specs">3.1 Provided Signal Specs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-tasks">3.2 Your Tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-submission">3.3 Required Submission</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">6. Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-demodulation-process-mixing-and-filtering">3. The Demodulation Process: Mixing and Filtering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-mixing-frequency-shifting">3.1 Step 1: Mixing (Frequency Shifting)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-low-pass-filtering-the-lti-system">3.2 Step 2: Low-Pass Filtering (The LTI System)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-task-recovering-the-audio">4. Project Task: Recovering the Audio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifications">4.1 Specifications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-steps">4.2 Implementation Steps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">5. Key Takeaways</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="demodulation">
+<h1>Demodulation<a class="headerlink" href="#demodulation" title="Permalink to this heading">#</a></h1>
+<section id="intoduction">
+<h2>1. Intoduction<a class="headerlink" href="#intoduction" title="Permalink to this heading">#</a></h2>
+<p>In modern communication, baseband signals (like voice or music) are rarely transmitted directly. Instead, they are shifted to higher frequencies to allow for efficient transmission and to enable multiple signals to share the same medium without interference—a process called <strong>Frequency Division Multiplexing (FDM)</strong>.</p>
+<p>However, a speaker or a digital audio player cannot use the high-frequency modulated signal directly. We must perform <strong>demodulation</strong> to shift the spectrum of the signal back to the baseband.</p>
+<p>In this project, we explore the process of extracting original information from a modulated carrier—a fundamental operation in communication systems known as <strong>demodulation</strong>. The goal is to develop an intuition for frequency shifting and filtering by successfully recovering three distinct audio files from a single composite signal.</p>
+</section>
+<section id="signal-specifications">
+<h2>1. Signal Specifications<a class="headerlink" href="#signal-specifications" title="Permalink to this heading">#</a></h2>
+<p>For this project, we are working with high-fidelity signals:</p>
+<ul class="simple">
+<li><p><strong>Sampling Frequency (<span class="math notranslate nohighlight">\(f_s\)</span>):</strong> <span class="math notranslate nohighlight">\(44,100\)</span> Hz</p></li>
+<li><p><strong>Message Duration:</strong> <span class="math notranslate nohighlight">\(10\)</span> seconds</p></li>
+<li><p><strong>Message Bandwidth:</strong> <span class="math notranslate nohighlight">\(5\)</span> kHz (All original audio is band-limited to <span class="math notranslate nohighlight">\(5\)</span> kHz)</p></li>
+</ul>
+</section>
+<section id="amplitude-modulation-am-review">
+<h2>2. Amplitude Modulation (AM) Review<a class="headerlink" href="#amplitude-modulation-am-review" title="Permalink to this heading">#</a></h2>
+<p>In this project, we focus on <strong>Double-Sideband Suppressed Carrier (DSB-SC)</strong> modulation. A message signal <span class="math notranslate nohighlight">\(m(t)\)</span> is multiplied by a carrier wave at frequency <span class="math notranslate nohighlight">\(f_c\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[x(t) = m(t) \cos(2\pi f_c t)\]</div>
+<p>From the properties of the Fourier Transform, we know that multiplication in the time domain corresponds to shifting in the frequency domain. This places the message spectrum at <span class="math notranslate nohighlight">\(\pm f_c\)</span>, effectively moving the audio information far away from <span class="math notranslate nohighlight">\(0\)</span> Hz.</p>
+</section>
+<hr class="docutils" />
+<section id="preliminary-task-the-c4-tone-synthesis">
+<h2>5. Preliminary Task: The C4 Tone Synthesis<a class="headerlink" href="#preliminary-task-the-c4-tone-synthesis" title="Permalink to this heading">#</a></h2>
+<p>Before processing the <code class="docutils literal notranslate"><span class="pre">.wav</span></code> files, you will practice modulation using a synthesized <strong>C4 note (Middle C)</strong>. A pure C4 note has a fundamental frequency of approximately <span class="math notranslate nohighlight">\(261.63\)</span> Hz. However, real instruments have <strong>harmonics</strong> that give the sound its “color” or timbre.</p>
+<section id="synthesis">
+<h3>5.1 Synthesis<a class="headerlink" href="#synthesis" title="Permalink to this heading">#</a></h3>
+<p>Construct a signal <span class="math notranslate nohighlight">\(m_{C4}(t)\)</span> by summing <span class="math notranslate nohighlight">\(20\)</span> harmonics. If <span class="math notranslate nohighlight">\(f_0 = 261.63\)</span> Hz:</p>
+<div class="math notranslate nohighlight">
+\[m_{C4}(t) = \sum_{n=1}^{20} a_n \sin(2\pi (n f_0) t)\]</div>
+<p><em>Note: Use <span class="math notranslate nohighlight">\(a_n = \frac{1}{n}\)</span> for a sawtooth-like timbre or <span class="math notranslate nohighlight">\(a_n = \frac{1}{n^2}\)</span> for a smoother tone.</em></p>
+</section>
+</section>
+<section id="part-i-walkthrough-filter-design-and-modulation">
+<h2>2. Part I: Walkthrough — Filter Design and Modulation<a class="headerlink" href="#part-i-walkthrough-filter-design-and-modulation" title="Permalink to this heading">#</a></h2>
+<p>The following steps demonstrate how to synthesize a A4 piano tone, design a Butterworth low-pass filter (LPF), and modulate the signal.</p>
+<section id="synthesizing-the-c4-piano-tone">
+<h3>2.1 Synthesizing the C4 Piano Tone<a class="headerlink" href="#synthesizing-the-c4-piano-tone" title="Permalink to this heading">#</a></h3>
+<p>A piano note is not a single sine wave; it consists of a fundamental frequency and multiple harmonics. We will generate a A4 note (<span class="math notranslate nohighlight">\(f_0 = 440\)</span> Hz) with 20 harmonics. To create a truly realistic piano sound in MATLAB, however, we need to go beyond just summing harmonics. A real piano note has two distinct characteristics:</p>
+<ol class="arabic simple">
+<li><p><strong>Inharmonicity:</strong> The harmonics are slightly “stretched” due to string stiffness.</p></li>
+<li><p><strong>ADSR Envelope:</strong> The volume hits a sharp peak (Attack) and then decays exponentially over time.</p></li>
+</ol>
+<p>In this section, we will generate a 10-second A4 piano tone. We will apply an <strong>exponential decay envelope</strong> to each harmonic to simulate the physical damping of piano strings.</p>
+</section>
+<section id="synthesizing-the-a4-piano-tone-with-decay">
+<h3>2.1 Synthesizing the A4 Piano Tone with Decay<a class="headerlink" href="#synthesizing-the-a4-piano-tone-with-decay" title="Permalink to this heading">#</a></h3>
+<p>Instead of a constant amplitude, we apply <span class="math notranslate nohighlight">\(e^{-t/\tau}\)</span> to each harmonic, where higher harmonics decay faster than the fundamental frequency.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 1. Parameters</span>
+<span class="n">fs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">44100</span><span class="p">;</span><span class="w">              </span><span class="c">% High sampling rate (44.1 kHz)</span>
+<span class="n">T</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">                   </span><span class="c">% Duration in seconds</span>
+<span class="n">t</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">:</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">;</span><span class="w">        </span><span class="c">% Time vector</span>
+<span class="n">f0</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">440</span><span class="p">;</span><span class="w">                 </span><span class="c">% Fundamental frequency (A4)</span>
+
+<span class="c">%% 2. Realistic Piano Synthesis (Harmonics + Decay)</span>
+<span class="n">m_a4</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">t</span><span class="p">));</span>
+<span class="n">num_harmonics</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+
+<span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">num_harmonics</span>
+<span class="w">    </span><span class="c">% Fundamental and harmonic frequencies</span>
+<span class="w">    </span><span class="n">fn</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">f0</span><span class="p">;</span><span class="w"> </span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% Amplitude: higher harmonics start quieter</span>
+<span class="w">    </span><span class="n">a_n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">^</span><span class="mf">1.2</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% Decay: higher harmonics fade out faster (realistic physics)</span>
+<span class="w">    </span><span class="n">tau_n</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w">   </span><span class="c">% Decay constant</span>
+<span class="w">    </span><span class="n">envelope</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">tau_n</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c">% Accumulate the harmonic</span>
+<span class="w">    </span><span class="n">m_a4</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">m_a4</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a_n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">envelope</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">fn</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
+<span class="k">end</span>
+
+<span class="c">% Normalize to +/- 1 to prevent clipping</span>
+<span class="n">m_a4</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">m_a4</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">m_a4</span><span class="p">));</span>
+
+<span class="c">% Listen to the result</span>
+<span class="nb">soundsc</span><span class="p">(</span><span class="n">m_a4</span><span class="p">,</span><span class="w"> </span><span class="n">fs</span><span class="p">);</span><span class="w"> </span>
+</pre></div>
+</div>
+</section>
+<section id="filter-design">
+<h3>2.2 Filter Design<a class="headerlink" href="#filter-design" title="Permalink to this heading">#</a></h3>
+<p>In a continuous-time course, we treat filters as differential equations or Laplace Transfer Functions <span class="math notranslate nohighlight">\(H(s)\)</span>. We will design a <strong>4th-order Analog Butterworth Filter</strong> with a cutoff frequency <span class="math notranslate nohighlight">\(\Omega_c​ = 2π\cdot 5000\)</span> rad/s (or 5 kHz).</p>
+</section>
+<section id="visualizing-the-frequency-response">
+<h3>3.2 Visualizing the Frequency Response<a class="headerlink" href="#visualizing-the-frequency-response" title="Permalink to this heading">#</a></h3>
+<p>Before modulation, we must ensure the signal does not exceed a 5 kHz bandwidth. We use a <strong>6th-order Butterworth filter</strong>.</p>
+<p>Before applying the filter, we must verify its “fingerprint” in the frequency domain. By using the <code class="docutils literal notranslate"><span class="pre">freqz</span></code> function, we can plot the magnitude and phase response to ensure the <span class="math notranslate nohighlight">\(5\)</span> kHz cutoff is sharp enough to reject the carrier components.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% Filter Design (5 kHz Cutoff)</span>
+<span class="n">fc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5000</span><span class="p">;</span>
+<span class="n">Wc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fc</span><span class="p">;</span><span class="w">   </span><span class="c">% Cutoff in radians/second</span>
+
+<span class="c">% &#39;s&#39; indicates an analog filter design</span>
+<span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">butter</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">Wc</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;s&#39;</span><span class="p">);</span><span class="w"> </span>
+
+<span class="c">% Create the Transfer Function H(s)</span>
+<span class="n">H</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">tf</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+
+<span class="c">%% 2. Plotting the Analog Filter Response</span>
+<span class="nb">figure</span><span class="p">;</span>
+<span class="n">freqs</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span><span class="w"> </span>
+<span class="n">grid</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This MATLAB code generates the plot shown in <a class="reference internal" href="#fig-lowpass-filter-5k"><span class="std std-numref">Fig. 1</span></a>. If you click on the response curve and drag your mouse near the cutoff frequency of 31,416 rad/s (5 kHz), you will find the gain of −3.0 dB (or <span class="math notranslate nohighlight">\(1/\sqrt{2}=0.707\)</span>), where the output signal power becomes half of the input signal power.</p>
+<figure class="align-center" id="fig-lowpass-filter-5k">
+<a class="reference internal image-reference" href="../_images/lpf_5k.png"><img alt="../_images/lpf_5k.png" src="../_images/lpf_5k.png" style="width: 640px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">5 KHz Butterworth low-pass filter</span><a class="headerlink" href="#fig-lowpass-filter-5k" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>We now pass our realistic piano sound through a 5 kHz Butterworth filter to prepare it for modulation.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">butter</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">5000</span><span class="o">/</span><span class="p">(</span><span class="n">fs</span><span class="o">/</span><span class="mi">2</span><span class="p">));</span><span class="w"> </span>
+
+<span class="c">% Apply the filter</span>
+<span class="n">m_filtered</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">filter</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">m_a4</span><span class="p">);</span>
+
+<span class="c">%% 4. Plotting Time Domain vs Frequency Domain</span>
+<span class="nb">figure</span><span class="p">;</span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">m_a4</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Time Domain: Realistic A4 Piano Tone (Decay Visible)&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span><span class="w"> </span><span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Amplitude&#39;</span><span class="p">);</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="mi">0</span><span class="w"> </span><span class="mi">2</span><span class="p">]);</span><span class="w"> </span><span class="c">% Zoom into the first 2 seconds</span>
+
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">m_filtered</span><span class="p">);</span>
+<span class="n">f_axis</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fs</span><span class="o">/</span><span class="n">L</span><span class="p">);</span>
+<span class="n">M_freq</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fftshift</span><span class="p">(</span><span class="nb">fft</span><span class="p">(</span><span class="n">m_filtered</span><span class="p">));</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">f_axis</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">M_freq</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Frequency Domain: Filtered Message Spectrum&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Frequency (kHz)&#39;</span><span class="p">);</span><span class="w"> </span><span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Magnitude&#39;</span><span class="p">);</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">10</span><span class="w"> </span><span class="mi">10</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+<section id="modulation-dsb-sc">
+<h3>1.3 Modulation (DSB-SC)<a class="headerlink" href="#modulation-dsb-sc" title="Permalink to this heading">#</a></h3>
+<p>Finally, we shift this realistic piano signal to a 25 kHz carrier frequency.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 5. Modulation</span>
+<span class="n">fc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">25000</span><span class="p">;</span><span class="w"> </span>
+<span class="n">x_modulated</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">m_filtered</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">fc</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
+
+<span class="nb">figure</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">f_axis</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="nb">fftshift</span><span class="p">(</span><span class="nb">fft</span><span class="p">(</span><span class="n">x_modulated</span><span class="p">)))</span><span class="o">/</span><span class="n">L</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Modulated Signal Spectrum (Centered at 25 kHz)&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Frequency (kHz)&#39;</span><span class="p">);</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="mi">15</span><span class="w"> </span><span class="mi">35</span><span class="p">]);</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="part-ii-deliverables-the-demodulation-challenge">
+<h2>2. Part II: Deliverables — The Demodulation Challenge<a class="headerlink" href="#part-ii-deliverables-the-demodulation-challenge" title="Permalink to this heading">#</a></h2>
+<p>Using the filtering and modulation logic from the walkthrough, students must complete the following:</p>
+<section id="recovery-tasks">
+<h3>2.1 Recovery Tasks<a class="headerlink" href="#recovery-tasks" title="Permalink to this heading">#</a></h3>
+<p>Download <code class="docutils literal notranslate"><span class="pre">signal1.wav</span></code>, <code class="docutils literal notranslate"><span class="pre">signal2.wav</span></code>, and <code class="docutils literal notranslate"><span class="pre">signal3.wav</span></code>.</p>
+<ol class="arabic simple">
+<li><p><strong>Demodulate Signal 1 &amp; 2 (DSB-SC):</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Use <span class="math notranslate nohighlight">\(f_{c1} = 15\)</span> kHz and <span class="math notranslate nohighlight">\(f_{c2} = 30\)</span> kHz.</p></li>
+<li><p>Perform coherent detection (Multiply <span class="math notranslate nohighlight">\(\to\)</span> Filter).</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p><strong>Demodulate Signal 3 (DSB with Carrier):</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Use <span class="math notranslate nohighlight">\(f_{c3} = 50\)</span> kHz.</p></li>
+<li><p>Perform envelope detection: <span class="math notranslate nohighlight">\(y(t) = \text{LPF}\{ |x(t)| \}\)</span>.</p></li>
+<li><p><strong>Observation:</strong> Compare the sound quality of the envelope detector versus coherent detection for this signal.</p></li>
+</ul>
+</section>
+<section id="submission-requirements">
+<h3>2.2 Submission Requirements<a class="headerlink" href="#submission-requirements" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Comparison Plot:</strong> Show the time-domain envelope of the original piano sound versus the recovered sound.</p></li>
+<li><p><strong>Spectrum Verification:</strong> Provide the magnitude spectrum of the three recovered signals, showing that the high-frequency carrier has been successfully removed.</p></li>
+<li><p><strong>Audio Identification:</strong> State the contents of the three audio files.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h3>2.3 Modulation (DSB-SC)<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Now, we shift our 5 kHz message to a higher carrier frequency (<span class="math notranslate nohighlight">\(f_c = 20\)</span> kHz) using Double-Sideband Suppressed Carrier modulation.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% Modulation</span>
+<span class="n">fc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">20000</span><span class="p">;</span><span class="w"> </span><span class="c">% Carrier at 20 kHz</span>
+<span class="n">carrier</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">fc</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
+<span class="n">x_modulated</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">m_filtered</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">carrier</span><span class="p">;</span>
+
+<span class="c">%% Plotting the Spectrum</span>
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">x_modulated</span><span class="p">);</span>
+<span class="n">f_axis</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fs</span><span class="o">/</span><span class="n">L</span><span class="p">);</span>
+<span class="n">X_freq</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fftshift</span><span class="p">(</span><span class="nb">fft</span><span class="p">(</span><span class="n">x_modulated</span><span class="p">));</span>
+
+<span class="nb">figure</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">f_axis</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">X_freq</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Magnitude Spectrum of Modulated C4 Tone&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Frequency (kHz)&#39;</span><span class="p">);</span><span class="w"> </span><span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Magnitude&#39;</span><span class="p">);</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">30</span><span class="p">]);</span><span class="w"> </span><span class="c">% Zoom in on the carrier region</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>3. Part II: Deliverables — The Demodulation Challenge<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<p>Now that you understand the signal chain, you are tasked with recovering three different audio messages from the provided files: <code class="docutils literal notranslate"><span class="pre">signal1.wav</span></code>, <code class="docutils literal notranslate"><span class="pre">signal2.wav</span></code>, and <code class="docutils literal notranslate"><span class="pre">signal3.wav</span></code>.</p>
+<section id="provided-signal-specs">
+<h3>3.1 Provided Signal Specs<a class="headerlink" href="#provided-signal-specs" title="Permalink to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Signal</p></th>
+<th class="head"><p>Modulation Type</p></th>
+<th class="head"><p>Carrier Frequency (<span class="math notranslate nohighlight">\(f_c\)</span>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Signal 1</strong></p></td>
+<td><p>DSB-SC</p></td>
+<td><p>12 kHz</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Signal 2</strong></p></td>
+<td><p>DSB-SC</p></td>
+<td><p>25 kHz</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Signal 3</strong></p></td>
+<td><p>DSB (with Carrier)</p></td>
+<td><p>40 kHz</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="your-tasks">
+<h3>3.2 Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Coherent Demodulation (Signals 1 &amp; 2):</strong> * Multiply the received signal by a local carrier <span class="math notranslate nohighlight">\(\cos(2\pi f_c t)\)</span>.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Apply the 5 kHz Butterworth LPF you designed in Part I.</p></li>
+<li><p>Play the audio using <code class="docutils literal notranslate"><span class="pre">sound(y,</span> <span class="pre">fs)</span></code>.</p></li>
+</ul>
+</section>
+<section id="required-submission">
+<h3>3.3 Required Submission<a class="headerlink" href="#required-submission" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Plots:</strong> Magnitude spectra for all three signals <em>before</em> and <em>after</em> demodulation.</p></li>
+<li><p><strong>Verification:</strong> Identify the hidden audio message in each file (e.g., “The message in Signal 1 is a person speaking about…”).</p></li>
+<li><p><strong>Discussion:</strong> Explain what happens if your local carrier frequency in Part 3.1 is slightly off (e.g., 12.1 kHz instead of 12 kHz). Use the properties of the Fourier Transform to justify your answer.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="deliverables">
+<h2>6. Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Filter Analysis:</strong> A plot of the Butterworth filter’s frequency response (Magnitude in dB).</p></li>
+<li><p><strong>Spectrum Plots:</strong> Magnitude spectra of the modulated C4 tone versus the original.</p></li>
+<li><p><strong>Audio Recovery:</strong> Successful demodulation of the three provided 10-second files.</p></li>
+<li><p><strong>Discussion:</strong> Explain why the <span class="math notranslate nohighlight">\(441\)</span> kHz sampling rate is necessary when dealing with carriers in the <span class="math notranslate nohighlight">\(15\)</span>–<span class="math notranslate nohighlight">\(20\)</span> kHz range, referencing the Nyquist criterion.</p></li>
+</ol>
+</section>
+<section id="the-demodulation-process-mixing-and-filtering">
+<h2>3. The Demodulation Process: Mixing and Filtering<a class="headerlink" href="#the-demodulation-process-mixing-and-filtering" title="Permalink to this heading">#</a></h2>
+<p>To recover the signal <span class="math notranslate nohighlight">\(m(t)\)</span>, we use a <strong>coherent detector</strong>. This process consists of two primary stages that rely on the concepts of linearity and filtering you studied in Project 1.</p>
+<section id="step-1-mixing-frequency-shifting">
+<h3>3.1 Step 1: Mixing (Frequency Shifting)<a class="headerlink" href="#step-1-mixing-frequency-shifting" title="Permalink to this heading">#</a></h3>
+<p>By multiplying the received signal <span class="math notranslate nohighlight">\(x(t)\)</span> by the same carrier frequency <span class="math notranslate nohighlight">\(\cos(2\pi f_c t)\)</span>, we create a new signal <span class="math notranslate nohighlight">\(z(t)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[z(t) = x(t) \cos(2\pi f_c t) = m(t) \cos^2(2\pi f_c t)\]</div>
+<p>Using the trigonometric identity <span class="math notranslate nohighlight">\(\cos^2(\theta) = \frac{1}{2}(1 + \cos(2\theta))\)</span>, we get:</p>
+<div class="math notranslate nohighlight">
+\[z(t) = \frac{1}{2}m(t) + \frac{1}{2}m(t) \cos(4\pi f_c t)\]</div>
+<p>This operation results in two components:</p>
+<ol class="arabic simple">
+<li><p>A copy of the original message <span class="math notranslate nohighlight">\(m(t)\)</span> scaled by <span class="math notranslate nohighlight">\(0.5\)</span> at <strong>baseband</strong> (centered at <span class="math notranslate nohighlight">\(0\)</span> Hz).</p></li>
+<li><p>A high-frequency component centered at <strong><span class="math notranslate nohighlight">\(2f_c\)</span></strong>.</p></li>
+</ol>
+</section>
+<section id="step-2-low-pass-filtering-the-lti-system">
+<h3>3.2 Step 2: Low-Pass Filtering (The LTI System)<a class="headerlink" href="#step-2-low-pass-filtering-the-lti-system" title="Permalink to this heading">#</a></h3>
+<p>To isolate <span class="math notranslate nohighlight">\(m(t)\)</span>, we pass <span class="math notranslate nohighlight">\(z(t)\)</span> through a <strong>Low-Pass Filter (LPF)</strong>. As you learned in Project 1, this LTI system can be characterized by its impulse response <span class="math notranslate nohighlight">\(h(t)\)</span>. The output <span class="math notranslate nohighlight">\(y(t)\)</span> is the convolution:</p>
+<div class="math notranslate nohighlight">
+\[y(t) = z(t) * h(t)\]</div>
+<p>The filter is designed to reject the high-frequency component at <span class="math notranslate nohighlight">\(2f_c\)</span> and pass the baseband signal <span class="math notranslate nohighlight">\(m(t)\)</span> unchanged.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="project-task-recovering-the-audio">
+<h2>4. Project Task: Recovering the Audio<a class="headerlink" href="#project-task-recovering-the-audio" title="Permalink to this heading">#</a></h2>
+<p>You are provided with three modulated <code class="docutils literal notranslate"><span class="pre">.wav</span></code> files. Each file contains an audio message modulated at a different carrier frequency <span class="math notranslate nohighlight">\(f_c\)</span>. Your objective is to implement a demodulator in Python or MATLAB to recover and play the original audio.</p>
+<section id="specifications">
+<h3>4.1 Specifications<a class="headerlink" href="#specifications" title="Permalink to this heading">#</a></h3>
+<p>The composite signals use the following carrier frequencies:</p>
+<ul class="simple">
+<li><p><strong>Signal 1:</strong> <span class="math notranslate nohighlight">\(f_{c1} = 5\)</span> kHz</p></li>
+<li><p><strong>Signal 2:</strong> <span class="math notranslate nohighlight">\(f_{c2} = 10\)</span> kHz</p></li>
+<li><p><strong>Signal 3:</strong> <span class="math notranslate nohighlight">\(f_{c3} = 15\)</span> kHz</p></li>
+</ul>
+</section>
+<section id="implementation-steps">
+<h3>4.2 Implementation Steps<a class="headerlink" href="#implementation-steps" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Load the Data:</strong> Read the <code class="docutils literal notranslate"><span class="pre">.wav</span></code> files and determine the sampling frequency <span class="math notranslate nohighlight">\(f_s\)</span>.</p></li>
+<li><p><strong>Multiply:</strong> Generate a local carrier <span class="math notranslate nohighlight">\(\cos(2\pi f_c t)\)</span> and multiply it by the received signal.</p></li>
+<li><p><strong>Filter:</strong> Design a Butterworth or Ideal LPF with a cutoff frequency appropriate for human speech/music (typically around <span class="math notranslate nohighlight">\(3\)</span>–<span class="math notranslate nohighlight">\(4\)</span> kHz).</p></li>
+<li><p><strong>Normalize and Play:</strong> Scale the resulting signal to prevent clipping and use the system’s audio output to verify the result.</p></li>
+</ol>
+</section>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>5. Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Demodulation relies on the <strong>Frequency Shifting property</strong> of the Fourier Transform.</p></li>
+<li><p>A <strong>multiplier (mixer)</strong> moves the signal spectrum, while a <strong>low-pass filter</strong> isolates the desired information.</p></li>
+<li><p>Success in this project requires applying the <strong>LTI system concepts</strong> from Project 1—specifically, understanding how a filter’s impulse response removes unwanted high-frequency noise.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Assignments"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="project1.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><strong>Project 1: Characterizing Systems Using Impulse Responses in MATLAB</strong></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../integration.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Integration by Parts</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intoduction">1. Intoduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-specifications">1. Signal Specifications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-modulation-am-review">2. Amplitude Modulation (AM) Review</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-task-the-c4-tone-synthesis">5. Preliminary Task: The C4 Tone Synthesis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesis">5.1 Synthesis</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-walkthrough-filter-design-and-modulation">2. Part I: Walkthrough — Filter Design and Modulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesizing-the-c4-piano-tone">2.1 Synthesizing the C4 Piano Tone</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesizing-the-a4-piano-tone-with-decay">2.1 Synthesizing the A4 Piano Tone with Decay</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-design">2.2 Filter Design</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-frequency-response">3.2 Visualizing the Frequency Response</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulation-dsb-sc">1.3 Modulation (DSB-SC)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-deliverables-the-demodulation-challenge">2. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recovery-tasks">2.1 Recovery Tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-requirements">2.2 Submission Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.3 Modulation (DSB-SC)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#provided-signal-specs">3.1 Provided Signal Specs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-tasks">3.2 Your Tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-submission">3.3 Required Submission</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">6. Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-demodulation-process-mixing-and-filtering">3. The Demodulation Process: Mixing and Filtering</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-mixing-frequency-shifting">3.1 Step 1: Mixing (Frequency Shifting)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-low-pass-filtering-the-lti-system">3.2 Step 2: Low-Pass Filtering (The LTI System)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-task-recovering-the-audio">4. Project Task: Recovering the Audio</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifications">4.1 Specifications</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-steps">4.2 Implementation Steps</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">5. Key Takeaways</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Stan Baek
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
