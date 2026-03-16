@@ -5,6 +5,7 @@ This reading develops one of the most important ideas in signals and systems: **
 The goal here is not only to present the formulas, but to build strong intuition for *why* convolution arises naturally from linearity and time invariance.
 
 ---
+
 ## 1. Why the Impulse Response Is Fundamental
 
 In many engineering systems - electrical circuits, mechanical systems, control systems, and signal processing algorithms — we are interested in understanding how a output signal depends on an input signal. For example, we may want to predict how the voltage across a circuit responds to an applied current, how the position of a mechanical structure responds to a force, or how a digital filter modifies an incoming sequence of samples.
@@ -158,7 +159,6 @@ $$
 2\begin{bmatrix} 0 \\ 1 \end{bmatrix}.
 $$
 
-
 Here, the unit vectors form a basis for $\mathbb{R}^2$. Similarly, shifted impulse signals form a **basis for discrete-time signals**. From this perspective, convolution emerges naturally as the process of combining the system's responses to each basis element.
 
 ---
@@ -246,7 +246,6 @@ $$
 
 Discrete-time convolution can be interpreted as a **superposition process**. Each sample of the input signal generates a shifted and scaled copy of the impulse response, and the output at any time $k$ is the sum of all these contributions. In other words, the impulse response acts as a template that is repeatedly shifted, weighted, and added according to the input signal.
 
-
 ```{important}
 The output is formed by adding together many shifted copies of the impulse response, each weighted by the input signal.
 ```
@@ -269,6 +268,7 @@ This analogy highlights the key idea behind convolution: **each input sample exc
 :align: center
 Continuous-time LTI system responding to a Dirac delta input $\delta(t)$ with impulse response $h(t)$
 ```
+
 {numref}`fig-cont-lti-system` introduces the impulse response for continuous-time systems. The diagram closely mirrors the discrete-time case, emphasizing that the impulse response $h(t)$ is defined as the system output when the input is the Dirac delta function $\delta(t)$.
 
 Conceptually, the idea of an impulse response does not change when moving from discrete time to continuous time. What changes is the mathematical machinery: sums become integrals, and sequences become continuous functions of time. The underlying logic, based on linearity and time invariance, remains exactly the same.
@@ -287,7 +287,7 @@ $$
 
 Unlike ordinary functions, the delta function is zero everywhere except at $t = 0$, where it is unbounded. For this reason, it is not a function in the traditional sense, but rather a *generalized function* (or distribution). Despite this mathematical subtlety, the Dirac delta is one of the most useful tools in signals and systems analysis.
 
-Physically, the delta function models an input that delivers a **_finite amount of energy or impulse over an infinitesimally short time_**. Examples include an idealized hammer strike, a sudden force applied to a mechanical system, or a very short voltage pulse applied to a circuit.
+Physically, the delta function models an input that delivers a ***finite amount of energy or impulse over an infinitesimally short time***. Examples include an idealized hammer strike, a sudden force applied to a mechanical system, or a very short voltage pulse applied to a circuit.
 
 When the input to a continuous time LTI system is the delta function, the output is defined to be the **impulse response**:
 
@@ -310,7 +310,6 @@ $$
 This expression is the continuous-time counterpart of impulse decompositon in discrete time. Each shifted (or delayed) impulse $\delta(t-\tau)$ isolates the value of the signal at time $\tau$, while the coefficient $x(\tau)$ determines the strength of that impulse.
 
 Conceptually, this representation says that continuous-time signal can be constructed by stacking together infinitely many infinitesimal impulses. Each impulse contributes independently to the system output, and the total signal is formed by integrating over all such contributions.
-
 
 ```{figure} ./figures/ImpulseDecompositionCT.png
 :name: fig-impulse-decomposition-ct
@@ -346,7 +345,6 @@ $$
 Graphical depiction of convolution as integration of shifted impulse responses weighted by the input signal.
 ```
 
-
 {numref}`fig-continuous-convolution` connects the convolution integral to physical intuition. It shows that the output at time $t$ is obtained by integrating shifted copies of the impulse response, each weighted by the input signal.
 
 ```{note}
@@ -365,7 +363,6 @@ Although discrete-time and continuous-time systems use different mathematical to
 | Signal decomposition | Summation       | Integral             |
 | Impulse response     | $h(k)$          | $h(t)$               |
 | System output        | Convolution sum | Convolution integral |
-
 
 ---
 

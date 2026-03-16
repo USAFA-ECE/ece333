@@ -14,6 +14,8 @@ parts:
   chapters:
   - file: Assignments/project1.md
     title: "Project 1: Impulse Response"
+  - file: Assignments/project2.md
+    title: "Project 2: Amplitude Modulation"
 
 - caption: Supplementary
   chapters:
