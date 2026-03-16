@@ -390,26 +390,27 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intoduction">1. Intoduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-specifications">1. Signal Specifications</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-modulation-am-review">2. Amplitude Modulation (AM) Review</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-task-the-c4-tone-synthesis">5. Preliminary Task: The C4 Tone Synthesis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesis">5.1 Synthesis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-walkthrough-filter-design-and-modulation">2. Part I: Walkthrough — Filter Design and Modulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesizing-the-a4-piano-tone">2.1 Synthesizing the A4 Piano Tone</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-walkthrough-filter-design-and-modulation">2. Part I: Walkthrough — Filter Design and Modulation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesizing-the-c4-piano-tone">2.1 Synthesizing the C4 Piano Tone</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesizing-the-a4-piano-tone-with-decay">2.1 Synthesizing the A4 Piano Tone with Decay</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rewritten-version-smooth-cohesive-technically-precise"><strong>Rewritten Version (Smooth, Cohesive, Technically Precise)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.1 Synthesizing the A4 Piano Tone</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-design">2.2 Filter Design</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-frequency-response">3.2 Visualizing the Frequency Response</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-modulation-am-review">2. Amplitude Modulation (AM) Review</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulation-dsb-sc">1.3 Modulation (DSB-SC)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-deliverables-the-demodulation-challenge">2. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recovery-tasks">2.1 Recovery Tasks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-requirements">2.2 Submission Requirements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.3 Modulation (DSB-SC)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.3 Modulation (DSB-SC)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#provided-signal-specs">3.1 Provided Signal Specs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-tasks">3.2 Your Tasks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-submission">3.3 Required Submission</a></li>
@@ -456,45 +457,36 @@ document.write(`
 <li><p><strong>Message Bandwidth:</strong> <span class="math notranslate nohighlight">\(5\)</span> kHz (All original audio is band-limited to <span class="math notranslate nohighlight">\(5\)</span> kHz)</p></li>
 </ul>
 </section>
-<section id="amplitude-modulation-am-review">
-<h2>2. Amplitude Modulation (AM) Review<a class="headerlink" href="#amplitude-modulation-am-review" title="Permalink to this heading">#</a></h2>
-<p>In this project, we focus on <strong>Double-Sideband Suppressed Carrier (DSB-SC)</strong> modulation. A message signal <span class="math notranslate nohighlight">\(m(t)\)</span> is multiplied by a carrier wave at frequency <span class="math notranslate nohighlight">\(f_c\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[x(t) = m(t) \cos(2\pi f_c t)\]</div>
-<p>From the properties of the Fourier Transform, we know that multiplication in the time domain corresponds to shifting in the frequency domain. This places the message spectrum at <span class="math notranslate nohighlight">\(\pm f_c\)</span>, effectively moving the audio information far away from <span class="math notranslate nohighlight">\(0\)</span> Hz.</p>
-</section>
-<hr class="docutils" />
-<section id="preliminary-task-the-c4-tone-synthesis">
-<h2>5. Preliminary Task: The C4 Tone Synthesis<a class="headerlink" href="#preliminary-task-the-c4-tone-synthesis" title="Permalink to this heading">#</a></h2>
-<p>Before processing the <code class="docutils literal notranslate"><span class="pre">.wav</span></code> files, you will practice modulation using a synthesized <strong>C4 note (Middle C)</strong>. A pure C4 note has a fundamental frequency of approximately <span class="math notranslate nohighlight">\(261.63\)</span> Hz. However, real instruments have <strong>harmonics</strong> that give the sound its “color” or timbre.</p>
-<section id="synthesis">
-<h3>5.1 Synthesis<a class="headerlink" href="#synthesis" title="Permalink to this heading">#</a></h3>
-<p>Construct a signal <span class="math notranslate nohighlight">\(m_{C4}(t)\)</span> by summing <span class="math notranslate nohighlight">\(20\)</span> harmonics. If <span class="math notranslate nohighlight">\(f_0 = 261.63\)</span> Hz:</p>
-<div class="math notranslate nohighlight">
-\[m_{C4}(t) = \sum_{n=1}^{20} a_n \sin(2\pi (n f_0) t)\]</div>
-<p><em>Note: Use <span class="math notranslate nohighlight">\(a_n = \frac{1}{n}\)</span> for a sawtooth-like timbre or <span class="math notranslate nohighlight">\(a_n = \frac{1}{n^2}\)</span> for a smoother tone.</em></p>
-</section>
-</section>
 <section id="part-i-walkthrough-filter-design-and-modulation">
 <h2>2. Part I: Walkthrough — Filter Design and Modulation<a class="headerlink" href="#part-i-walkthrough-filter-design-and-modulation" title="Permalink to this heading">#</a></h2>
 <p>The following steps demonstrate how to synthesize a A4 piano tone, design a Butterworth low-pass filter (LPF), and modulate the signal.</p>
-<section id="synthesizing-the-c4-piano-tone">
-<h3>2.1 Synthesizing the C4 Piano Tone<a class="headerlink" href="#synthesizing-the-c4-piano-tone" title="Permalink to this heading">#</a></h3>
-<p>A piano note is not a single sine wave; it consists of a fundamental frequency and multiple harmonics. We will generate a A4 note (<span class="math notranslate nohighlight">\(f_0 = 440\)</span> Hz) with 20 harmonics. To create a truly realistic piano sound in MATLAB, however, we need to go beyond just summing harmonics. A real piano note has two distinct characteristics:</p>
-<ol class="arabic simple">
-<li><p><strong>Inharmonicity:</strong> The harmonics are slightly “stretched” due to string stiffness.</p></li>
-<li><p><strong>ADSR Envelope:</strong> The volume hits a sharp peak (Attack) and then decays exponentially over time.</p></li>
-</ol>
-<p>In this section, we will generate a 10-second A4 piano tone. We will apply an <strong>exponential decay envelope</strong> to each harmonic to simulate the physical damping of piano strings.</p>
+<section id="synthesizing-the-a4-piano-tone">
+<h3>2.1 Synthesizing the A4 Piano Tone<a class="headerlink" href="#synthesizing-the-a4-piano-tone" title="Permalink to this heading">#</a></h3>
+<p>Here’s a smoother, more cohesive rewrite that keeps everything technically correct while improving flow, transitions, and clarity. I also remove repetition and make the narrative feel intentional and well‑structured.</p>
 </section>
-<section id="synthesizing-the-a4-piano-tone-with-decay">
-<h3>2.1 Synthesizing the A4 Piano Tone with Decay<a class="headerlink" href="#synthesizing-the-a4-piano-tone-with-decay" title="Permalink to this heading">#</a></h3>
-<p>Instead of a constant amplitude, we apply <span class="math notranslate nohighlight">\(e^{-t/\tau}\)</span> to each harmonic, where higher harmonics decay faster than the fundamental frequency.</p>
+</section>
+<hr class="docutils" />
+<section id="rewritten-version-smooth-cohesive-technically-precise">
+<h2><strong>Rewritten Version (Smooth, Cohesive, Technically Precise)</strong><a class="headerlink" href="#rewritten-version-smooth-cohesive-technically-precise" title="Permalink to this heading">#</a></h2>
+<section id="id1">
+<h3>2.1 Synthesizing the A4 Piano Tone<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Before we begin modulating message signals, we will first practice modulation using a simple harmonic signal: a synthesized <strong>A4 piano tone</strong>. A pure A4 note has a fundamental frequency of (440) Hz, but real instruments contain many <strong>harmonics</strong> that shape the sound’s timbre. A basic harmonic approximation can be written as</p>
+<p>[
+m_{A4}(t) = \sum_{n=1}^{20} a_n \cos(2\pi n f_0 t), \qquad f_0 = 440\ \text{Hz},
+]</p>
+<p>where the coefficients (a_n) control the tone quality (e.g., (a_n = 1/n) for a sawtooth‑like sound or (a_n = 1/n^2) for a smoother tone).</p>
+<p>However, a realistic piano tone requires more than simply summing harmonics. Real piano strings exhibit two important characteristics:</p>
+<ol class="arabic simple">
+<li><p><strong>Inharmonicity:</strong> Harmonics are slightly <em>stretched</em> due to string stiffness.</p></li>
+<li><p><strong>Amplitude Envelope:</strong> A piano note has a sharp attack followed by an exponential decay.</p></li>
+</ol>
+<p>To capture these effects, we will synthesize a <strong>10‑second A4 piano tone</strong> by applying an exponential decay envelope to each harmonic. Higher harmonics decay faster than the fundamental, reflecting the physical damping behavior of piano strings.</p>
+<p>The MATLAB code below implements this model by assigning each harmonic both a decreasing initial amplitude and a harmonic‑dependent decay constant.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 1. Parameters</span>
 <span class="n">fs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">44100</span><span class="p">;</span><span class="w">              </span><span class="c">% High sampling rate (44.1 kHz)</span>
-<span class="n">T</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">                   </span><span class="c">% Duration in seconds</span>
-<span class="n">t</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">:</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">;</span><span class="w">        </span><span class="c">% Time vector</span>
-<span class="n">f0</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">440</span><span class="p">;</span><span class="w">                 </span><span class="c">% Fundamental frequency (A4)</span>
+<span class="n">T</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">                  </span><span class="c">% Duration in seconds</span>
+<span class="n">t</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">:</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">;</span><span class="w">       </span><span class="c">% Time vector</span>
+<span class="n">f0</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">440</span><span class="p">;</span><span class="w">                </span><span class="c">% Fundamental frequency (A4)</span>
 
 <span class="c">%% 2. Realistic Piano Synthesis (Harmonics + Decay)</span>
 <span class="n">m_a4</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="nb">size</span><span class="p">(</span><span class="n">t</span><span class="p">));</span>
@@ -549,7 +541,7 @@ document.write(`
 </div>
 <p>This MATLAB code generates the plot shown in <a class="reference internal" href="#fig-lowpass-filter-5k"><span class="std std-numref">Fig. 1</span></a>. If you click on the response curve and drag your mouse near the cutoff frequency of 31,416 rad/s (5 kHz), you will find the gain of −3.0 dB (or <span class="math notranslate nohighlight">\(1/\sqrt{2}=0.707\)</span>), where the output signal power becomes half of the input signal power.</p>
 <figure class="align-center" id="fig-lowpass-filter-5k">
-<a class="reference internal image-reference" href="../_images/lpf_5k.png"><img alt="../_images/lpf_5k.png" src="../_images/lpf_5k.png" style="width: 640px;" /></a>
+<a class="reference internal image-reference" href="../_images/lpf_5k.png"><img alt="../_images/lpf_5k.png" src="../_images/lpf_5k.png" style="width: 580px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 1 </span><span class="caption-text">5 KHz Butterworth low-pass filter</span><a class="headerlink" href="#fig-lowpass-filter-5k" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -579,6 +571,13 @@ document.write(`
 </pre></div>
 </div>
 </section>
+</section>
+<section id="amplitude-modulation-am-review">
+<h2>2. Amplitude Modulation (AM) Review<a class="headerlink" href="#amplitude-modulation-am-review" title="Permalink to this heading">#</a></h2>
+<p>In this project, we focus on <strong>Double-Sideband Suppressed Carrier (DSB-SC)</strong> modulation. A message signal <span class="math notranslate nohighlight">\(m(t)\)</span> is multiplied by a carrier wave at frequency <span class="math notranslate nohighlight">\(f_c\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[x(t) = m(t) \cos(2\pi f_c t)\]</div>
+<p>From the properties of the Fourier Transform, we know that multiplication in the time domain corresponds to shifting in the frequency domain. This places the message spectrum at <span class="math notranslate nohighlight">\(\pm f_c\)</span>, effectively moving the audio information far away from <span class="math notranslate nohighlight">\(0\)</span> Hz.</p>
 <section id="modulation-dsb-sc">
 <h3>1.3 Modulation (DSB-SC)<a class="headerlink" href="#modulation-dsb-sc" title="Permalink to this heading">#</a></h3>
 <p>Finally, we shift this realistic piano signal to a 25 kHz carrier frequency.</p>
@@ -627,8 +626,8 @@ document.write(`
 </ul>
 </section>
 <hr class="docutils" />
-<section id="id1">
-<h3>2.3 Modulation (DSB-SC)<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<section id="id2">
+<h3>2.3 Modulation (DSB-SC)<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <p>Now, we shift our 5 kHz message to a higher carrier frequency (<span class="math notranslate nohighlight">\(f_c = 20\)</span> kHz) using Double-Sideband Suppressed Carrier modulation.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% Modulation</span>
 <span class="n">fc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">20000</span><span class="p">;</span><span class="w"> </span><span class="c">% Carrier at 20 kHz</span>
@@ -650,8 +649,8 @@ document.write(`
 </section>
 </section>
 <hr class="docutils" />
-<section id="id2">
-<h2>3. Part II: Deliverables — The Demodulation Challenge<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<section id="id3">
+<h2>3. Part II: Deliverables — The Demodulation Challenge<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h2>
 <p>Now that you understand the signal chain, you are tasked with recovering three different audio messages from the provided files: <code class="docutils literal notranslate"><span class="pre">signal1.wav</span></code>, <code class="docutils literal notranslate"><span class="pre">signal2.wav</span></code>, and <code class="docutils literal notranslate"><span class="pre">signal3.wav</span></code>.</p>
 <section id="provided-signal-specs">
 <h3>3.1 Provided Signal Specs<a class="headerlink" href="#provided-signal-specs" title="Permalink to this heading">#</a></h3>
@@ -833,26 +832,27 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intoduction">1. Intoduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-specifications">1. Signal Specifications</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-modulation-am-review">2. Amplitude Modulation (AM) Review</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preliminary-task-the-c4-tone-synthesis">5. Preliminary Task: The C4 Tone Synthesis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesis">5.1 Synthesis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-walkthrough-filter-design-and-modulation">2. Part I: Walkthrough — Filter Design and Modulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesizing-the-a4-piano-tone">2.1 Synthesizing the A4 Piano Tone</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-walkthrough-filter-design-and-modulation">2. Part I: Walkthrough — Filter Design and Modulation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesizing-the-c4-piano-tone">2.1 Synthesizing the C4 Piano Tone</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synthesizing-the-a4-piano-tone-with-decay">2.1 Synthesizing the A4 Piano Tone with Decay</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rewritten-version-smooth-cohesive-technically-precise"><strong>Rewritten Version (Smooth, Cohesive, Technically Precise)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.1 Synthesizing the A4 Piano Tone</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-design">2.2 Filter Design</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-frequency-response">3.2 Visualizing the Frequency Response</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-modulation-am-review">2. Amplitude Modulation (AM) Review</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulation-dsb-sc">1.3 Modulation (DSB-SC)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-deliverables-the-demodulation-challenge">2. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recovery-tasks">2.1 Recovery Tasks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-requirements">2.2 Submission Requirements</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.3 Modulation (DSB-SC)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">2.3 Modulation (DSB-SC)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#provided-signal-specs">3.1 Provided Signal Specs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-tasks">3.2 Your Tasks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-submission">3.3 Required Submission</a></li>

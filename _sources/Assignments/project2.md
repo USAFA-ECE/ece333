@@ -18,51 +18,43 @@ For this project, we are working with high-fidelity signals:
 * **Message Duration:** $10$ seconds
 * **Message Bandwidth:** $5$ kHz (All original audio is band-limited to $5$ kHz)
 
-## 2. Amplitude Modulation (AM) Review
-
-In this project, we focus on **Double-Sideband Suppressed Carrier (DSB-SC)** modulation. A message signal $m(t)$ is multiplied by a carrier wave at frequency $f_c$:
-
-$$x(t) = m(t) \cos(2\pi f_c t)$$
-
-From the properties of the Fourier Transform, we know that multiplication in the time domain corresponds to shifting in the frequency domain. This places the message spectrum at $\pm f_c$, effectively moving the audio information far away from $0$ Hz.
-
----
-
-## 5. Preliminary Task: The C4 Tone Synthesis
-
-Before processing the `.wav` files, you will practice modulation using a synthesized **C4 note (Middle C)**. A pure C4 note has a fundamental frequency of approximately $261.63$ Hz. However, real instruments have **harmonics** that give the sound its "color" or timbre.
-
-### 5.1 Synthesis
-
-Construct a signal $m_{C4}(t)$ by summing $20$ harmonics. If $f_0 = 261.63$ Hz:
-
-$$m_{C4}(t) = \sum_{n=1}^{20} a_n \sin(2\pi (n f_0) t)$$
-
-*Note: Use $a_n = \frac{1}{n}$ for a sawtooth-like timbre or $a_n = \frac{1}{n^2}$ for a smoother tone.*
-
 ## 2. Part I: Walkthrough — Filter Design and Modulation
 
 The following steps demonstrate how to synthesize a A4 piano tone, design a Butterworth low-pass filter (LPF), and modulate the signal.
 
-### 2.1 Synthesizing the C4 Piano Tone
+### 2.1 Synthesizing the A4 Piano Tone
 
-A piano note is not a single sine wave; it consists of a fundamental frequency and multiple harmonics. We will generate a A4 note ($f_0 = 440$ Hz) with 20 harmonics. To create a truly realistic piano sound in MATLAB, however, we need to go beyond just summing harmonics. A real piano note has two distinct characteristics:
+Here’s a smoother, more cohesive rewrite that keeps everything technically correct while improving flow, transitions, and clarity. I also remove repetition and make the narrative feel intentional and well‑structured.
 
-1. **Inharmonicity:** The harmonics are slightly "stretched" due to string stiffness.
-2. **ADSR Envelope:** The volume hits a sharp peak (Attack) and then decays exponentially over time.
+---
 
-In this section, we will generate a 10-second A4 piano tone. We will apply an **exponential decay envelope** to each harmonic to simulate the physical damping of piano strings.
+## **Rewritten Version (Smooth, Cohesive, Technically Precise)**
 
-### 2.1 Synthesizing the A4 Piano Tone with Decay
+### 2.1 Synthesizing the A4 Piano Tone
 
-Instead of a constant amplitude, we apply $e^{-t/\tau}$ to each harmonic, where higher harmonics decay faster than the fundamental frequency.
+Before we begin modulating message signals, we will first practice modulation using a simple harmonic signal: a synthesized **A4 piano tone**. A pure A4 note has a fundamental frequency of \(440\) Hz, but real instruments contain many **harmonics** that shape the sound’s timbre. A basic harmonic approximation can be written as
+
+\[
+m_{A4}(t) = \sum_{n=1}^{20} a_n \cos(2\pi n f_0 t), \qquad f_0 = 440\ \text{Hz},
+\]
+
+where the coefficients \(a_n\) control the tone quality (e.g., \(a_n = 1/n\) for a sawtooth‑like sound or \(a_n = 1/n^2\) for a smoother tone).
+
+However, a realistic piano tone requires more than simply summing harmonics. Real piano strings exhibit two important characteristics:
+
+1. **Inharmonicity:** Harmonics are slightly _stretched_ due to string stiffness.  
+2. **Amplitude Envelope:** A piano note has a sharp attack followed by an exponential decay.
+
+To capture these effects, we will synthesize a **10‑second A4 piano tone** by applying an exponential decay envelope to each harmonic. Higher harmonics decay faster than the fundamental, reflecting the physical damping behavior of piano strings.
+
+The MATLAB code below implements this model by assigning each harmonic both a decreasing initial amplitude and a harmonic‑dependent decay constant.
 
 ```matlab
 %% 1. Parameters
 fs = 44100;              % High sampling rate (44.1 kHz)
-T = 10;                   % Duration in seconds
-t = 0:1/fs:T-1/fs;        % Time vector
-f0 = 440;                 % Fundamental frequency (A4)
+T = 10;                  % Duration in seconds
+t = 0:1/fs:T-1/fs;       % Time vector
+f0 = 440;                % Fundamental frequency (A4)
 
 %% 2. Realistic Piano Synthesis (Harmonics + Decay)
 m_a4 = zeros(size(t));
@@ -88,7 +80,6 @@ m_a4 = m_a4 / max(abs(m_a4));
 
 % Listen to the result
 soundsc(m_a4, fs); 
-
 ```
 
 ### 2.2 Filter Design
@@ -122,7 +113,7 @@ This MATLAB code generates the plot shown in {numref}`fig-lowpass-filter-5k`. If
 
 ```{figure} ./figures/lpf_5k.png
 :name: fig-lowpass-filter-5k
-:width: 640px
+:width: 580px
 :align: center
 5 KHz Butterworth low-pass filter 
 ```
@@ -153,6 +144,14 @@ xlabel('Frequency (kHz)'); ylabel('Magnitude');
 xlim([-10 10]);
 
 ```
+
+## 2. Amplitude Modulation (AM) Review
+
+In this project, we focus on **Double-Sideband Suppressed Carrier (DSB-SC)** modulation. A message signal $m(t)$ is multiplied by a carrier wave at frequency $f_c$:
+
+$$x(t) = m(t) \cos(2\pi f_c t)$$
+
+From the properties of the Fourier Transform, we know that multiplication in the time domain corresponds to shifting in the frequency domain. This places the message spectrum at $\pm f_c$, effectively moving the audio information far away from $0$ Hz.
 
 ### 1.3 Modulation (DSB-SC)
 
@@ -246,7 +245,7 @@ Now that you understand the signal chain, you are tasked with recovering three d
 
 ### 3.3 Required Submission
 
-* **Plots:** Magnitude spectra for all three signals *before* and *after* demodulation.
+* **Plots:** Magnitude spectra for all three signals _before_ and _after_ demodulation.
 * **Verification:** Identify the hidden audio message in each file (e.g., "The message in Signal 1 is a person speaking about...").
 * **Discussion:** Explain what happens if your local carrier frequency in Part 3.1 is slightly off (e.g., 12.1 kHz instead of 12 kHz). Use the properties of the Fourier Transform to justify your answer.
 
