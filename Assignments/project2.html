@@ -186,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Assignments</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="project1.html">Project 1: Impulse Response</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project 2: Amplitude Modulation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Project 2: Demodulation</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Supplementary</span></p>
 <ul class="nav bd-sidenav">
@@ -398,11 +398,12 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-observations-and-analysis">Step 4: Observations and Analysis</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-modulation-am-review">2.2 Amplitude Modulation (AM) Review</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modulation-dsb-sc">Modulation (DSB-SC)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#double-sideband-suppressed-carrier-dsb-sc-modulation">2.2 Double-Sideband Suppressed Carrier (DSB-SC) Modulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-theoretical-foundation">Step 1: Theoretical Foundation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-implementation-in-matlab">Step 2: Implementation in MATLAB</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-observations-and-analysis">Step 3: Observations and Analysis</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.3 Modulation (DSB-SC)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-deliverables-the-demodulation-challenge">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
@@ -410,7 +411,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-requirements">3.2 Submission Requirements</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#provided-signal-specs">3.1 Provided Signal Specs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-tasks">3.2 Your Tasks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-submission">3.3 Required Submission</a></li>
@@ -573,48 +574,76 @@ document.write(`
 </figure>
 </section>
 </section>
-<section id="amplitude-modulation-am-review">
-<h3>2.2 Amplitude Modulation (AM) Review<a class="headerlink" href="#amplitude-modulation-am-review" title="Permalink to this heading">#</a></h3>
-<p>In this project, we focus on <strong>Double-Sideband Suppressed Carrier (DSB-SC)</strong> modulation. A message signal <span class="math notranslate nohighlight">\(m(t)\)</span> is multiplied by a carrier wave at frequency <span class="math notranslate nohighlight">\(f_c\)</span>:</p>
+<section id="double-sideband-suppressed-carrier-dsb-sc-modulation">
+<h3>2.2 Double-Sideband Suppressed Carrier (DSB-SC) Modulation<a class="headerlink" href="#double-sideband-suppressed-carrier-dsb-sc-modulation" title="Permalink to this heading">#</a></h3>
+<p>Once the message signal <span class="math notranslate nohighlight">\(m(t)\)</span> has been appropriately band-limited by a low-pass filter, the next stage in the communication chain is <strong>modulation</strong>. Modulation is the process of shifting the message spectrum to a higher frequency range, allowing for efficient transmission over physical media.</p>
+<p>In this project, we focus on <strong>Double-Sideband Suppressed Carrier (DSB-SC)</strong> modulation. This is achieved by multiplying the filtered message <span class="math notranslate nohighlight">\(m(t)\)</span> by a high-frequency sinusoidal carrier <span class="math notranslate nohighlight">\(\cos(2\pi f_c t)\)</span>.</p>
+<section id="step-1-theoretical-foundation">
+<h4>Step 1: Theoretical Foundation<a class="headerlink" href="#step-1-theoretical-foundation" title="Permalink to this heading">#</a></h4>
+<p>The Modulation Theorem (or Frequency Shifting Property) of the Fourier Transform states that multiplication by a cosine in the time domain results in a shift in the frequency domain:</p>
 <div class="math notranslate nohighlight">
-\[x(t) = m(t) \cos(2\pi f_c t)\]</div>
-<p>From the properties of the Fourier Transform, we know that multiplication in the time domain corresponds to shifting in the frequency domain. This places the message spectrum at <span class="math notranslate nohighlight">\(\pm f_c\)</span>, effectively moving the audio information far away from <span class="math notranslate nohighlight">\(0\)</span> Hz.</p>
-<section id="modulation-dsb-sc">
-<h4>Modulation (DSB-SC)<a class="headerlink" href="#modulation-dsb-sc" title="Permalink to this heading">#</a></h4>
-<p>Finally, we shift this realistic piano signal to a 25 kHz carrier frequency.</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 5. Modulation</span>
-<span class="n">fc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">25000</span><span class="p">;</span><span class="w"> </span>
-<span class="n">x_modulated</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">m_filtered</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">fc</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
+\[x(t) = m(t) \cos(2\pi f_c t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(f) = \frac{1}{2} [M(f - f_c) + M(f + f_c)]\]</div>
+<p>This mathematical operation creates two “sidebands”—one above the carrier frequency and one below—while the carrier itself is “suppressed” because it does not appear as a standalone impulse in the spectrum unless explicitly added.</p>
+</section>
+<section id="step-2-implementation-in-matlab">
+<h4>Step 2: Implementation in MATLAB<a class="headerlink" href="#step-2-implementation-in-matlab" title="Permalink to this heading">#</a></h4>
+<p>To visualize this effect clearly, we will use the filtered output <span class="math notranslate nohighlight">\(y(t)\)</span> from Subsection 2.1 as our message signal and modulate it using a carrier frequency <span class="math notranslate nohighlight">\(f_c = 50\)</span> Hz.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 1. Modulation Configuration</span>
+<span class="n">fc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span><span class="w">                  </span><span class="c">% Carrier frequency (50 Hz) for clear visualization</span>
+<span class="n">carrier</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">fc</span><span class="o">*</span><span class="n">t</span><span class="p">);</span><span class="w"> </span><span class="c">% Generate the continuous-time carrier wave</span>
 
+<span class="c">% Perform modulation via element-wise multiplication</span>
+<span class="n">x_modulated</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">y</span><span class="o">&#39;</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">carrier</span><span class="p">;</span><span class="w"> </span>
+
+<span class="c">%% 2. Spectral Analysis of the Modulated Signal</span>
+<span class="c">% Compute the magnitude spectrum of the modulated signal</span>
+<span class="c">% Use fftshift to center the spectrum at 0 Hz for easier interpretation</span>
+<span class="n">X_mod_freq</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="nb">fftshift</span><span class="p">(</span><span class="nb">fft</span><span class="p">(</span><span class="n">x_modulated</span><span class="p">)));</span>
+<span class="n">f_shifted</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fs</span><span class="o">/</span><span class="n">L</span><span class="p">);</span><span class="w"> </span><span class="c">% Centered frequency axis</span>
+
+<span class="c">%% 3. Visualizing the Modulation Results</span>
 <span class="nb">figure</span><span class="p">;</span>
-<span class="nb">plot</span><span class="p">(</span><span class="n">f_axis</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="nb">fftshift</span><span class="p">(</span><span class="nb">fft</span><span class="p">(</span><span class="n">x_modulated</span><span class="p">)))</span><span class="o">/</span><span class="n">L</span><span class="p">);</span>
-<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Modulated Signal Spectrum (Centered at 25 kHz)&#39;</span><span class="p">);</span>
-<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Frequency (kHz)&#39;</span><span class="p">);</span>
-<span class="nb">xlim</span><span class="p">([</span><span class="mi">15</span><span class="w"> </span><span class="mi">35</span><span class="p">]);</span>
+
+<span class="c">% Time Domain Plot</span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">x_modulated</span><span class="p">);</span>
+<span class="n">hold</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;r--&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5</span><span class="p">);</span><span class="w"> </span><span class="c">% Plot original message as the envelope</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Modulated Signal x(t) (DSB-SC) in Time Domain&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Time (s)&#39;</span><span class="p">);</span><span class="w"> </span><span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Amplitude&#39;</span><span class="p">);</span>
+<span class="nb">legend</span><span class="p">(</span><span class="s">&#39;Modulated Signal&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Message Envelope&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="w"> </span><span class="s">on</span><span class="p">;</span><span class="w"> </span><span class="nb">xlim</span><span class="p">([</span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="p">]);</span><span class="w"> </span><span class="c">% Zoom in to see the carrier oscillations</span>
+
+<span class="c">% Frequency Domain Plot</span>
+<span class="nb">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">f_shifted</span><span class="p">,</span><span class="w"> </span><span class="n">X_mod_freq</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="mi">2</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Magnitude Spectrum X(f) of Modulated Signal&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Frequency (Hz)&#39;</span><span class="p">);</span><span class="w"> </span><span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Magnitude&#39;</span><span class="p">);</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">75</span><span class="w"> </span><span class="mi">75</span><span class="p">]);</span><span class="w"> </span><span class="c">% Focus on the shifted sidebands around +/- 50 Hz</span>
+<span class="nb">grid</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
 </pre></div>
 </div>
-</section>
-</section>
-<section id="id1">
-<h3>2.3 Modulation (DSB-SC)<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
-<p>Now, we shift our 5 kHz message to a higher carrier frequency (<span class="math notranslate nohighlight">\(f_c = 20\)</span> kHz) using Double-Sideband Suppressed Carrier modulation.</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% Modulation</span>
-<span class="n">fc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">20000</span><span class="p">;</span><span class="w"> </span><span class="c">% Carrier at 20 kHz</span>
-<span class="n">carrier</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">fc</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
-<span class="n">x_modulated</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">m_filtered</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">carrier</span><span class="p">;</span>
-
-<span class="c">%% Plotting the Spectrum</span>
-<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">x_modulated</span><span class="p">);</span>
-<span class="n">f_axis</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fs</span><span class="o">/</span><span class="n">L</span><span class="p">);</span>
-<span class="n">X_freq</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fftshift</span><span class="p">(</span><span class="nb">fft</span><span class="p">(</span><span class="n">x_modulated</span><span class="p">));</span>
-
-<span class="nb">figure</span><span class="p">;</span>
-<span class="nb">plot</span><span class="p">(</span><span class="n">f_axis</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="n">X_freq</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="p">);</span>
-<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Magnitude Spectrum of Modulated C4 Tone&#39;</span><span class="p">);</span>
-<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Frequency (kHz)&#39;</span><span class="p">);</span><span class="w"> </span><span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Magnitude&#39;</span><span class="p">);</span>
-<span class="nb">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">30</span><span class="p">]);</span><span class="w"> </span><span class="c">% Zoom in on the carrier region</span>
-</pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In MATLAB, the <code class="docutils literal notranslate"><span class="pre">fft</span></code> function returns a spectrum where the frequency components are ordered starting from 0 Hz up to the sampling frequency fs​. This places the <em>negative</em> frequencies at the end of the array. The <code class="docutils literal notranslate"><span class="pre">fftshift</span></code> function is necessary to swap the left and right halves of the data, centering the 0 Hz component. This allows us to plot a standard double-sided spectrum that matches the mathematical convention of being centered at the origin.</p>
 </div>
+</section>
+<section id="step-3-observations-and-analysis">
+<h4>Step 3: Observations and Analysis<a class="headerlink" href="#step-3-observations-and-analysis" title="Permalink to this heading">#</a></h4>
+<p><a class="reference internal" href="#fig-modulated-signal"><span class="std std-numref">Fig. 4</span></a> illustrates the transformation. In the time domain, the high-frequency carrier is “shaped” by the amplitude of the message. In the frequency domain, you can observe that the original 2 Hz and 5 Hz components no longer reside near 0 Hz; they have been shifted and are now centered at <span class="math notranslate nohighlight">\(\pm 50\)</span> Hz.</p>
+<figure class="align-center" id="fig-modulated-signal">
+<a class="reference internal image-reference" href="../_images/modulated_signal.png"><img alt="../_images/modulated_signal.png" src="../_images/modulated_signal.png" style="width: 580px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Time-domain modulated waveform and the corresponding magnitude spectrum showing the message shifted to the 50 Hz carrier frequency.</span><a class="headerlink" href="#fig-modulated-signal" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>The modulation process provides several key insights:</p>
+<ol class="arabic simple">
+<li><p><strong>Spectrum Centering:</strong> The baseband signal (originally <span class="math notranslate nohighlight">\(0 \pm 5\)</span> Hz) now occupies the frequency band from <span class="math notranslate nohighlight">\(45\)</span> Hz to <span class="math notranslate nohighlight">\(55\)</span> Hz (and a mirror image in the negative frequencies).</p></li>
+<li><p><strong>Bandwidth Doubling:</strong> While the original message was band-limited to <span class="math notranslate nohighlight">\(5\)</span> Hz, the modulated signal occupies a total bandwidth of <span class="math notranslate nohighlight">\(10\)</span> Hz (<span class="math notranslate nohighlight">\(55 - 45 = 10\)</span>). This is a fundamental characteristic of double-sideband modulation.</p></li>
+<li><p><strong>Phase Reversal:</strong> Notice in the time domain that whenever the message <span class="math notranslate nohighlight">\(m(t)\)</span> crosses zero and becomes negative, the carrier undergoes a <span class="math notranslate nohighlight">\(180^\circ\)</span> phase reversal. This “suppressed carrier” feature is why coherent detection is required at the receiver.</p></li>
+</ol>
+</section>
 </section>
 </section>
 <section id="part-ii-deliverables-the-demodulation-challenge">
@@ -649,8 +678,8 @@ document.write(`
 </section>
 </section>
 <hr class="docutils" />
-<section id="id2">
-<h2>3. Part II: Deliverables — The Demodulation Challenge<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
+<section id="id1">
+<h2>3. Part II: Deliverables — The Demodulation Challenge<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>Now that you understand the signal chain, you are tasked with recovering three different audio messages from the provided files: <code class="docutils literal notranslate"><span class="pre">signal1.wav</span></code>, <code class="docutils literal notranslate"><span class="pre">signal2.wav</span></code>, and <code class="docutils literal notranslate"><span class="pre">signal3.wav</span></code>.</p>
 <section id="provided-signal-specs">
 <h3>3.1 Provided Signal Specs<a class="headerlink" href="#provided-signal-specs" title="Permalink to this heading">#</a></h3>
@@ -840,11 +869,12 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-observations-and-analysis">Step 4: Observations and Analysis</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-modulation-am-review">2.2 Amplitude Modulation (AM) Review</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modulation-dsb-sc">Modulation (DSB-SC)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#double-sideband-suppressed-carrier-dsb-sc-modulation">2.2 Double-Sideband Suppressed Carrier (DSB-SC) Modulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-theoretical-foundation">Step 1: Theoretical Foundation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-implementation-in-matlab">Step 2: Implementation in MATLAB</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-observations-and-analysis">Step 3: Observations and Analysis</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.3 Modulation (DSB-SC)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-deliverables-the-demodulation-challenge">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
@@ -852,7 +882,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-requirements">3.2 Submission Requirements</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#provided-signal-specs">3.1 Provided Signal Specs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-tasks">3.2 Your Tasks</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-submission">3.3 Required Submission</a></li>
