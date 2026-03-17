@@ -391,23 +391,23 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intoduction">1. Intoduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-specifications">1. Signal Specifications</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-walkthrough-filter-design-and-modulation">2. Part I: Walkthrough — Filter Design and Modulation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analog-filter-design-and-testing">2.2 Analog Filter Design and Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analog-filter-design-and-testing">2.1 Analog Filter Design and Testing</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-defining-the-transfer-function">Step 1: Defining the Transfer Function</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-synthesizing-a-test-signal">Step 2: Synthesizing a Test Signal</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-simulating-the-lti-system-response">Step 3: Simulating the LTI System Response</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-observations-and-analysis">Step 4: Observations and Analysis</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-modulation-am-review">2.2 Amplitude Modulation (AM) Review</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modulation-dsb-sc">Modulation (DSB-SC)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-modulation-am-review">2. Amplitude Modulation (AM) Review</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulation-dsb-sc">1.3 Modulation (DSB-SC)</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-deliverables-the-demodulation-challenge">2. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recovery-tasks">2.1 Recovery Tasks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-requirements">2.2 Submission Requirements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.3 Modulation (DSB-SC)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-deliverables-the-demodulation-challenge">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recovery-tasks">3.1 Recovery Tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-requirements">3.2 Submission Requirements</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
@@ -463,7 +463,7 @@ document.write(`
 <p>This section provides a detailed walkthrough of designing and testing a continuous-time filter. In this curriculum, we treat filters not as algorithms, but as physical LTI systems characterized by their <strong>Laplace Transfer Function</strong> <span class="math notranslate nohighlight">\(H(s)\)</span>.</p>
 <hr class="docutils" />
 <section id="analog-filter-design-and-testing">
-<h3>2.2 Analog Filter Design and Testing<a class="headerlink" href="#analog-filter-design-and-testing" title="Permalink to this heading">#</a></h3>
+<h3>2.1 Analog Filter Design and Testing<a class="headerlink" href="#analog-filter-design-and-testing" title="Permalink to this heading">#</a></h3>
 <p>To restrict our signal’s bandwidth, we use a <strong>Butterworth filter</strong>, known for its “maximally flat” response. This means it maintains a very consistent gain across the frequencies we want to keep (the passband) before rolling off at the cutoff.</p>
 <section id="step-1-defining-the-transfer-function">
 <h4>Step 1: Defining the Transfer Function<a class="headerlink" href="#step-1-defining-the-transfer-function" title="Permalink to this heading">#</a></h4>
@@ -573,15 +573,14 @@ document.write(`
 </figure>
 </section>
 </section>
-</section>
 <section id="amplitude-modulation-am-review">
-<h2>2. Amplitude Modulation (AM) Review<a class="headerlink" href="#amplitude-modulation-am-review" title="Permalink to this heading">#</a></h2>
+<h3>2.2 Amplitude Modulation (AM) Review<a class="headerlink" href="#amplitude-modulation-am-review" title="Permalink to this heading">#</a></h3>
 <p>In this project, we focus on <strong>Double-Sideband Suppressed Carrier (DSB-SC)</strong> modulation. A message signal <span class="math notranslate nohighlight">\(m(t)\)</span> is multiplied by a carrier wave at frequency <span class="math notranslate nohighlight">\(f_c\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[x(t) = m(t) \cos(2\pi f_c t)\]</div>
 <p>From the properties of the Fourier Transform, we know that multiplication in the time domain corresponds to shifting in the frequency domain. This places the message spectrum at <span class="math notranslate nohighlight">\(\pm f_c\)</span>, effectively moving the audio information far away from <span class="math notranslate nohighlight">\(0\)</span> Hz.</p>
 <section id="modulation-dsb-sc">
-<h3>1.3 Modulation (DSB-SC)<a class="headerlink" href="#modulation-dsb-sc" title="Permalink to this heading">#</a></h3>
+<h4>Modulation (DSB-SC)<a class="headerlink" href="#modulation-dsb-sc" title="Permalink to this heading">#</a></h4>
 <p>Finally, we shift this realistic piano signal to a 25 kHz carrier frequency.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 5. Modulation</span>
 <span class="n">fc</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">25000</span><span class="p">;</span><span class="w"> </span>
@@ -596,38 +595,6 @@ document.write(`
 </div>
 </section>
 </section>
-<hr class="docutils" />
-<section id="part-ii-deliverables-the-demodulation-challenge">
-<h2>2. Part II: Deliverables — The Demodulation Challenge<a class="headerlink" href="#part-ii-deliverables-the-demodulation-challenge" title="Permalink to this heading">#</a></h2>
-<p>Using the filtering and modulation logic from the walkthrough, students must complete the following:</p>
-<section id="recovery-tasks">
-<h3>2.1 Recovery Tasks<a class="headerlink" href="#recovery-tasks" title="Permalink to this heading">#</a></h3>
-<p>Download <code class="docutils literal notranslate"><span class="pre">signal1.wav</span></code>, <code class="docutils literal notranslate"><span class="pre">signal2.wav</span></code>, and <code class="docutils literal notranslate"><span class="pre">signal3.wav</span></code>.</p>
-<ol class="arabic simple">
-<li><p><strong>Demodulate Signal 1 &amp; 2 (DSB-SC):</strong></p></li>
-</ol>
-<ul class="simple">
-<li><p>Use <span class="math notranslate nohighlight">\(f_{c1} = 15\)</span> kHz and <span class="math notranslate nohighlight">\(f_{c2} = 30\)</span> kHz.</p></li>
-<li><p>Perform coherent detection (Multiply <span class="math notranslate nohighlight">\(\to\)</span> Filter).</p></li>
-</ul>
-<ol class="arabic simple">
-<li><p><strong>Demodulate Signal 3 (DSB with Carrier):</strong></p></li>
-</ol>
-<ul class="simple">
-<li><p>Use <span class="math notranslate nohighlight">\(f_{c3} = 50\)</span> kHz.</p></li>
-<li><p>Perform envelope detection: <span class="math notranslate nohighlight">\(y(t) = \text{LPF}\{ |x(t)| \}\)</span>.</p></li>
-<li><p><strong>Observation:</strong> Compare the sound quality of the envelope detector versus coherent detection for this signal.</p></li>
-</ul>
-</section>
-<section id="submission-requirements">
-<h3>2.2 Submission Requirements<a class="headerlink" href="#submission-requirements" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Comparison Plot:</strong> Show the time-domain envelope of the original piano sound versus the recovered sound.</p></li>
-<li><p><strong>Spectrum Verification:</strong> Provide the magnitude spectrum of the three recovered signals, showing that the high-frequency carrier has been successfully removed.</p></li>
-<li><p><strong>Audio Identification:</strong> State the contents of the three audio files.</p></li>
-</ul>
-</section>
-<hr class="docutils" />
 <section id="id1">
 <h3>2.3 Modulation (DSB-SC)<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p>Now, we shift our 5 kHz message to a higher carrier frequency (<span class="math notranslate nohighlight">\(f_c = 20\)</span> kHz) using Double-Sideband Suppressed Carrier modulation.</p>
@@ -648,6 +615,37 @@ document.write(`
 <span class="nb">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="mi">30</span><span class="p">]);</span><span class="w"> </span><span class="c">% Zoom in on the carrier region</span>
 </pre></div>
 </div>
+</section>
+</section>
+<section id="part-ii-deliverables-the-demodulation-challenge">
+<h2>3. Part II: Deliverables — The Demodulation Challenge<a class="headerlink" href="#part-ii-deliverables-the-demodulation-challenge" title="Permalink to this heading">#</a></h2>
+<p>Using the filtering and modulation logic from the walkthrough, students must complete the following:</p>
+<section id="recovery-tasks">
+<h3>3.1 Recovery Tasks<a class="headerlink" href="#recovery-tasks" title="Permalink to this heading">#</a></h3>
+<p>Download <code class="docutils literal notranslate"><span class="pre">signal1.wav</span></code>, <code class="docutils literal notranslate"><span class="pre">signal2.wav</span></code>, and <code class="docutils literal notranslate"><span class="pre">signal3.wav</span></code>.</p>
+<ol class="arabic simple">
+<li><p><strong>Demodulate Signal 1 &amp; 2 (DSB-SC):</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Use <span class="math notranslate nohighlight">\(f_{c1} = 15\)</span> kHz and <span class="math notranslate nohighlight">\(f_{c2} = 30\)</span> kHz.</p></li>
+<li><p>Perform coherent detection (Multiply <span class="math notranslate nohighlight">\(\to\)</span> Filter).</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p><strong>Demodulate Signal 3 (DSB with Carrier):</strong></p></li>
+</ol>
+<ul class="simple">
+<li><p>Use <span class="math notranslate nohighlight">\(f_{c3} = 50\)</span> kHz.</p></li>
+<li><p>Perform envelope detection: <span class="math notranslate nohighlight">\(y(t) = \text{LPF}\{ |x(t)| \}\)</span>.</p></li>
+<li><p><strong>Observation:</strong> Compare the sound quality of the envelope detector versus coherent detection for this signal.</p></li>
+</ul>
+</section>
+<section id="submission-requirements">
+<h3>3.2 Submission Requirements<a class="headerlink" href="#submission-requirements" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Comparison Plot:</strong> Show the time-domain envelope of the original piano sound versus the recovered sound.</p></li>
+<li><p><strong>Spectrum Verification:</strong> Provide the magnitude spectrum of the three recovered signals, showing that the high-frequency carrier has been successfully removed.</p></li>
+<li><p><strong>Audio Identification:</strong> State the contents of the three audio files.</p></li>
+</ul>
 </section>
 </section>
 <hr class="docutils" />
@@ -835,23 +833,23 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#intoduction">1. Intoduction</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-specifications">1. Signal Specifications</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-i-walkthrough-filter-design-and-modulation">2. Part I: Walkthrough — Filter Design and Modulation</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analog-filter-design-and-testing">2.2 Analog Filter Design and Testing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analog-filter-design-and-testing">2.1 Analog Filter Design and Testing</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-defining-the-transfer-function">Step 1: Defining the Transfer Function</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-synthesizing-a-test-signal">Step 2: Synthesizing a Test Signal</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-simulating-the-lti-system-response">Step 3: Simulating the LTI System Response</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-observations-and-analysis">Step 4: Observations and Analysis</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-modulation-am-review">2.2 Amplitude Modulation (AM) Review</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modulation-dsb-sc">Modulation (DSB-SC)</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#amplitude-modulation-am-review">2. Amplitude Modulation (AM) Review</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modulation-dsb-sc">1.3 Modulation (DSB-SC)</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-deliverables-the-demodulation-challenge">2. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recovery-tasks">2.1 Recovery Tasks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-requirements">2.2 Submission Requirements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.3 Modulation (DSB-SC)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-deliverables-the-demodulation-challenge">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recovery-tasks">3.1 Recovery Tasks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-requirements">3.2 Submission Requirements</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">

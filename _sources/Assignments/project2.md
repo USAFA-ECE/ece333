@@ -26,7 +26,7 @@ This section provides a detailed walkthrough of designing and testing a continuo
 
 ---
 
-### 2.2 Analog Filter Design and Testing
+### 2.1 Analog Filter Design and Testing
 
 To restrict our signal's bandwidth, we use a **Butterworth filter**, known for its "maximally flat" response. This means it maintains a very consistent gain across the frequencies we want to keep (the passband) before rolling off at the cutoff.
 
@@ -144,7 +144,7 @@ The results in {numref}`filtered_signal_2_5_15_hz` confirm the filter's performa
 Filtered output showing the preservation of the 2 Hz signal, the 3 dB attenuation of the 5 Hz signal, and the removal of the 15 Hz component.
 ```
 
-## 2. Amplitude Modulation (AM) Review
+### 2.2 Amplitude Modulation (AM) Review
 
 In this project, we focus on **Double-Sideband Suppressed Carrier (DSB-SC)** modulation. A message signal $m(t)$ is multiplied by a carrier wave at frequency $f_c$:
 
@@ -152,7 +152,7 @@ $$x(t) = m(t) \cos(2\pi f_c t)$$
 
 From the properties of the Fourier Transform, we know that multiplication in the time domain corresponds to shifting in the frequency domain. This places the message spectrum at $\pm f_c$, effectively moving the audio information far away from $0$ Hz.
 
-### 1.3 Modulation (DSB-SC)
+#### Modulation (DSB-SC)
 
 Finally, we shift this realistic piano signal to a 25 kHz carrier frequency.
 
@@ -166,37 +166,9 @@ plot(f_axis/1000, abs(fftshift(fft(x_modulated)))/L);
 title('Modulated Signal Spectrum (Centered at 25 kHz)');
 xlabel('Frequency (kHz)');
 xlim([15 35]);
-
 ```
 
----
 
-## 2. Part II: Deliverables — The Demodulation Challenge
-
-Using the filtering and modulation logic from the walkthrough, students must complete the following:
-
-### 2.1 Recovery Tasks
-
-Download `signal1.wav`, `signal2.wav`, and `signal3.wav`.
-
-1. **Demodulate Signal 1 & 2 (DSB-SC):**
-
-* Use $f_{c1} = 15$ kHz and $f_{c2} = 30$ kHz.
-* Perform coherent detection (Multiply $\to$ Filter).
-
-1. **Demodulate Signal 3 (DSB with Carrier):**
-
-* Use $f_{c3} = 50$ kHz.
-* Perform envelope detection: $y(t) = \text{LPF}\{ |x(t)| \}$.
-* **Observation:** Compare the sound quality of the envelope detector versus coherent detection for this signal.
-
-### 2.2 Submission Requirements
-
-* **Comparison Plot:** Show the time-domain envelope of the original piano sound versus the recovered sound.
-* **Spectrum Verification:** Provide the magnitude spectrum of the three recovered signals, showing that the high-frequency carrier has been successfully removed.
-* **Audio Identification:** State the contents of the three audio files.
-
----
 
 ### 2.3 Modulation (DSB-SC)
 
@@ -218,8 +190,39 @@ plot(f_axis/1000, abs(X_freq)/L);
 title('Magnitude Spectrum of Modulated C4 Tone');
 xlabel('Frequency (kHz)'); ylabel('Magnitude');
 xlim([-30 30]); % Zoom in on the carrier region
-
 ```
+
+
+
+
+
+
+
+
+## 3. Part II: Deliverables — The Demodulation Challenge
+
+Using the filtering and modulation logic from the walkthrough, students must complete the following:
+
+### 3.1 Recovery Tasks
+
+Download `signal1.wav`, `signal2.wav`, and `signal3.wav`.
+
+1. **Demodulate Signal 1 & 2 (DSB-SC):**
+
+* Use $f_{c1} = 15$ kHz and $f_{c2} = 30$ kHz.
+* Perform coherent detection (Multiply $\to$ Filter).
+
+1. **Demodulate Signal 3 (DSB with Carrier):**
+
+* Use $f_{c3} = 50$ kHz.
+* Perform envelope detection: $y(t) = \text{LPF}\{ |x(t)| \}$.
+* **Observation:** Compare the sound quality of the envelope detector versus coherent detection for this signal.
+
+### 3.2 Submission Requirements
+
+* **Comparison Plot:** Show the time-domain envelope of the original piano sound versus the recovered sound.
+* **Spectrum Verification:** Provide the magnitude spectrum of the three recovered signals, showing that the high-frequency carrier has been successfully removed.
+* **Audio Identification:** State the contents of the three audio files.
 
 ---
 
