@@ -144,53 +144,85 @@ The results in {numref}`filtered_signal_2_5_15_hz` confirm the filter's performa
 Filtered output showing the preservation of the 2 Hz signal, the 3 dB attenuation of the 5 Hz signal, and the removal of the 15 Hz component.
 ```
 
-### 2.2 Amplitude Modulation (AM) Review
+### 2.2 Double-Sideband Suppressed Carrier (DSB-SC) Modulation
 
-In this project, we focus on **Double-Sideband Suppressed Carrier (DSB-SC)** modulation. A message signal $m(t)$ is multiplied by a carrier wave at frequency $f_c$:
+Once the message signal $m(t)$ has been appropriately band-limited by a low-pass filter, the next stage in the communication chain is **modulation**. Modulation is the process of shifting the message spectrum to a higher frequency range, allowing for efficient transmission over physical media.
 
-$$x(t) = m(t) \cos(2\pi f_c t)$$
+In this project, we focus on **Double-Sideband Suppressed Carrier (DSB-SC)** modulation. This is achieved by multiplying the filtered message $m(t)$ by a high-frequency sinusoidal carrier $\cos(2\pi f_c t)$.
 
-From the properties of the Fourier Transform, we know that multiplication in the time domain corresponds to shifting in the frequency domain. This places the message spectrum at $\pm f_c$, effectively moving the audio information far away from $0$ Hz.
+#### Step 1: Theoretical Foundation
 
-#### Modulation (DSB-SC)
+The Modulation Theorem (or Frequency Shifting Property) of the Fourier Transform states that multiplication by a cosine in the time domain results in a shift in the frequency domain:
 
-Finally, we shift this realistic piano signal to a 25 kHz carrier frequency.
+$$x(t) = m(t) \cos(2\pi f_c t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(f) = \frac{1}{2} [M(f - f_c) + M(f + f_c)]$$
+
+This mathematical operation creates two "sidebands"—one above the carrier frequency and one below—while the carrier itself is "suppressed" because it does not appear as a standalone impulse in the spectrum unless explicitly added.
+
+#### Step 2: Implementation in MATLAB
+
+To visualize this effect clearly, we will use the filtered output $y(t)$ from Subsection 2.1 as our message signal and modulate it using a carrier frequency $f_c = 50$ Hz.
 
 ```matlab
-%% 5. Modulation
-fc = 25000; 
-x_modulated = m_filtered .* cos(2*pi*fc*t);
+%% 1. Modulation Configuration
+fc = 50;                  % Carrier frequency (50 Hz) for clear visualization
+carrier = cos(2*pi*fc*t); % Generate the continuous-time carrier wave
 
+% Perform modulation via element-wise multiplication
+x_modulated = y' .* carrier; 
+
+%% 2. Spectral Analysis of the Modulated Signal
+% Compute the magnitude spectrum of the modulated signal
+% Use fftshift to center the spectrum at 0 Hz for easier interpretation
+X_mod_freq = abs(fftshift(fft(x_modulated)));
+f_shifted = (-L/2:L/2-1)*(fs/L); % Centered frequency axis
+
+%% 3. Visualizing the Modulation Results
 figure;
-plot(f_axis/1000, abs(fftshift(fft(x_modulated)))/L);
-title('Modulated Signal Spectrum (Centered at 25 kHz)');
-xlabel('Frequency (kHz)');
-xlim([15 35]);
+
+% Time Domain Plot
+subplot(2,1,1);
+plot(t, x_modulated);
+hold on;
+plot(t, y, 'r--', 'LineWidth', 1.5); % Plot original message as the envelope
+title('Modulated Signal x(t) (DSB-SC) in Time Domain');
+xlabel('Time (s)'); ylabel('Amplitude');
+legend('Modulated Signal', 'Message Envelope');
+grid on; xlim([0 1]); % Zoom in to see the carrier oscillations
+
+% Frequency Domain Plot
+subplot(2,1,2);
+plot(f_shifted, X_mod_freq/L*2);
+title('Magnitude Spectrum X(f) of Modulated Signal');
+xlabel('Frequency (Hz)'); ylabel('Magnitude');
+xlim([-75 75]); % Focus on the shifted sidebands around +/- 50 Hz
+grid on;
+```
+
+```{note}
+In MATLAB, the `fft` function returns a spectrum where the frequency components are ordered starting from 0 Hz up to the sampling frequency fs​. This places the _negative_ frequencies at the end of the array. The `fftshift` function is necessary to swap the left and right halves of the data, centering the 0 Hz component. This allows us to plot a standard double-sided spectrum that matches the mathematical convention of being centered at the origin.
+```
+
+#### Step 3: Observations and Analysis
+
+{numref}`fig-modulated-signal` illustrates the transformation. In the time domain, the high-frequency carrier is "shaped" by the amplitude of the message. In the frequency domain, you can observe that the original 2 Hz and 5 Hz components no longer reside near 0 Hz; they have been shifted and are now centered at $\pm 50$ Hz.
+
+```{figure} ./figures/modulated_signal.png
+:name: fig-modulated-signal
+:width: 580px
+:align: center
+Time-domain modulated waveform and the corresponding magnitude spectrum showing the message shifted to the 50 Hz carrier frequency.
 ```
 
 
+The modulation process provides several key insights:
+1.  **Spectrum Centering:** The baseband signal (originally $0 \pm 5$ Hz) now occupies the frequency band from $45$ Hz to $55$ Hz (and a mirror image in the negative frequencies).
+2.  **Bandwidth Doubling:** While the original message was band-limited to $5$ Hz, the modulated signal occupies a total bandwidth of $10$ Hz ($55 - 45 = 10$). This is a fundamental characteristic of double-sideband modulation.
+3.  **Phase Reversal:** Notice in the time domain that whenever the message $m(t)$ crosses zero and becomes negative, the carrier undergoes a $180^\circ$ phase reversal. This "suppressed carrier" feature is why coherent detection is required at the receiver.
 
-### 2.3 Modulation (DSB-SC)
 
-Now, we shift our 5 kHz message to a higher carrier frequency ($f_c = 20$ kHz) using Double-Sideband Suppressed Carrier modulation.
 
-```matlab
-%% Modulation
-fc = 20000; % Carrier at 20 kHz
-carrier = cos(2*pi*fc*t);
-x_modulated = m_filtered .* carrier;
 
-%% Plotting the Spectrum
-L = length(x_modulated);
-f_axis = (-L/2:L/2-1)*(fs/L);
-X_freq = fftshift(fft(x_modulated));
 
-figure;
-plot(f_axis/1000, abs(X_freq)/L);
-title('Magnitude Spectrum of Modulated C4 Tone');
-xlabel('Frequency (kHz)'); ylabel('Magnitude');
-xlim([-30 30]); % Zoom in on the carrier region
-```
 
 
 
