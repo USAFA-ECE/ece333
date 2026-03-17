@@ -406,29 +406,18 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-deliverables-the-demodulation-challenge">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recovery-tasks">3.1 Recovery Tasks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-requirements">3.2 Submission Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-the-demodulation-challenge">3. Part II: The Demodulation Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-discovery-and-loading">3.1 Spectral Discovery and Loading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synchronous-demodulation-procedure">3.2 Synchronous Demodulation Procedure</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#provided-signal-specs">3.1 Provided Signal Specs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-tasks">3.2 Your Tasks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-submission">3.3 Required Submission</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">4. Deliverables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-and-discovery-analysis">4.1 Filter and Discovery Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-recovery-and-identification">4.2 Signal Recovery and Identification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interference-and-bandwidth-diagnostic">4.3 Interference and Bandwidth Diagnostic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-questions">4.4 Discussion Questions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">6. Deliverables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-demodulation-process-mixing-and-filtering">3. The Demodulation Process: Mixing and Filtering</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-mixing-frequency-shifting">3.1 Step 1: Mixing (Frequency Shifting)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-low-pass-filtering-the-lti-system">3.2 Step 2: Low-Pass Filtering (The LTI System)</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-task-recovering-the-audio">4. Project Task: Recovering the Audio</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifications">4.1 Specifications</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-steps">4.2 Implementation Steps</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">5. Key Takeaways</a></li>
 </ul>
             </nav>
         </div>
@@ -646,152 +635,80 @@ document.write(`
 </section>
 </section>
 </section>
-<section id="part-ii-deliverables-the-demodulation-challenge">
-<h2>3. Part II: Deliverables — The Demodulation Challenge<a class="headerlink" href="#part-ii-deliverables-the-demodulation-challenge" title="Permalink to this heading">#</a></h2>
-<p>Using the filtering and modulation logic from the walkthrough, students must complete the following:</p>
-<section id="recovery-tasks">
-<h3>3.1 Recovery Tasks<a class="headerlink" href="#recovery-tasks" title="Permalink to this heading">#</a></h3>
-<p>Download <code class="docutils literal notranslate"><span class="pre">signal1.wav</span></code>, <code class="docutils literal notranslate"><span class="pre">signal2.wav</span></code>, and <code class="docutils literal notranslate"><span class="pre">signal3.wav</span></code>.</p>
-<ol class="arabic simple">
-<li><p><strong>Demodulate Signal 1 &amp; 2 (DSB-SC):</strong></p></li>
-</ol>
-<ul class="simple">
-<li><p>Use <span class="math notranslate nohighlight">\(f_{c1} = 15\)</span> kHz and <span class="math notranslate nohighlight">\(f_{c2} = 30\)</span> kHz.</p></li>
-<li><p>Perform coherent detection (Multiply <span class="math notranslate nohighlight">\(\to\)</span> Filter).</p></li>
-</ul>
-<ol class="arabic simple">
-<li><p><strong>Demodulate Signal 3 (DSB with Carrier):</strong></p></li>
-</ol>
-<ul class="simple">
-<li><p>Use <span class="math notranslate nohighlight">\(f_{c3} = 50\)</span> kHz.</p></li>
-<li><p>Perform envelope detection: <span class="math notranslate nohighlight">\(y(t) = \text{LPF}\{ |x(t)| \}\)</span>.</p></li>
-<li><p><strong>Observation:</strong> Compare the sound quality of the envelope detector versus coherent detection for this signal.</p></li>
-</ul>
-</section>
-<section id="submission-requirements">
-<h3>3.2 Submission Requirements<a class="headerlink" href="#submission-requirements" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Comparison Plot:</strong> Show the time-domain envelope of the original piano sound versus the recovered sound.</p></li>
-<li><p><strong>Spectrum Verification:</strong> Provide the magnitude spectrum of the three recovered signals, showing that the high-frequency carrier has been successfully removed.</p></li>
-<li><p><strong>Audio Identification:</strong> State the contents of the three audio files.</p></li>
-</ul>
-</section>
-</section>
 <hr class="docutils" />
-<section id="id1">
-<h2>3. Part II: Deliverables — The Demodulation Challenge<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p>Now that you understand the signal chain, you are tasked with recovering three different audio messages from the provided files: <code class="docutils literal notranslate"><span class="pre">signal1.wav</span></code>, <code class="docutils literal notranslate"><span class="pre">signal2.wav</span></code>, and <code class="docutils literal notranslate"><span class="pre">signal3.wav</span></code>.</p>
-<section id="provided-signal-specs">
-<h3>3.1 Provided Signal Specs<a class="headerlink" href="#provided-signal-specs" title="Permalink to this heading">#</a></h3>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Signal</p></th>
-<th class="head"><p>Modulation Type</p></th>
-<th class="head"><p>Carrier Frequency (<span class="math notranslate nohighlight">\(f_c\)</span>)</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p><strong>Signal 1</strong></p></td>
-<td><p>DSB-SC</p></td>
-<td><p>12 kHz</p></td>
-</tr>
-<tr class="row-odd"><td><p><strong>Signal 2</strong></p></td>
-<td><p>DSB-SC</p></td>
-<td><p>25 kHz</p></td>
-</tr>
-<tr class="row-even"><td><p><strong>Signal 3</strong></p></td>
-<td><p>DSB (with Carrier)</p></td>
-<td><p>40 kHz</p></td>
-</tr>
-</tbody>
-</table>
+<section id="part-ii-the-demodulation-challenge">
+<h2>3. Part II: The Demodulation Challenge<a class="headerlink" href="#part-ii-the-demodulation-challenge" title="Permalink to this heading">#</a></h2>
+<p>In a communication system, multiple messages are often sent over the same medium by shifting each to a unique frequency “slot.” You are provided with a file named <code class="docutils literal notranslate"><span class="pre">modulated_signals.mat</span></code>. This file contains a composite signal, <code class="docutils literal notranslate"><span class="pre">x_composite</span></code>, which is the sum of four different audio messages modulated onto high-frequency carriers (<span class="math notranslate nohighlight">\(f_{c1}\)</span> through <span class="math notranslate nohighlight">\(f_{c4}\)</span>).</p>
+<p>To accurately represent these continuous-time carriers (which reside between <strong>80 kHz</strong> and <strong>120 kHz</strong>), the simulation uses a sampling rate of <span class="math notranslate nohighlight">\(f_s = 441\)</span> kHz.</p>
+<section id="spectral-discovery-and-loading">
+<h3>3.1 Spectral Discovery and Loading<a class="headerlink" href="#spectral-discovery-and-loading" title="Permalink to this heading">#</a></h3>
+<p>Your first task is to load the data and “scout” the frequency spectrum to estimate the four unknown carrier frequencies.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 1. Load the Composite Signal</span>
+<span class="nb">load</span><span class="p">(</span><span class="s">&#39;modulated_signals.mat&#39;</span><span class="p">);</span><span class="w"> </span>
+<span class="c">% Variables loaded: x_composite, t, fs (441000 Hz)</span>
+
+<span class="c">%% 2. Spectral Analysis</span>
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">x_composite</span><span class="p">);</span>
+<span class="n">f_axis</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fs</span><span class="o">/</span><span class="n">L</span><span class="p">);</span><span class="w"> </span>
+<span class="c">% Note: fftshift is required to center the spectrum at 0 Hz</span>
+<span class="n">X_spec</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="nb">fftshift</span><span class="p">(</span><span class="nb">fft</span><span class="p">(</span><span class="n">x_composite</span><span class="p">)))</span><span class="o">/</span><span class="n">L</span><span class="p">;</span>
+
+<span class="nb">figure</span><span class="p">;</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">f_axis</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="n">X_spec</span><span class="p">);</span><span class="w"> </span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Discovery: Magnitude Spectrum of FDM Signal&#39;</span><span class="p">);</span>
+<span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Frequency (kHz)&#39;</span><span class="p">);</span><span class="w"> </span><span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Magnitude&#39;</span><span class="p">);</span>
+<span class="n">grid</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="mi">80</span><span class="w"> </span><span class="mi">120</span><span class="p">]);</span><span class="w"> </span><span class="c">% Zoom in on the broadcast band</span>
+</pre></div>
 </div>
 </section>
-<section id="your-tasks">
-<h3>3.2 Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this heading">#</a></h3>
+<section id="synchronous-demodulation-procedure">
+<h3>3.2 Synchronous Demodulation Procedure<a class="headerlink" href="#synchronous-demodulation-procedure" title="Permalink to this heading">#</a></h3>
+<p>Once you have estimated the four carrier frequencies from your plot, you must implement a <strong>Synchronous (Coherent) Demodulator</strong> for each signal.</p>
 <ol class="arabic simple">
-<li><p><strong>Coherent Demodulation (Signals 1 &amp; 2):</strong> * Multiply the received signal by a local carrier <span class="math notranslate nohighlight">\(\cos(2\pi f_c t)\)</span>.</p></li>
+<li><p><strong>Mixing:</strong> Multiply <code class="docutils literal notranslate"><span class="pre">x_composite</span></code> by a local carrier <span class="math notranslate nohighlight">\(\cos(2\pi f_{ci} t)\)</span> at your estimated frequency.</p></li>
+<li><p><strong>LTI Filtering:</strong> Use the <code class="docutils literal notranslate"><span class="pre">lsim</span></code> command with your 4th-order Analog Butterworth LPF (<span class="math notranslate nohighlight">\(H\)</span>) from Part I to isolate the baseband audio.</p></li>
+<li><p><strong>Normalization and Playback:</strong> Scale the resulting signal to a maximum amplitude of 1.0 using <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">y</span> <span class="pre">/</span> <span class="pre">max(abs(y))</span></code> before listening with <code class="docutils literal notranslate"><span class="pre">sound(y,</span> <span class="pre">fs)</span></code>.</p></li>
 </ol>
-<ul class="simple">
-<li><p>Apply the 5 kHz Butterworth LPF you designed in Part I.</p></li>
-<li><p>Play the audio using <code class="docutils literal notranslate"><span class="pre">sound(y,</span> <span class="pre">fs)</span></code>.</p></li>
-</ul>
-</section>
-<section id="required-submission">
-<h3>3.3 Required Submission<a class="headerlink" href="#required-submission" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>Plots:</strong> Magnitude spectra for all three signals <em>before</em> and <em>after</em> demodulation.</p></li>
-<li><p><strong>Verification:</strong> Identify the hidden audio message in each file (e.g., “The message in Signal 1 is a person speaking about…”).</p></li>
-<li><p><strong>Discussion:</strong> Explain what happens if your local carrier frequency in Part 3.1 is slightly off (e.g., 12.1 kHz instead of 12 kHz). Use the properties of the Fourier Transform to justify your answer.</p></li>
-</ul>
 </section>
 </section>
 <hr class="docutils" />
 <section id="deliverables">
-<h2>6. Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p><strong>Filter Analysis:</strong> A plot of the Butterworth filter’s frequency response (Magnitude in dB).</p></li>
-<li><p><strong>Spectrum Plots:</strong> Magnitude spectra of the modulated C4 tone versus the original.</p></li>
-<li><p><strong>Audio Recovery:</strong> Successful demodulation of the three provided 10-second files.</p></li>
-<li><p><strong>Discussion:</strong> Explain why the <span class="math notranslate nohighlight">\(441\)</span> kHz sampling rate is necessary when dealing with carriers in the <span class="math notranslate nohighlight">\(15\)</span>–<span class="math notranslate nohighlight">\(20\)</span> kHz range, referencing the Nyquist criterion.</p></li>
-</ol>
-</section>
-<section id="the-demodulation-process-mixing-and-filtering">
-<h2>3. The Demodulation Process: Mixing and Filtering<a class="headerlink" href="#the-demodulation-process-mixing-and-filtering" title="Permalink to this heading">#</a></h2>
-<p>To recover the signal <span class="math notranslate nohighlight">\(m(t)\)</span>, we use a <strong>coherent detector</strong>. This process consists of two primary stages that rely on the concepts of linearity and filtering you studied in Project 1.</p>
-<section id="step-1-mixing-frequency-shifting">
-<h3>3.1 Step 1: Mixing (Frequency Shifting)<a class="headerlink" href="#step-1-mixing-frequency-shifting" title="Permalink to this heading">#</a></h3>
-<p>By multiplying the received signal <span class="math notranslate nohighlight">\(x(t)\)</span> by the same carrier frequency <span class="math notranslate nohighlight">\(\cos(2\pi f_c t)\)</span>, we create a new signal <span class="math notranslate nohighlight">\(z(t)\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[z(t) = x(t) \cos(2\pi f_c t) = m(t) \cos^2(2\pi f_c t)\]</div>
-<p>Using the trigonometric identity <span class="math notranslate nohighlight">\(\cos^2(\theta) = \frac{1}{2}(1 + \cos(2\theta))\)</span>, we get:</p>
-<div class="math notranslate nohighlight">
-\[z(t) = \frac{1}{2}m(t) + \frac{1}{2}m(t) \cos(4\pi f_c t)\]</div>
-<p>This operation results in two components:</p>
-<ol class="arabic simple">
-<li><p>A copy of the original message <span class="math notranslate nohighlight">\(m(t)\)</span> scaled by <span class="math notranslate nohighlight">\(0.5\)</span> at <strong>baseband</strong> (centered at <span class="math notranslate nohighlight">\(0\)</span> Hz).</p></li>
-<li><p>A high-frequency component centered at <strong><span class="math notranslate nohighlight">\(2f_c\)</span></strong>.</p></li>
-</ol>
-</section>
-<section id="step-2-low-pass-filtering-the-lti-system">
-<h3>3.2 Step 2: Low-Pass Filtering (The LTI System)<a class="headerlink" href="#step-2-low-pass-filtering-the-lti-system" title="Permalink to this heading">#</a></h3>
-<p>To isolate <span class="math notranslate nohighlight">\(m(t)\)</span>, we pass <span class="math notranslate nohighlight">\(z(t)\)</span> through a <strong>Low-Pass Filter (LPF)</strong>. As you learned in Project 1, this LTI system can be characterized by its impulse response <span class="math notranslate nohighlight">\(h(t)\)</span>. The output <span class="math notranslate nohighlight">\(y(t)\)</span> is the convolution:</p>
-<div class="math notranslate nohighlight">
-\[y(t) = z(t) * h(t)\]</div>
-<p>The filter is designed to reject the high-frequency component at <span class="math notranslate nohighlight">\(2f_c\)</span> and pass the baseband signal <span class="math notranslate nohighlight">\(m(t)\)</span> unchanged.</p>
-</section>
-</section>
-<hr class="docutils" />
-<section id="project-task-recovering-the-audio">
-<h2>4. Project Task: Recovering the Audio<a class="headerlink" href="#project-task-recovering-the-audio" title="Permalink to this heading">#</a></h2>
-<p>You are provided with three modulated <code class="docutils literal notranslate"><span class="pre">.wav</span></code> files. Each file contains an audio message modulated at a different carrier frequency <span class="math notranslate nohighlight">\(f_c\)</span>. Your objective is to implement a demodulator in Python or MATLAB to recover and play the original audio.</p>
-<section id="specifications">
-<h3>4.1 Specifications<a class="headerlink" href="#specifications" title="Permalink to this heading">#</a></h3>
-<p>The composite signals use the following carrier frequencies:</p>
+<h2>4. Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this heading">#</a></h2>
+<p>Your final project report must include the following four sections:</p>
+<section id="filter-and-discovery-analysis">
+<h3>4.1 Filter and Discovery Analysis<a class="headerlink" href="#filter-and-discovery-analysis" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Signal 1:</strong> <span class="math notranslate nohighlight">\(f_{c1} = 5\)</span> kHz</p></li>
-<li><p><strong>Signal 2:</strong> <span class="math notranslate nohighlight">\(f_{c2} = 10\)</span> kHz</p></li>
-<li><p><strong>Signal 3:</strong> <span class="math notranslate nohighlight">\(f_{c3} = 15\)</span> kHz</p></li>
+<li><p><strong>Filter Response:</strong> Provide the magnitude response plot of your 5 kHz Butterworth filter using <code class="docutils literal notranslate"><span class="pre">freqs(b,a)</span></code>.</p></li>
+<li><p><strong>Carrier Estimation:</strong> Provide the magnitude spectrum of <code class="docutils literal notranslate"><span class="pre">x_composite</span></code> with all four estimated carrier frequencies (<span class="math notranslate nohighlight">\(f_{c1}, f_{c2}, f_{c3}, f_{c4}\)</span>) clearly labeled.</p></li>
 </ul>
 </section>
-<section id="implementation-steps">
-<h3>4.2 Implementation Steps<a class="headerlink" href="#implementation-steps" title="Permalink to this heading">#</a></h3>
+<section id="signal-recovery-and-identification">
+<h3>4.2 Signal Recovery and Identification<a class="headerlink" href="#signal-recovery-and-identification" title="Permalink to this heading">#</a></h3>
+<p>For <strong>each</strong> of the four recovered signals, provide a figure containing:</p>
 <ol class="arabic simple">
-<li><p><strong>Load the Data:</strong> Read the <code class="docutils literal notranslate"><span class="pre">.wav</span></code> files and determine the sampling frequency <span class="math notranslate nohighlight">\(f_s\)</span>.</p></li>
-<li><p><strong>Multiply:</strong> Generate a local carrier <span class="math notranslate nohighlight">\(\cos(2\pi f_c t)\)</span> and multiply it by the received signal.</p></li>
-<li><p><strong>Filter:</strong> Design a Butterworth or Ideal LPF with a cutoff frequency appropriate for human speech/music (typically around <span class="math notranslate nohighlight">\(3\)</span>–<span class="math notranslate nohighlight">\(4\)</span> kHz).</p></li>
-<li><p><strong>Normalize and Play:</strong> Scale the resulting signal to prevent clipping and use the system’s audio output to verify the result.</p></li>
+<li><p>The time-domain waveform <span class="math notranslate nohighlight">\(y_i(t)\)</span>.</p></li>
+<li><p>The magnitude spectrum <span class="math notranslate nohighlight">\(Y_i(f)\)</span> showing the recovered baseband audio.</p></li>
+<li><p>A description of the audio content (e.g., “Signal 1 is a piano,” “Signal 2 is a person speaking”).</p></li>
 </ol>
 </section>
-</section>
-<hr class="docutils" />
-<section id="key-takeaways">
-<h2>5. Key Takeaways<a class="headerlink" href="#key-takeaways" title="Permalink to this heading">#</a></h2>
+<section id="interference-and-bandwidth-diagnostic">
+<h3>4.3 Interference and Bandwidth Diagnostic<a class="headerlink" href="#interference-and-bandwidth-diagnostic" title="Permalink to this heading">#</a></h3>
+<p>During recovery, you will notice that the signal at <strong>87 kHz</strong> suffers from audible interference.</p>
 <ul class="simple">
-<li><p>Demodulation relies on the <strong>Frequency Shifting property</strong> of the Fourier Transform.</p></li>
-<li><p>A <strong>multiplier (mixer)</strong> moves the signal spectrum, while a <strong>low-pass filter</strong> isolates the desired information.</p></li>
-<li><p>Success in this project requires applying the <strong>LTI system concepts</strong> from Project 1—specifically, understanding how a filter’s impulse response removes unwanted high-frequency noise.</p></li>
+<li><p><strong>The Problem:</strong> One of the other three signals was incorrectly filtered during modulation and has a bandwidth of <strong>7 kHz</strong> instead of the standard 5 kHz.</p></li>
+<li><p><strong>Your Task:</strong> Identify which signal is the culprit. Use your spectral plots to visually demonstrate how this “wide” signal interferes with the 87 kHz channel. Discuss how the overlap of sidebands in the frequency domain affects the audio quality.</p></li>
 </ul>
+</section>
+<section id="discussion-questions">
+<h3>4.4 Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permalink to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>The Sampling Rate Paradox:</strong> The original audio files were recorded at 44.1 kHz, but the final simulation uses 441 kHz. Based on the <strong>Nyquist Criterion</strong>, explain why the 44.1 kHz rate would be insufficient to represent carriers at 110 kHz. What would happen to the 110 kHz carrier if you stayed at 44.1 kHz?</p></li>
+<li><p><strong>Filter Order Impact:</strong> If you were to use a 2nd-order filter instead of a 4th-order filter for your LPF, would the interference at the 87 kHz channel improve or worsen? Explain your reasoning.</p></li>
+<li><p><strong>Frequency Offset:</strong> If your local oscillator frequency <span class="math notranslate nohighlight">\(f_{ci}\)</span> is off by <strong>200 Hz</strong> (e.g., 87.2 kHz instead of 87 kHz), describe the effect on the recovered audio’s pitch and clarity.</p></li>
+<li><p><strong>Analog vs. Digital:</strong> In Section 3.1, you used the <code class="docutils literal notranslate"><span class="pre">fft</span></code> (a tool for discrete data). Why is this still a valid way to analyze a “continuous-time” signal in this project, and how does our high sampling rate (<span class="math notranslate nohighlight">\(f_s\)</span>) justify this?</p></li>
+</ol>
+</section>
 </section>
 </section>
 
@@ -877,29 +794,18 @@ document.write(`
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-deliverables-the-demodulation-challenge">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recovery-tasks">3.1 Recovery Tasks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-requirements">3.2 Submission Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-ii-the-demodulation-challenge">3. Part II: The Demodulation Challenge</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#spectral-discovery-and-loading">3.1 Spectral Discovery and Loading</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#synchronous-demodulation-procedure">3.2 Synchronous Demodulation Procedure</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3. Part II: Deliverables — The Demodulation Challenge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#provided-signal-specs">3.1 Provided Signal Specs</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#your-tasks">3.2 Your Tasks</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-submission">3.3 Required Submission</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">4. Deliverables</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-and-discovery-analysis">4.1 Filter and Discovery Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-recovery-and-identification">4.2 Signal Recovery and Identification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interference-and-bandwidth-diagnostic">4.3 Interference and Bandwidth Diagnostic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-questions">4.4 Discussion Questions</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">6. Deliverables</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-demodulation-process-mixing-and-filtering">3. The Demodulation Process: Mixing and Filtering</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-mixing-frequency-shifting">3.1 Step 1: Mixing (Frequency Shifting)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-low-pass-filtering-the-lti-system">3.2 Step 2: Low-Pass Filtering (The LTI System)</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-task-recovering-the-audio">4. Project Task: Recovering the Audio</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifications">4.1 Specifications</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-steps">4.2 Implementation Steps</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">5. Key Takeaways</a></li>
 </ul>
   </nav></div>
 
