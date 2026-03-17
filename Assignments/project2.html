@@ -467,7 +467,7 @@ document.write(`
 <p>To restrict our signal’s bandwidth, we use a <strong>Butterworth filter</strong>, known for its “maximally flat” response. This means it maintains a very consistent gain across the frequencies we want to keep (the passband) before rolling off at the cutoff.</p>
 <section id="step-1-defining-the-transfer-function">
 <h4>Step 1: Defining the Transfer Function<a class="headerlink" href="#step-1-defining-the-transfer-function" title="Permalink to this heading">#</a></h4>
-<p>We begin by designing a <strong>4th-order Analog Butterworth Filter</strong> with a cutoff frequency <span class="math notranslate nohighlight">\(f_c = 5\)</span> Hz. We translate this frequency into radians per second (<span class="math notranslate nohighlight">\(\Omega_c = 2\pi f_c\)</span>) to work within the Laplace domain.</p>
+<p>We begin by designing a <strong>4th-order Analog Butterworth Filter</strong> with a cutoff frequency <span class="math notranslate nohighlight">\(f_co = 5\)</span> Hz. We translate this frequency into radians per second (<span class="math notranslate nohighlight">\(\Omega_{co} = 2\pi f_c\)</span>) to work within the Laplace domain.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 1. Analog Filter Design Configuration</span>
 <span class="n">fco</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">                  </span><span class="c">% Cutoff frequency in Hz</span>
 <span class="n">Wco</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fco</span><span class="p">;</span><span class="w">       </span><span class="c">% Convert Cutoff to radians/second (approx 31.4 rad/s)</span>
@@ -485,7 +485,7 @@ document.write(`
 <span class="nb">title</span><span class="p">(</span><span class="s">&#39;Frequency Response of 4th-Order 5 Hz Butterworth Filter&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><a class="reference internal" href="#fig-lowpass-filter-5hz"><span class="std std-numref">Fig. 1</span></a> illustrates the magnitude and phase response. By inspecting the curve at <span class="math notranslate nohighlight">\(5\)</span> Hz (<span class="math notranslate nohighlight">\(31.415\)</span> rad/s), you will observe a gain of approximately <strong><span class="math notranslate nohighlight">\(-3.0\)</span> dB</strong>. In linear terms, this is <span class="math notranslate nohighlight">\(|H(j\Omega_c)| = 1/\sqrt{2} \approx 0.707\)</span>, which is defined as the point where the signal power is halved.</p>
+<p><a class="reference internal" href="#fig-lowpass-filter-5hz"><span class="std std-numref">Fig. 1</span></a> illustrates the magnitude and phase response. By inspecting the curve at <span class="math notranslate nohighlight">\(5\)</span> Hz (<span class="math notranslate nohighlight">\(31.415\)</span> rad/s), you will observe a gain of approximately <strong><span class="math notranslate nohighlight">\(-3.0\)</span> dB</strong>. In linear terms, this is <span class="math notranslate nohighlight">\(|H(j\Omega_{co})| = 1/\sqrt{2} \approx 0.707\)</span>, which is defined as the point where the signal power is halved.</p>
 <figure class="align-center" id="fig-lowpass-filter-5hz">
 <a class="reference internal image-reference" href="../_images/lpf_5hz.png"><img alt="../_images/lpf_5hz.png" src="../_images/lpf_5hz.png" style="width: 580px;" /></a>
 <figcaption>
@@ -495,7 +495,7 @@ document.write(`
 </section>
 <section id="step-2-synthesizing-a-test-signal">
 <h4>Step 2: Synthesizing a Test Signal<a class="headerlink" href="#step-2-synthesizing-a-test-signal" title="Permalink to this heading">#</a></h4>
-<p>To verify the filter’s performance, we create a “composite” input signal <span class="math notranslate nohighlight">\(x(t)\)</span> consisting of three distinct frequencies: one well within the passband (<span class="math notranslate nohighlight">\(2\)</span> Hz), one exactly at the cutoff (<span class="math notranslate nohighlight">\(5\)</span> Hz), and one in the stopband (<span class="math notranslate nohighlight">\(15\)</span> Hz).</p>
+<p>To verify the filter’s performance, we create an input signal <span class="math notranslate nohighlight">\(x(t)\)</span> consisting of three distinct frequencies: one well within the passband (<span class="math notranslate nohighlight">\(2\)</span> Hz), one exactly at the cutoff (<span class="math notranslate nohighlight">\(5\)</span> Hz), and one in the stopband (<span class="math notranslate nohighlight">\(15\)</span> Hz).</p>
 <div class="math notranslate nohighlight">
 \[x(t) = \cos(2\pi\cdot2t) + \cos(2\pi\cdot5t) + \cos(2\pi\cdot15t)\]</div>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 3. Signal Synthesis and Spectral Analysis</span>

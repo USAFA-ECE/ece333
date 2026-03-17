@@ -32,7 +32,7 @@ To restrict our signal's bandwidth, we use a **Butterworth filter**, known for i
 
 #### Step 1: Defining the Transfer Function
 
-We begin by designing a **4th-order Analog Butterworth Filter** with a cutoff frequency $f_c = 5$ Hz. We translate this frequency into radians per second ($\Omega_c = 2\pi f_c$) to work within the Laplace domain.
+We begin by designing a **4th-order Analog Butterworth Filter** with a cutoff frequency $f_co = 5$ Hz. We translate this frequency into radians per second ($\Omega_{co} = 2\pi f_c$) to work within the Laplace domain.
 
 ```matlab
 %% 1. Analog Filter Design Configuration
@@ -52,7 +52,7 @@ grid on;
 title('Frequency Response of 4th-Order 5 Hz Butterworth Filter');
 ```
 
-{numref}`fig-lowpass-filter-5hz` illustrates the magnitude and phase response. By inspecting the curve at $5$ Hz ($31.415$ rad/s), you will observe a gain of approximately **$-3.0$ dB**. In linear terms, this is $|H(j\Omega_c)| = 1/\sqrt{2} \approx 0.707$, which is defined as the point where the signal power is halved.
+{numref}`fig-lowpass-filter-5hz` illustrates the magnitude and phase response. By inspecting the curve at $5$ Hz ($31.415$ rad/s), you will observe a gain of approximately **$-3.0$ dB**. In linear terms, this is $|H(j\Omega_{co})| = 1/\sqrt{2} \approx 0.707$, which is defined as the point where the signal power is halved.
 
 ```{figure} ./figures/lpf_5hz.png
 :name: fig-lowpass-filter-5hz
@@ -63,7 +63,7 @@ Magnitude and Phase response of a 4th-order analog Butterworth filter with a 5 H
 
 #### Step 2: Synthesizing a Test Signal
 
-To verify the filter's performance, we create a "composite" input signal $x(t)$ consisting of three distinct frequencies: one well within the passband ($2$ Hz), one exactly at the cutoff ($5$ Hz), and one in the stopband ($15$ Hz).
+To verify the filter's performance, we create an input signal $x(t)$ consisting of three distinct frequencies: one well within the passband ($2$ Hz), one exactly at the cutoff ($5$ Hz), and one in the stopband ($15$ Hz).
 
 $$x(t) = \cos(2\pi\cdot2t) + \cos(2\pi\cdot5t) + \cos(2\pi\cdot15t)$$
 
