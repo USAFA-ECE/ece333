@@ -220,130 +220,67 @@ The modulation process provides several key insights:
 3.  **Phase Reversal:** Notice in the time domain that whenever the message $m(t)$ crosses zero and becomes negative, the carrier undergoes a $180^\circ$ phase reversal. This "suppressed carrier" feature is why coherent detection is required at the receiver.
 
 
+---
 
+## 3. Part II: The Demodulation Challenge
 
+In a communication system, multiple messages are often sent over the same medium by shifting each to a unique frequency "slot." You are provided with a file named `modulated_signals.mat`. This file contains a composite signal, `x_composite`, which is the sum of four different audio messages modulated onto high-frequency carriers ($f_{c1}$ through $f_{c4}$). 
 
+To accurately represent these continuous-time carriers (which reside between **80 kHz** and **120 kHz**), the simulation uses a sampling rate of $f_s = 441$ kHz.
 
+### 3.1 Spectral Discovery and Loading
+Your first task is to load the data and "scout" the frequency spectrum to estimate the four unknown carrier frequencies.
 
+```matlab
+%% 1. Load the Composite Signal
+load('modulated_signals.mat'); 
+% Variables loaded: x_composite, t, fs (441000 Hz)
 
+%% 2. Spectral Analysis
+L = length(x_composite);
+f_axis = (-L/2:L/2-1)*(fs/L); 
+% Note: fftshift is required to center the spectrum at 0 Hz
+X_spec = abs(fftshift(fft(x_composite)))/L;
 
+figure;
+plot(f_axis/1000, X_spec); 
+title('Discovery: Magnitude Spectrum of FDM Signal');
+xlabel('Frequency (kHz)'); ylabel('Magnitude');
+grid on;
+xlim([80 120]); % Zoom in on the broadcast band
+```
 
+### 3.2 Synchronous Demodulation Procedure
+Once you have estimated the four carrier frequencies from your plot, you must implement a **Synchronous (Coherent) Demodulator** for each signal.
 
-
-
-## 3. Part II: Deliverables — The Demodulation Challenge
-
-Using the filtering and modulation logic from the walkthrough, students must complete the following:
-
-### 3.1 Recovery Tasks
-
-Download `signal1.wav`, `signal2.wav`, and `signal3.wav`.
-
-1. **Demodulate Signal 1 & 2 (DSB-SC):**
-
-* Use $f_{c1} = 15$ kHz and $f_{c2} = 30$ kHz.
-* Perform coherent detection (Multiply $\to$ Filter).
-
-1. **Demodulate Signal 3 (DSB with Carrier):**
-
-* Use $f_{c3} = 50$ kHz.
-* Perform envelope detection: $y(t) = \text{LPF}\{ |x(t)| \}$.
-* **Observation:** Compare the sound quality of the envelope detector versus coherent detection for this signal.
-
-### 3.2 Submission Requirements
-
-* **Comparison Plot:** Show the time-domain envelope of the original piano sound versus the recovered sound.
-* **Spectrum Verification:** Provide the magnitude spectrum of the three recovered signals, showing that the high-frequency carrier has been successfully removed.
-* **Audio Identification:** State the contents of the three audio files.
+1.  **Mixing:** Multiply `x_composite` by a local carrier $\cos(2\pi f_{ci} t)$ at your estimated frequency.
+2.  **LTI Filtering:** Use the `lsim` command with your 4th-order Analog Butterworth LPF ($H$) from Part I to isolate the baseband audio.
+3.  **Normalization and Playback:** Scale the resulting signal to a maximum amplitude of 1.0 using `y = y / max(abs(y))` before listening with `sound(y, fs)`.
 
 ---
 
-## 3. Part II: Deliverables — The Demodulation Challenge
+## 4. Deliverables
 
-Now that you understand the signal chain, you are tasked with recovering three different audio messages from the provided files: `signal1.wav`, `signal2.wav`, and `signal3.wav`.
+Your final project report must include the following four sections:
 
-### 3.1 Provided Signal Specs
+### 4.1 Filter and Discovery Analysis
+* **Filter Response:** Provide the magnitude response plot of your 5 kHz Butterworth filter using `freqs(b,a)`.
+* **Carrier Estimation:** Provide the magnitude spectrum of `x_composite` with all four estimated carrier frequencies ($f_{c1}, f_{c2}, f_{c3}, f_{c4}$) clearly labeled.
 
-| Signal | Modulation Type | Carrier Frequency ($f_c$) |
-| --- | --- | --- |
-| **Signal 1** | DSB-SC | 12 kHz |
-| **Signal 2** | DSB-SC | 25 kHz |
-| **Signal 3** | DSB (with Carrier) | 40 kHz |
+### 4.2 Signal Recovery and Identification
+For **each** of the four recovered signals, provide a figure containing:
+1.  The time-domain waveform $y_i(t)$.
+2.  The magnitude spectrum $Y_i(f)$ showing the recovered baseband audio.
+3.  A description of the audio content (e.g., "Signal 1 is a piano," "Signal 2 is a person speaking").
 
-### 3.2 Your Tasks
+### 4.3 Interference and Bandwidth Diagnostic
+During recovery, you will notice that the signal at **87 kHz** suffers from audible interference. 
+* **The Problem:** One of the other three signals was incorrectly filtered during modulation and has a bandwidth of **7 kHz** instead of the standard 5 kHz.
+* **Your Task:** Identify which signal is the culprit. Use your spectral plots to visually demonstrate how this "wide" signal interferes with the 87 kHz channel. Discuss how the overlap of sidebands in the frequency domain affects the audio quality.
 
-1. **Coherent Demodulation (Signals 1 & 2):** * Multiply the received signal by a local carrier $\cos(2\pi f_c t)$.
+### 4.4 Discussion Questions
+1.  **The Sampling Rate Paradox:** The original audio files were recorded at 44.1 kHz, but the final simulation uses 441 kHz. Based on the **Nyquist Criterion**, explain why the 44.1 kHz rate would be insufficient to represent carriers at 110 kHz. What would happen to the 110 kHz carrier if you stayed at 44.1 kHz?
+2.  **Filter Order Impact:** If you were to use a 2nd-order filter instead of a 4th-order filter for your LPF, would the interference at the 87 kHz channel improve or worsen? Explain your reasoning.
+3.  **Frequency Offset:** If your local oscillator frequency $f_{ci}$ is off by **200 Hz** (e.g., 87.2 kHz instead of 87 kHz), describe the effect on the recovered audio's pitch and clarity.
+4.  **Analog vs. Digital:** In Section 3.1, you used the `fft` (a tool for discrete data). Why is this still a valid way to analyze a "continuous-time" signal in this project, and how does our high sampling rate ($f_s$) justify this?
 
-* Apply the 5 kHz Butterworth LPF you designed in Part I.
-* Play the audio using `sound(y, fs)`.
-
-### 3.3 Required Submission
-
-* **Plots:** Magnitude spectra for all three signals _before_ and _after_ demodulation.
-* **Verification:** Identify the hidden audio message in each file (e.g., "The message in Signal 1 is a person speaking about...").
-* **Discussion:** Explain what happens if your local carrier frequency in Part 3.1 is slightly off (e.g., 12.1 kHz instead of 12 kHz). Use the properties of the Fourier Transform to justify your answer.
-
----
-
-## 6. Deliverables
-
-1. **Filter Analysis:** A plot of the Butterworth filter's frequency response (Magnitude in dB).
-2. **Spectrum Plots:** Magnitude spectra of the modulated C4 tone versus the original.
-3. **Audio Recovery:** Successful demodulation of the three provided 10-second files.
-4. **Discussion:** Explain why the $441$ kHz sampling rate is necessary when dealing with carriers in the $15$–$20$ kHz range, referencing the Nyquist criterion.
-
-## 3. The Demodulation Process: Mixing and Filtering
-
-To recover the signal $m(t)$, we use a **coherent detector**. This process consists of two primary stages that rely on the concepts of linearity and filtering you studied in Project 1.
-
-### 3.1 Step 1: Mixing (Frequency Shifting)
-
-By multiplying the received signal $x(t)$ by the same carrier frequency $\cos(2\pi f_c t)$, we create a new signal $z(t)$:
-
-$$z(t) = x(t) \cos(2\pi f_c t) = m(t) \cos^2(2\pi f_c t)$$
-
-Using the trigonometric identity $\cos^2(\theta) = \frac{1}{2}(1 + \cos(2\theta))$, we get:
-
-$$z(t) = \frac{1}{2}m(t) + \frac{1}{2}m(t) \cos(4\pi f_c t)$$
-
-This operation results in two components:
-
-1. A copy of the original message $m(t)$ scaled by $0.5$ at **baseband** (centered at $0$ Hz).
-2. A high-frequency component centered at **$2f_c$**.
-
-### 3.2 Step 2: Low-Pass Filtering (The LTI System)
-
-To isolate $m(t)$, we pass $z(t)$ through a **Low-Pass Filter (LPF)**. As you learned in Project 1, this LTI system can be characterized by its impulse response $h(t)$. The output $y(t)$ is the convolution:
-
-$$y(t) = z(t) * h(t)$$
-
-The filter is designed to reject the high-frequency component at $2f_c$ and pass the baseband signal $m(t)$ unchanged.
-
----
-
-## 4. Project Task: Recovering the Audio
-
-You are provided with three modulated `.wav` files. Each file contains an audio message modulated at a different carrier frequency $f_c$. Your objective is to implement a demodulator in Python or MATLAB to recover and play the original audio.
-
-### 4.1 Specifications
-
-The composite signals use the following carrier frequencies:
-
-* **Signal 1:** $f_{c1} = 5$ kHz
-* **Signal 2:** $f_{c2} = 10$ kHz
-* **Signal 3:** $f_{c3} = 15$ kHz
-
-### 4.2 Implementation Steps
-
-1. **Load the Data:** Read the `.wav` files and determine the sampling frequency $f_s$.
-2. **Multiply:** Generate a local carrier $\cos(2\pi f_c t)$ and multiply it by the received signal.
-3. **Filter:** Design a Butterworth or Ideal LPF with a cutoff frequency appropriate for human speech/music (typically around $3$–$4$ kHz).
-4. **Normalize and Play:** Scale the resulting signal to prevent clipping and use the system's audio output to verify the result.
-
----
-
-## 5. Key Takeaways
-
-* Demodulation relies on the **Frequency Shifting property** of the Fourier Transform.
-* A **multiplier (mixer)** moves the signal spectrum, while a **low-pass filter** isolates the desired information.
-* Success in this project requires applying the **LTI system concepts** from Project 1—specifically, understanding how a filter's impulse response removes unwanted high-frequency noise.
