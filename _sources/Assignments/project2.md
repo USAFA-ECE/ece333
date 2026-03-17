@@ -22,127 +22,126 @@ For this project, we are working with high-fidelity signals:
 
 The following steps demonstrate how to synthesize a A4 piano tone, design a Butterworth low-pass filter (LPF), and modulate the signal.
 
-### 2.1 Synthesizing the A4 Piano Tone
-
-Here’s a smoother, more cohesive rewrite that keeps everything technically correct while improving flow, transitions, and clarity. I also remove repetition and make the narrative feel intentional and well‑structured.
+This section provides a detailed walkthrough of designing and testing a continuous-time filter. In this curriculum, we treat filters not as algorithms, but as physical LTI systems characterized by their **Laplace Transfer Function** $H(s)$.
 
 ---
 
-## **Rewritten Version (Smooth, Cohesive, Technically Precise)**
+### 2.2 Analog Filter Design and Testing
 
-### 2.1 Synthesizing the A4 Piano Tone
+To restrict our signal's bandwidth, we use a **Butterworth filter**, known for its "maximally flat" response. This means it maintains a very consistent gain across the frequencies we want to keep (the passband) before rolling off at the cutoff.
 
-Before we begin modulating message signals, we will first practice modulation using a simple harmonic signal: a synthesized **A4 piano tone**. A pure A4 note has a fundamental frequency of \(440\) Hz, but real instruments contain many **harmonics** that shape the sound’s timbre. A basic harmonic approximation can be written as
+#### Step 1: Defining the Transfer Function
 
-\[
-m_{A4}(t) = \sum_{n=1}^{20} a_n \cos(2\pi n f_0 t), \qquad f_0 = 440\ \text{Hz},
-\]
-
-where the coefficients \(a_n\) control the tone quality (e.g., \(a_n = 1/n\) for a sawtooth‑like sound or \(a_n = 1/n^2\) for a smoother tone).
-
-However, a realistic piano tone requires more than simply summing harmonics. Real piano strings exhibit two important characteristics:
-
-1. **Inharmonicity:** Harmonics are slightly _stretched_ due to string stiffness.  
-2. **Amplitude Envelope:** A piano note has a sharp attack followed by an exponential decay.
-
-To capture these effects, we will synthesize a **10‑second A4 piano tone** by applying an exponential decay envelope to each harmonic. Higher harmonics decay faster than the fundamental, reflecting the physical damping behavior of piano strings.
-
-The MATLAB code below implements this model by assigning each harmonic both a decreasing initial amplitude and a harmonic‑dependent decay constant.
+We begin by designing a **4th-order Analog Butterworth Filter** with a cutoff frequency $f_c = 5$ Hz. We translate this frequency into radians per second ($\Omega_c = 2\pi f_c$) to work within the Laplace domain.
 
 ```matlab
-%% 1. Parameters
-fs = 44100;              % High sampling rate (44.1 kHz)
-T = 10;                  % Duration in seconds
-t = 0:1/fs:T-1/fs;       % Time vector
-f0 = 440;                % Fundamental frequency (A4)
+%% 1. Analog Filter Design Configuration
+fco = 5;                  % Cutoff frequency in Hz
+Wco = 2 * pi * fco;       % Convert Cutoff to radians/second (approx 31.4 rad/s)
 
-%% 2. Realistic Piano Synthesis (Harmonics + Decay)
-m_a4 = zeros(size(t));
-num_harmonics = 20;
+% Design the filter: 's' indicates an analog (Laplace) design rather than digital
+[b, a] = butter(4, Wco, 's'); 
 
-for n = 1:num_harmonics
-    % Fundamental and harmonic frequencies
-    fn = n * f0; 
-    
-    % Amplitude: higher harmonics start quieter
-    a_n = 1/(n^1.2); 
-    
-    % Decay: higher harmonics fade out faster (realistic physics)
-    tau_n = 3 / n;   % Decay constant
-    envelope = exp(-t / tau_n);
-    
-    % Accumulate the harmonic
-    m_a4 = m_a4 + a_n * envelope .* cos(2*pi*fn*t);
-end
-
-% Normalize to +/- 1 to prevent clipping
-m_a4 = m_a4 / max(abs(m_a4));
-
-% Listen to the result
-soundsc(m_a4, fs); 
-```
-
-### 2.2 Filter Design
-
-In a continuous-time course, we treat filters as differential equations or Laplace Transfer Functions $H(s)$. We will design a **4th-order Analog Butterworth Filter** with a cutoff frequency $\Omega_c​ = 2π\cdot 5000$ rad/s (or 5 kHz).
-
-### 3.2 Visualizing the Frequency Response
-
-Before modulation, we must ensure the signal does not exceed a 5 kHz bandwidth. We use a **6th-order Butterworth filter**.
-
-Before applying the filter, we must verify its "fingerprint" in the frequency domain. By using the `freqz` function, we can plot the magnitude and phase response to ensure the $5$ kHz cutoff is sharp enough to reject the carrier components.
-
-```matlab
-%% Filter Design (5 kHz Cutoff)
-fc = 5000;
-Wc = 2 * pi * fc;   % Cutoff in radians/second
-
-% 's' indicates an analog filter design
-[b, a] = butter(4, Wc, 's'); 
-
-% Create the Transfer Function H(s)
+% Create the Transfer Function H(s) = B(s)/A(s)
 H = tf(b, a);
 
-%% 2. Plotting the Analog Filter Response
+%% 2. Visualizing the System Characteristics
 figure;
-freqs(b, a); 
+freqs(b, a);              % Plots magnitude and phase on log-scales
+grid on;
+title('Frequency Response of 4th-Order 5 Hz Butterworth Filter');
+```
+
+{numref}`fig-lowpass-filter-5hz` illustrates the magnitude and phase response. By inspecting the curve at $5$ Hz ($31.415$ rad/s), you will observe a gain of approximately **$-3.0$ dB**. In linear terms, this is $|H(j\Omega_c)| = 1/\sqrt{2} \approx 0.707$, which is defined as the point where the signal power is halved.
+
+```{figure} ./figures/lpf_5hz.png
+:name: fig-lowpass-filter-5hz
+:width: 580px
+:align: center
+Magnitude and Phase response of a 4th-order analog Butterworth filter with a 5 Hz (-3 dB) cutoff frequency.
+```
+
+#### Step 2: Synthesizing a Test Signal
+
+To verify the filter's performance, we create a "composite" input signal $x(t)$ consisting of three distinct frequencies: one well within the passband ($2$ Hz), one exactly at the cutoff ($5$ Hz), and one in the stopband ($15$ Hz).
+
+$$x(t) = \cos(2\pi\cdot2t) + \cos(2\pi\cdot5t) + \cos(2\pi\cdot15t)$$
+
+```matlab
+%% 3. Signal Synthesis and Spectral Analysis
+
+fs = 441000;              % High sampling rate for continuous-time simulation
+T = 10;                   % 10-second duration
+t = 0:1/fs:T-1/fs;        % Time vector
+L = length(t);            % Length of signal
+f = (0:L-1)*(fs/L);       % Frequency vector for plotting
+
+% Create a signal with three distinct frequency components
+x = cos(2*pi*2*t) + cos(2*pi*5*t) + cos(2*pi*15*t);
+
+% Compute the Magnitude Spectrum using the Fast Fourier Transform (FFT)
+X = abs(fft(x));
+
+figure;
+subplot(2,1,1); plot(t, x);
+title('Input Signal x(t) in Time Domain');
+xlabel('Time (s)'); ylabel('Amplitude');
+grid on; xlim([0 2]); % Zoom in to see the individual oscillations
+
+subplot(2,1,2); plot(f(1:floor(L/2)), X(1:floor(L/2))/L*2);
+title('Magnitude Spectrum X(f)');
+xlabel('Frequency (Hz)'); ylabel('Magnitude');
+xlim([0 20]); % Focus on our area of interest
 grid on;
 ```
 
-This MATLAB code generates the plot shown in {numref}`fig-lowpass-filter-5k`. If you click on the response curve and drag your mouse near the cutoff frequency of 31,416 rad/s (5 kHz), you will find the gain of −3.0 dB (or $1/\sqrt{2}=0.707$), where the output signal power becomes half of the input signal power.
+As shown in {numref}`signal_2_5_15_hz`, the input spectrum shows three equal spikes. Note that even though we are using the `fft` (a tool often used in digital contexts), we use a very high sampling rate ($441$ kHz) to accurately approximate the behavior of the continuous-time signal.
 
-```{figure} ./figures/lpf_5k.png
-:name: fig-lowpass-filter-5k
+```{figure} ./figures/signal_2_5_15_hz.png
+:name: signal_2_5_15_hz
 :width: 580px
 :align: center
-5 KHz Butterworth low-pass filter 
+Time-domain waveform and magnitude spectrum of the composite input signal showing components at 2 Hz, 5 Hz, and 15 Hz.
 ```
 
-We now pass our realistic piano sound through a 5 kHz Butterworth filter to prepare it for modulation.
+#### Step 3: Simulating the LTI System Response
+
+Finally, we pass our signal through the filter. Since $H(s)$ represents a continuous-time system (often implemented physically with resistors, capacitors, and op-amps), we use the `lsim` function to simulate the output $y(t)$.
 
 ```matlab
-[b, a] = butter(6, 5000/(fs/2)); 
+%% 4. LTI System Simulation
+% lsim simulates the time-response of an analog system (H) to an arbitrary input (x)
+y = lsim(H, x, t);
 
-% Apply the filter
-m_filtered = filter(b, a, m_a4);
+% Compute the Spectrum of the filtered output
+Y = abs(fft(y));
 
-%% 4. Plotting Time Domain vs Frequency Domain
 figure;
-subplot(2,1,1);
-plot(t, m_a4);
-title('Time Domain: Realistic A4 Piano Tone (Decay Visible)');
+subplot(2,1,1); plot(t, y);
+title('Filtered Output Signal y(t)');
 xlabel('Time (s)'); ylabel('Amplitude');
-xlim([0 2]); % Zoom into the first 2 seconds
+grid on; xlim([0 2]);
 
-subplot(2,1,2);
-L = length(m_filtered);
-f_axis = (-L/2:L/2-1)*(fs/L);
-M_freq = fftshift(fft(m_filtered));
-plot(f_axis/1000, abs(M_freq)/L);
-title('Frequency Domain: Filtered Message Spectrum');
-xlabel('Frequency (kHz)'); ylabel('Magnitude');
-xlim([-10 10]);
+subplot(2,1,2); plot(f(1:floor(L/2)), Y(1:floor(L/2))/L*2);
+title('Magnitude Spectrum Y(f) After Filtering');
+xlabel('Frequency (Hz)'); ylabel('Magnitude');
+xlim([0 20]);
+grid on;
+```
 
+#### Step 4: Observations and Analysis
+
+The results in {numref}`filtered_signal_2_5_15_hz` confirm the filter's performance:
+
+1. **Passband:** The $2$ Hz component is almost entirely preserved.
+2. **Cutoff:** The $5$ Hz component has been scaled by $0.707$ (the $-3$ dB point).
+3. **Stopband:** The $15$ Hz component has been significantly attenuated, effectively removed from the output.
+
+```{figure} ./figures/filtered_signal_2_5_15_hz.png
+:name: filtered_signal_2_5_15_hz
+:width: 580px
+:align: center
+Filtered output showing the preservation of the 2 Hz signal, the 3 dB attenuation of the 5 Hz signal, and the removal of the 15 Hz component.
 ```
 
 ## 2. Amplitude Modulation (AM) Review

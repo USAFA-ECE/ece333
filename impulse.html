@@ -451,10 +451,10 @@ document.write(`
 <figure class="align-center" id="fig-lti-system">
 <a class="reference internal image-reference" href="_images/LTI_System.png"><img alt="_images/LTI_System.png" src="_images/LTI_System.png" style="width: 580px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Block diagram of a discrete-time LTI system showing input <span class="math notranslate nohighlight">\(x(k)\)</span>, output <span class="math notranslate nohighlight">\(y(k)\)</span>, impulse input <span class="math notranslate nohighlight">\(\delta(k)\)</span>, and impulse response <span class="math notranslate nohighlight">\(h(k)\)</span>.</span><a class="headerlink" href="#fig-lti-system" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Block diagram of a discrete-time LTI system showing input <span class="math notranslate nohighlight">\(x(k)\)</span>, output <span class="math notranslate nohighlight">\(y(k)\)</span>, impulse input <span class="math notranslate nohighlight">\(\delta(k)\)</span>, and impulse response <span class="math notranslate nohighlight">\(h(k)\)</span>.</span><a class="headerlink" href="#fig-lti-system" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p><a class="reference internal" href="#fig-lti-system"><span class="std std-numref">Fig. 2</span></a> illustrates the basic input–output relationship of a discrete-time LTI system. It emphasizes that the impulse response <span class="math notranslate nohighlight">\(h(k)\)</span> is defined as the system output when the input is the unit impulse <span class="math notranslate nohighlight">\(\delta(k)\)</span>. This definition forms the foundation for all later analysis.</p>
+<p><a class="reference internal" href="#fig-lti-system"><span class="std std-numref">Fig. 4</span></a> illustrates the basic input–output relationship of a discrete-time LTI system. It emphasizes that the impulse response <span class="math notranslate nohighlight">\(h(k)\)</span> is defined as the system output when the input is the unit impulse <span class="math notranslate nohighlight">\(\delta(k)\)</span>. This definition forms the foundation for all later analysis.</p>
 <section id="the-unit-impulse-kronecker-delta">
 <h3>2.1 The Unit Impulse (Kronecker Delta)<a class="headerlink" href="#the-unit-impulse-kronecker-delta" title="Permalink to this heading">#</a></h3>
 <p>The <strong>unit impulse</strong>, also called the <strong>Kronecker delta</strong>, is defined as</p>
@@ -491,10 +491,10 @@ document.write(`
 <figure class="align-center" id="fig-delayed-impulse-response">
 <a class="reference internal image-reference" href="_images/DelayedImpulseResponse.png"><img alt="_images/DelayedImpulseResponse.png" src="_images/DelayedImpulseResponse.png" style="width: 520px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Illustration showing that a delayed impulse input <span class="math notranslate nohighlight">\(\delta(k−n)\)</span> produces a delayed output <span class="math notranslate nohighlight">\(h(k−n)\)</span>.</span><a class="headerlink" href="#fig-delayed-impulse-response" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Illustration showing that a delayed impulse input <span class="math notranslate nohighlight">\(\delta(k−n)\)</span> produces a delayed output <span class="math notranslate nohighlight">\(h(k−n)\)</span>.</span><a class="headerlink" href="#fig-delayed-impulse-response" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p><a class="reference internal" href="#fig-delayed-impulse-response"><span class="std std-numref">Fig. 3</span></a> demonstrates the time-invariance property visually. When the impulse input is shifted (or delayed) in time, the output shifts (or delays) by exactly the same amount.</p>
+<p><a class="reference internal" href="#fig-delayed-impulse-response"><span class="std std-numref">Fig. 5</span></a> demonstrates the time-invariance property visually. When the impulse input is shifted (or delayed) in time, the output shifts (or delays) by exactly the same amount.</p>
 </section>
 <hr class="docutils" />
 <section id="linearity-scaling-the-impulse">
@@ -513,10 +513,10 @@ a\delta(k) \longrightarrow a h(k).
 <figure class="align-center" id="fig-scaled-impulse-response">
 <a class="reference internal image-reference" href="_images/ScaledImpulseResponse.png"><img alt="_images/ScaledImpulseResponse.png" src="_images/ScaledImpulseResponse.png" style="width: 520px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Illustration demonstrating scaling: input <span class="math notranslate nohighlight">\(a\delta(k)\)</span> produces output <span class="math notranslate nohighlight">\(ah(k)\)</span>.</span><a class="headerlink" href="#fig-scaled-impulse-response" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Illustration demonstrating scaling: input <span class="math notranslate nohighlight">\(a\delta(k)\)</span> produces output <span class="math notranslate nohighlight">\(ah(k)\)</span>.</span><a class="headerlink" href="#fig-scaled-impulse-response" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p><a class="reference internal" href="#fig-scaled-impulse-response"><span class="std std-numref">Fig. 4</span></a> illustrates linearity through scaling. Increasing the amplitude of the impulse increases the amplitude of the response by the same factor, reinforcing the proportional nature of linear systems.</p>
+<p><a class="reference internal" href="#fig-scaled-impulse-response"><span class="std std-numref">Fig. 6</span></a> illustrates linearity through scaling. Increasing the amplitude of the impulse increases the amplitude of the response by the same factor, reinforcing the proportional nature of linear systems.</p>
 </section>
 </section>
 <hr class="docutils" />
@@ -525,10 +525,10 @@ a\delta(k) \longrightarrow a h(k).
 <figure class="align-center" id="fig-impulse-decomposition">
 <a class="reference internal image-reference" href="_images/ImpulseDecomposition.png"><img alt="_images/ImpulseDecomposition.png" src="_images/ImpulseDecomposition.png" style="width: 640px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Example discrete-time signal decomposed into scaled and shifted impulse signals.</span><a class="headerlink" href="#fig-impulse-decomposition" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Example discrete-time signal decomposed into scaled and shifted impulse signals.</span><a class="headerlink" href="#fig-impulse-decomposition" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p><a class="reference internal" href="#fig-impulse-decomposition"><span class="std std-numref">Fig. 5</span></a> shows how an arbitrary discrete-time signal can be expressed as a sum of weighted and shifted impulses. Each impulse corresponds to one sample of the signal, making the decomposition visually concrete.</p>
+<p><a class="reference internal" href="#fig-impulse-decomposition"><span class="std std-numref">Fig. 7</span></a> shows how an arbitrary discrete-time signal can be expressed as a sum of weighted and shifted impulses. Each impulse corresponds to one sample of the signal, making the decomposition visually concrete.</p>
 <p>The key insight that leads directly to convolution is that <strong>any discrete-time signal can be constructed from shifted impulses</strong>.</p>
 <p>Let <span class="math notranslate nohighlight">\(x(k)\)</span> be an arbitrary discrete-time signal. Then it can be written as</p>
 <div class="math notranslate nohighlight">
@@ -540,10 +540,10 @@ x(k) = \sum_{n=-\infty}^{\infty} x(n) \delta(k-n).
 <figure class="align-center" id="fig-basis-vectors">
 <a class="reference internal image-reference" href="_images/BasisVectors.png"><img alt="_images/BasisVectors.png" src="_images/BasisVectors.png" style="width: 160px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Basis vectors</span><a class="headerlink" href="#fig-basis-vectors" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Basis vectors</span><a class="headerlink" href="#fig-basis-vectors" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>This idea is closely related to expressing a vector as a linear combination of basis vectors. For example, consider a vector <span class="math notranslate nohighlight">\(\begin{bmatrix} 3 &amp; 2 \end{bmatrix}^\top\)</span> as illustrusted in <a class="reference internal" href="#fig-basis-vectors"><span class="std std-numref">Fig. 6</span></a>. This vector can be decomposed as</p>
+<p>This idea is closely related to expressing a vector as a linear combination of basis vectors. For example, consider a vector <span class="math notranslate nohighlight">\(\begin{bmatrix} 3 &amp; 2 \end{bmatrix}^\top\)</span> as illustrusted in <a class="reference internal" href="#fig-basis-vectors"><span class="std std-numref">Fig. 8</span></a>. This vector can be decomposed as</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{bmatrix} 3 \\ 2 \end{bmatrix}
@@ -559,10 +559,10 @@ x(k) = \sum_{n=-\infty}^{\infty} x(n) \delta(k-n).
 <figure class="align-center" id="fig-discrete-convolution">
 <a class="reference internal image-reference" href="_images/DiscreteConvolution.png"><img alt="_images/DiscreteConvolution.png" src="_images/DiscreteConvolution.png" style="width: 680px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Convolution is visualized as a superposition of weighted and shifted impulse responses.</span><a class="headerlink" href="#fig-discrete-convolution" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Convolution is visualized as a superposition of weighted and shifted impulse responses.</span><a class="headerlink" href="#fig-discrete-convolution" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p><a class="reference internal" href="#fig-discrete-convolution"><span class="std std-numref">Fig. 7</span></a> illustrates the key idea behind <strong>discrete time convolution</strong>: the output of an LTI system is formed by adding together many delayed and scaled copies of the system’s impulse response. To see how this works in detail, consider the discrete-time input signal <span class="math notranslate nohighlight">\(x(k)\)</span> shown in <a class="reference internal" href="#fig-discrete-convolution"><span class="std std-numref">Fig. 7</span></a>. As discussed in the previous section, any discrete-time signal can be expressed as a sum of <strong>weighted and shifted unit impulses</strong>. For this particular signal, we may write</p>
+<p><a class="reference internal" href="#fig-discrete-convolution"><span class="std std-numref">Fig. 9</span></a> illustrates the key idea behind <strong>discrete time convolution</strong>: the output of an LTI system is formed by adding together many delayed and scaled copies of the system’s impulse response. To see how this works in detail, consider the discrete-time input signal <span class="math notranslate nohighlight">\(x(k)\)</span> shown in <a class="reference internal" href="#fig-discrete-convolution"><span class="std std-numref">Fig. 9</span></a>. As discussed in the previous section, any discrete-time signal can be expressed as a sum of <strong>weighted and shifted unit impulses</strong>. For this particular signal, we may write</p>
 <div class="math notranslate nohighlight">
 \[
 x(k) = \delta(k) + 3\delta(k-1) + 2\delta(k-2).
@@ -640,10 +640,10 @@ y(k) = (x * h)(k).
 <figure class="align-center" id="fig-cont-lti-system">
 <a class="reference internal image-reference" href="_images/LTI_System_CT.png"><img alt="_images/LTI_System_CT.png" src="_images/LTI_System_CT.png" style="width: 520px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Continuous-time LTI system responding to a Dirac delta input <span class="math notranslate nohighlight">\(\delta(t)\)</span> with impulse response <span class="math notranslate nohighlight">\(h(t)\)</span></span><a class="headerlink" href="#fig-cont-lti-system" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Continuous-time LTI system responding to a Dirac delta input <span class="math notranslate nohighlight">\(\delta(t)\)</span> with impulse response <span class="math notranslate nohighlight">\(h(t)\)</span></span><a class="headerlink" href="#fig-cont-lti-system" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p><a class="reference internal" href="#fig-cont-lti-system"><span class="std std-numref">Fig. 8</span></a> introduces the impulse response for continuous-time systems. The diagram closely mirrors the discrete-time case, emphasizing that the impulse response <span class="math notranslate nohighlight">\(h(t)\)</span> is defined as the system output when the input is the Dirac delta function <span class="math notranslate nohighlight">\(\delta(t)\)</span>.</p>
+<p><a class="reference internal" href="#fig-cont-lti-system"><span class="std std-numref">Fig. 10</span></a> introduces the impulse response for continuous-time systems. The diagram closely mirrors the discrete-time case, emphasizing that the impulse response <span class="math notranslate nohighlight">\(h(t)\)</span> is defined as the system output when the input is the Dirac delta function <span class="math notranslate nohighlight">\(\delta(t)\)</span>.</p>
 <p>Conceptually, the idea of an impulse response does not change when moving from discrete time to continuous time. What changes is the mathematical machinery: sums become integrals, and sequences become continuous functions of time. The underlying logic, based on linearity and time invariance, remains exactly the same.</p>
 <p>As before, the impulse response serves as a complete characterization of the system. Once <span class="math notranslate nohighlight">\(h(t)\)</span> is known, the system’s response to <em>any</em> continuous-time input can be computed using convolution.</p>
 <hr class="docutils" />
@@ -676,10 +676,10 @@ x(t) = \int_{-\infty}^{\infty} x(\tau)\delta(t-\tau)d\tau.
 <figure class="align-center" id="fig-impulse-decomposition-ct">
 <a class="reference internal image-reference" href="_images/ImpulseDecompositionCT.png"><img alt="_images/ImpulseDecompositionCT.png" src="_images/ImpulseDecompositionCT.png" style="width: 680px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Continuous-time signal represented as a superposition of shifted impulses.</span><a class="headerlink" href="#fig-impulse-decomposition-ct" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Continuous-time signal represented as a superposition of shifted impulses.</span><a class="headerlink" href="#fig-impulse-decomposition-ct" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p><a class="reference internal" href="#fig-impulse-decomposition-ct"><span class="std std-numref">Fig. 9</span></a> illustrates a powerful way to think about continuous time signals as an infinite collection of impulses, each occurring at a different time and weighted by the signal’s value at that time.</p>
+<p><a class="reference internal" href="#fig-impulse-decomposition-ct"><span class="std std-numref">Fig. 11</span></a> illustrates a powerful way to think about continuous time signals as an infinite collection of impulses, each occurring at a different time and weighted by the signal’s value at that time.</p>
 </section>
 </section>
 <hr class="docutils" />
@@ -699,10 +699,10 @@ y(t) = (x * h)(t).
 <figure class="align-center" id="fig-continuous-convolution">
 <a class="reference internal image-reference" href="_images/ContinuousConvolution.png"><img alt="_images/ContinuousConvolution.png" src="_images/ContinuousConvolution.png" style="width: 580px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Graphical depiction of convolution as integration of shifted impulse responses weighted by the input signal.</span><a class="headerlink" href="#fig-continuous-convolution" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Graphical depiction of convolution as integration of shifted impulse responses weighted by the input signal.</span><a class="headerlink" href="#fig-continuous-convolution" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p><a class="reference internal" href="#fig-continuous-convolution"><span class="std std-numref">Fig. 10</span></a> connects the convolution integral to physical intuition. It shows that the output at time <span class="math notranslate nohighlight">\(t\)</span> is obtained by integrating shifted copies of the impulse response, each weighted by the input signal.</p>
+<p><a class="reference internal" href="#fig-continuous-convolution"><span class="std std-numref">Fig. 12</span></a> connects the convolution integral to physical intuition. It shows that the output at time <span class="math notranslate nohighlight">\(t\)</span> is obtained by integrating shifted copies of the impulse response, each weighted by the input signal.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Convolution provides a universal input–output relationship for <em>all</em> continuous-time LTI systems, regardless of their physical realization.</p>
