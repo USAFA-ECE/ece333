@@ -12,7 +12,7 @@ In this project, we explore the process of extracting original information from 
 
 For this project, we are working with high-fidelity signals:
 
-* **Sampling Frequency ($f_s$):** $44,100$ Hz
+* **Sampling Frequency for Simulation ($f_{sim}$):** $441,000$ Hz
 * **Message Duration:** $10$ seconds
 * **Message Bandwidth:** $5$ kHz (All original audio is band-limited to $5$ kHz)
 
@@ -34,6 +34,7 @@ We begin by designing a **4th-order Analog Butterworth Filter** with a cutoff fr
 
 ```matlab
 %% 1. Analog Filter Design Configuration
+clear; clc; close all;
 fco = 5;                  % Cutoff frequency in Hz
 Wco = 2 * pi * fco;       % Convert Cutoff to radians/second (approx 31.4 rad/s)
 
@@ -68,11 +69,11 @@ $$x(t) = \cos(2\pi\cdot2t) + \cos(2\pi\cdot5t) + \cos(2\pi\cdot15t)$$
 ```matlab
 %% 3. Signal Synthesis and Spectral Analysis
 
-fsim = 441000;          % High sampling rate for continuous-time simulation
-T = 10;                 % 10-second duration
-t = 0:1/fsim:T-1/fsim;  % Time vector
-L = length(t);          % Length of signal
-f = (0:L-1)*(fsim/L);   % Frequency vector for plotting
+fs_sim = 441000;            % High sampling rate for continuous-time simulation
+T = 10;                     % 10-second duration
+t = 0:1/fs_sim:T-1/fs_sim;  % Time vector
+L = length(t);              % Length of signal
+f = (0:L-1)*(fs_sim/L);       % Frequency vector for plotting
 
 % Create a signal with three distinct frequency components
 x = cos(2*pi*2*t) + cos(2*pi*5*t) + cos(2*pi*15*t);
@@ -104,17 +105,17 @@ Time-domain waveform and magnitude spectrum of the composite input signal showin
 
 #### Step 3: Simulating the LTI System Response
 
-Finally, we pass our signal through the filter. Since $H(s)$ represents a continuous-time system (often implemented physically with resistors, capacitors, and op-amps), we use the `lsim` function to simulate the output $y(t)$.
+Finally, we pass our signal through the filter. Since $H(s)$ represents a continuous-time system (often implemented physically with resistors, capacitors, and op-amps), we use the `conv` function to simulate the output $y(t)$.
 
 ```matlab
 %% 4. LTI System Simulation
 
 % Truncate impulse response (finite-duration approximation)
-t_h = 0:1/fsim:0.005;   % 5 ms window
+t_h = 0:1/fs_sim:0.5;   % 500 ms window
 h = impulse(H, t_h);
 
 % Normalize for unity DC gain
-h = h / (sum(h)/fsim);
+h = h / (sum(h)/fs_sim);
 
 % Continuous-time filtering via convolution:
 % 'same' keeps output length equal to input (matches t),
@@ -176,13 +177,13 @@ fc = 50;                  % Carrier frequency (50 Hz) for clear visualization
 carrier = cos(2*pi*fc*t); % Generate the continuous-time carrier wave
 
 % Perform modulation via element-wise multiplication
-x_modulated = y' .* carrier; 
+x_modulated = y .* carrier; 
 
 %% 2. Spectral Analysis of the Modulated Signal
 % Compute the magnitude spectrum of the modulated signal
 % Use fftshift to center the spectrum at 0 Hz for easier interpretation
 X_mod_freq = abs(fftshift(fft(x_modulated)));
-f_shifted = (-L/2:L/2-1)*(fs/L); % Centered frequency axis
+f_shifted = (-L/2:L/2-1)*(fs_sim/L); % Centered frequency axis
 
 %% 3. Visualizing the Modulation Results
 figure;
@@ -281,10 +282,10 @@ Your project report must include the following four sections:
 
 * **Interference and Bandwidth Diagnostic:**  
   During recovery, you will notice that two signals contain audible interference. The issue is that one of the signals was incorrectly filtered during modulation and has a bandwidth of **7 kHz** instead of the standard **5 kHz**. Identify which signal is the culprit. Use your spectral plots to visually demonstrate how this “wide” signal interferes with another channel. Discuss how the overlap of sidebands in the frequency domain affects audio quality.
-
+ 
 * **Discussion Questions:**
   * **Filter Order Impact:** If you used an 8th‑order filter instead of a 4th‑order filter for your LPF, would the interference caused by the incorrectly filtered signal improve or worsen? Explain your reasoning.  
-  * **Frequency Offset:** If your local oscillator frequency $f_{ci}$$ is off by **200 Hz** (e.g., 87.2 kHz instead of 87 kHz), describe the effect on the recovered audio’s pitch and clarity.  
+  * **Frequency Offset:** If your local oscillator frequency $f_{ci}$ is off by **200 Hz** (e.g., 87.2 kHz instead of 87 kHz), describe the effect on the recovered audio's pitch and clarity.  
 
 ### Project Code and Audio Files
 

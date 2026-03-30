@@ -439,7 +439,7 @@ document.write(`
 <h2>1. Signal Specifications<a class="headerlink" href="#signal-specifications" title="Permalink to this heading">#</a></h2>
 <p>For this project, we are working with high-fidelity signals:</p>
 <ul class="simple">
-<li><p><strong>Sampling Frequency (<span class="math notranslate nohighlight">\(f_s\)</span>):</strong> <span class="math notranslate nohighlight">\(44,100\)</span> Hz</p></li>
+<li><p><strong>Sampling Frequency for Simulation (<span class="math notranslate nohighlight">\(f_{sim}\)</span>):</strong> <span class="math notranslate nohighlight">\(441,000\)</span> Hz</p></li>
 <li><p><strong>Message Duration:</strong> <span class="math notranslate nohighlight">\(10\)</span> seconds</p></li>
 <li><p><strong>Message Bandwidth:</strong> <span class="math notranslate nohighlight">\(5\)</span> kHz (All original audio is band-limited to <span class="math notranslate nohighlight">\(5\)</span> kHz)</p></li>
 </ul>
@@ -456,6 +456,7 @@ document.write(`
 <h4>Step 1: Defining the Transfer Function<a class="headerlink" href="#step-1-defining-the-transfer-function" title="Permalink to this heading">#</a></h4>
 <p>We begin by designing a <strong>4th-order Analog Butterworth Filter</strong> with a cutoff frequency <span class="math notranslate nohighlight">\(f_{co} = 5\)</span> Hz. We translate this frequency into radians per second (<span class="math notranslate nohighlight">\(\Omega_{co} = 2\pi f_{co}\)</span>) to work within the Laplace domain.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 1. Analog Filter Design Configuration</span>
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="nb">clc</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
 <span class="n">fco</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">                  </span><span class="c">% Cutoff frequency in Hz</span>
 <span class="n">Wco</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fco</span><span class="p">;</span><span class="w">       </span><span class="c">% Convert Cutoff to radians/second (approx 31.4 rad/s)</span>
 
@@ -487,11 +488,11 @@ document.write(`
 \[x(t) = \cos(2\pi\cdot2t) + \cos(2\pi\cdot5t) + \cos(2\pi\cdot15t)\]</div>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 3. Signal Synthesis and Spectral Analysis</span>
 
-<span class="n">fsim</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">441000</span><span class="p">;</span><span class="w">          </span><span class="c">% High sampling rate for continuous-time simulation</span>
-<span class="n">T</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">                 </span><span class="c">% 10-second duration</span>
-<span class="n">t</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">fsim</span><span class="p">:</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">fsim</span><span class="p">;</span><span class="w">  </span><span class="c">% Time vector</span>
-<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">);</span><span class="w">          </span><span class="c">% Length of signal</span>
-<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fsim</span><span class="o">/</span><span class="n">L</span><span class="p">);</span><span class="w">   </span><span class="c">% Frequency vector for plotting</span>
+<span class="n">fs_sim</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">441000</span><span class="p">;</span><span class="w">            </span><span class="c">% High sampling rate for continuous-time simulation</span>
+<span class="n">T</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">                     </span><span class="c">% 10-second duration</span>
+<span class="n">t</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">fs_sim</span><span class="p">:</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">fs_sim</span><span class="p">;</span><span class="w">  </span><span class="c">% Time vector</span>
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">);</span><span class="w">              </span><span class="c">% Length of signal</span>
+<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fs_sim</span><span class="o">/</span><span class="n">L</span><span class="p">);</span><span class="w">       </span><span class="c">% Frequency vector for plotting</span>
 
 <span class="c">% Create a signal with three distinct frequency components</span>
 <span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="mi">15</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
@@ -522,15 +523,15 @@ document.write(`
 </section>
 <section id="step-3-simulating-the-lti-system-response">
 <h4>Step 3: Simulating the LTI System Response<a class="headerlink" href="#step-3-simulating-the-lti-system-response" title="Permalink to this heading">#</a></h4>
-<p>Finally, we pass our signal through the filter. Since <span class="math notranslate nohighlight">\(H(s)\)</span> represents a continuous-time system (often implemented physically with resistors, capacitors, and op-amps), we use the <code class="docutils literal notranslate"><span class="pre">lsim</span></code> function to simulate the output <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
+<p>Finally, we pass our signal through the filter. Since <span class="math notranslate nohighlight">\(H(s)\)</span> represents a continuous-time system (often implemented physically with resistors, capacitors, and op-amps), we use the <code class="docutils literal notranslate"><span class="pre">conv</span></code> function to simulate the output <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 4. LTI System Simulation</span>
 
 <span class="c">% Truncate impulse response (finite-duration approximation)</span>
-<span class="n">t_h</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">fsim</span><span class="p">:</span><span class="mf">0.005</span><span class="p">;</span><span class="w">   </span><span class="c">% 5 ms window</span>
+<span class="n">t_h</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">fs_sim</span><span class="p">:</span><span class="mf">0.5</span><span class="p">;</span><span class="w">   </span><span class="c">% 500 ms window</span>
 <span class="n">h</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">impulse</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="w"> </span><span class="n">t_h</span><span class="p">);</span>
 
 <span class="c">% Normalize for unity DC gain</span>
-<span class="n">h</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="o">/</span><span class="n">fsim</span><span class="p">);</span>
+<span class="n">h</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="o">/</span><span class="n">fs_sim</span><span class="p">);</span>
 
 <span class="c">% Continuous-time filtering via convolution:</span>
 <span class="c">% &#39;same&#39; keeps output length equal to input (matches t),</span>
@@ -589,13 +590,13 @@ document.write(`
 <span class="n">carrier</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">fc</span><span class="o">*</span><span class="n">t</span><span class="p">);</span><span class="w"> </span><span class="c">% Generate the continuous-time carrier wave</span>
 
 <span class="c">% Perform modulation via element-wise multiplication</span>
-<span class="n">x_modulated</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">y</span><span class="o">&#39;</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">carrier</span><span class="p">;</span><span class="w"> </span>
+<span class="n">x_modulated</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">.*</span><span class="w"> </span><span class="n">carrier</span><span class="p">;</span><span class="w"> </span>
 
 <span class="c">%% 2. Spectral Analysis of the Modulated Signal</span>
 <span class="c">% Compute the magnitude spectrum of the modulated signal</span>
 <span class="c">% Use fftshift to center the spectrum at 0 Hz for easier interpretation</span>
 <span class="n">X_mod_freq</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="nb">fftshift</span><span class="p">(</span><span class="nb">fft</span><span class="p">(</span><span class="n">x_modulated</span><span class="p">)));</span>
-<span class="n">f_shifted</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fs</span><span class="o">/</span><span class="n">L</span><span class="p">);</span><span class="w"> </span><span class="c">% Centered frequency axis</span>
+<span class="n">f_shifted</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fs_sim</span><span class="o">/</span><span class="n">L</span><span class="p">);</span><span class="w"> </span><span class="c">% Centered frequency axis</span>
 
 <span class="c">%% 3. Visualizing the Modulation Results</span>
 <span class="nb">figure</span><span class="p">;</span>
@@ -699,7 +700,7 @@ During recovery, you will notice that two signals contain audible interference. 
 <li><p><strong>Discussion Questions:</strong></p>
 <ul>
 <li><p><strong>Filter Order Impact:</strong> If you used an 8th‑order filter instead of a 4th‑order filter for your LPF, would the interference caused by the incorrectly filtered signal improve or worsen? Explain your reasoning.</p></li>
-<li><p><strong>Frequency Offset:</strong> If your local oscillator frequency <span class="math notranslate nohighlight">\(f_{ci}\)</span>$ is off by <strong>200 Hz</strong> (e.g., 87.2 kHz instead of 87 kHz), describe the effect on the recovered audio’s pitch and clarity.</p></li>
+<li><p><strong>Frequency Offset:</strong> If your local oscillator frequency <span class="math notranslate nohighlight">\(f_{ci}\)</span> is off by <strong>200 Hz</strong> (e.g., 87.2 kHz instead of 87 kHz), describe the effect on the recovered audio’s pitch and clarity.</p></li>
 </ul>
 </li>
 </ul>
