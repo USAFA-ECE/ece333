@@ -1,7 +1,5 @@
 # Demodulation
 
-**NOT READY YET**
-
 ## 1. Intoduction
 
 In modern communication, baseband signals (like voice or music) are rarely transmitted directly. Instead, they are shifted to higher frequencies to allow for efficient transmission and to enable multiple signals to share the same medium without interference—a process called **Frequency Division Multiplexing (FDM)**.
@@ -32,7 +30,7 @@ To restrict our signal's bandwidth, we use a **Butterworth filter**, known for i
 
 #### Step 1: Defining the Transfer Function
 
-We begin by designing a **4th-order Analog Butterworth Filter** with a cutoff frequency $f_co = 5$ Hz. We translate this frequency into radians per second ($\Omega_{co} = 2\pi f_c$) to work within the Laplace domain.
+We begin by designing a **4th-order Analog Butterworth Filter** with a cutoff frequency $f_{co} = 5$ Hz. We translate this frequency into radians per second ($\Omega_{co} = 2\pi f_{co}$) to work within the Laplace domain.
 
 ```matlab
 %% 1. Analog Filter Design Configuration
@@ -56,7 +54,7 @@ title('Frequency Response of 4th-Order 5 Hz Butterworth Filter');
 
 ```{figure} ./figures/lpf_5hz.png
 :name: fig-lowpass-filter-5hz
-:width: 580px
+:width: 540px
 :align: center
 Magnitude and Phase response of a 4th-order analog Butterworth filter with a 5 Hz (-3 dB) cutoff frequency.
 ```
@@ -70,11 +68,11 @@ $$x(t) = \cos(2\pi\cdot2t) + \cos(2\pi\cdot5t) + \cos(2\pi\cdot15t)$$
 ```matlab
 %% 3. Signal Synthesis and Spectral Analysis
 
-fs = 441000;              % High sampling rate for continuous-time simulation
-T = 10;                   % 10-second duration
-t = 0:1/fs:T-1/fs;        % Time vector
-L = length(t);            % Length of signal
-f = (0:L-1)*(fs/L);       % Frequency vector for plotting
+fsim = 441000;          % High sampling rate for continuous-time simulation
+T = 10;                 % 10-second duration
+t = 0:1/fsim:T-1/fsim;  % Time vector
+L = length(t);          % Length of signal
+f = (0:L-1)*(fsim/L);   % Frequency vector for plotting
 
 % Create a signal with three distinct frequency components
 x = cos(2*pi*2*t) + cos(2*pi*5*t) + cos(2*pi*15*t);
@@ -95,11 +93,11 @@ xlim([0 20]); % Focus on our area of interest
 grid on;
 ```
 
-As shown in {numref}`signal_2_5_15_hz`, the input spectrum shows three equal spikes. Note that even though we are using the `fft` (a tool often used in digital contexts), we use a very high sampling rate ($441$ kHz) to accurately approximate the behavior of the continuous-time signal.
+As shown in {numref}`signal_2_5_15_hz`, the input spectrum shows three equal spikes. Note that even though we are using the `fft` (a tool often used in digital contexts), we use a very high sampling rate ($f_{sim}=441$ kHz) to accurately approximate the behavior of the **continuous-time signal**.
 
 ```{figure} ./figures/signal_2_5_15_hz.png
 :name: signal_2_5_15_hz
-:width: 580px
+:width: 540px
 :align: center
 Time-domain waveform and magnitude spectrum of the composite input signal showing components at 2 Hz, 5 Hz, and 15 Hz.
 ```
@@ -110,8 +108,18 @@ Finally, we pass our signal through the filter. Since $H(s)$ represents a contin
 
 ```matlab
 %% 4. LTI System Simulation
-% lsim simulates the time-response of an analog system (H) to an arbitrary input (x)
-y = lsim(H, x, t);
+
+% Truncate impulse response (finite-duration approximation)
+t_h = 0:1/fsim:0.005;   % 5 ms window
+h = impulse(H, t_h);
+
+% Normalize for unity DC gain
+h = h / (sum(h)/fsim);
+
+% Continuous-time filtering via convolution:
+% 'same' keeps output length equal to input (matches t),
+% division by fs_sim approximates the CT integral from the sum
+y = conv(x, h, 'same') / fs_sim;
 
 % Compute the Spectrum of the filtered output
 Y = abs(fft(y));
@@ -139,7 +147,7 @@ The results in {numref}`filtered_signal_2_5_15_hz` confirm the filter's performa
 
 ```{figure} ./figures/filtered_signal_2_5_15_hz.png
 :name: filtered_signal_2_5_15_hz
-:width: 580px
+:width: 540px
 :align: center
 Filtered output showing the preservation of the 2 Hz signal, the 3 dB attenuation of the 5 Hz signal, and the removal of the 15 Hz component.
 ```
@@ -156,7 +164,7 @@ The Modulation Theorem (or Frequency Shifting Property) of the Fourier Transform
 
 $$x(t) = m(t) \cos(2\pi f_c t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(f) = \frac{1}{2} [M(f - f_c) + M(f + f_c)]$$
 
-This mathematical operation creates two "sidebands"—one above the carrier frequency and one below—while the carrier itself is "suppressed" because it does not appear as a standalone impulse in the spectrum unless explicitly added.
+This mathematical operation creates two "sidebands", one above the carrier frequency and one below, while the carrier itself is "suppressed" because it does not appear as a standalone impulse in the spectrum unless explicitly added.
 
 #### Step 2: Implementation in MATLAB
 
@@ -213,74 +221,73 @@ In MATLAB, the `fft` function returns a spectrum where the frequency components 
 Time-domain modulated waveform and the corresponding magnitude spectrum showing the message shifted to the 50 Hz carrier frequency.
 ```
 
-
 The modulation process provides several key insights:
-1.  **Spectrum Centering:** The baseband signal (originally $0 \pm 5$ Hz) now occupies the frequency band from $45$ Hz to $55$ Hz (and a mirror image in the negative frequencies).
-2.  **Bandwidth Doubling:** While the original message was band-limited to $5$ Hz, the modulated signal occupies a total bandwidth of $10$ Hz ($55 - 45 = 10$). This is a fundamental characteristic of double-sideband modulation.
-3.  **Phase Reversal:** Notice in the time domain that whenever the message $m(t)$ crosses zero and becomes negative, the carrier undergoes a $180^\circ$ phase reversal. This "suppressed carrier" feature is why coherent detection is required at the receiver.
 
-
----
+1. **Spectrum Centering:** The baseband signal (originally $0 \pm 5$ Hz) now occupies the frequency band from $45$ Hz to $55$ Hz (and a mirror image in the negative frequencies).
+2. **Bandwidth Doubling:** While the original message was band-limited to $5$ Hz, the modulated signal occupies a total bandwidth of $10$ Hz ($55 - 45 = 10$). This is a fundamental characteristic of double-sideband modulation.
 
 ## 3. Part II: The Demodulation Challenge
 
-In a communication system, multiple messages are often sent over the same medium by shifting each to a unique frequency "slot." You are provided with a file named `modulated_signals.mat`. This file contains a composite signal, `x_composite`, which is the sum of four different audio messages modulated onto high-frequency carriers ($f_{c1}$ through $f_{c4}$). 
+In a communication system, multiple messages are often sent over the same medium by shifting each to a unique frequency "slot." You are provided with a file named [modulated_signals.mat](./files/modulated_signals.mat). This file contains a composite signal, `x_composite`, which is the sum of four different audio messages modulated onto high-frequency carriers ($f_{c1}$ through $f_{c4}$).
 
-To accurately represent these continuous-time carriers (which reside between **80 kHz** and **120 kHz**), the simulation uses a sampling rate of $f_s = 441$ kHz.
+To accurately represent these continuous-time carriers (which reside between **70 kHz** and **120 kHz**), the simulation uses a sampling rate of `fs_sim = 441` kHz.
 
 ### 3.1 Spectral Discovery and Loading
+
 Your first task is to load the data and "scout" the frequency spectrum to estimate the four unknown carrier frequencies.
 
 ```matlab
 %% 1. Load the Composite Signal
+clear; clc; close all;
 load('modulated_signals.mat'); 
-% Variables loaded: x_composite, t, fs (441000 Hz)
+% Variables loaded: x_composite, t, fs(44.1 kHz), fs_sim (441 kHz)
 
 %% 2. Spectral Analysis
 L = length(x_composite);
-f_axis = (-L/2:L/2-1)*(fs/L); 
+f_axis_khz = (-L/2:L/2-1)*(fs_sim/L)/1000;
 % Note: fftshift is required to center the spectrum at 0 Hz
 X_spec = abs(fftshift(fft(x_composite)))/L;
 
 figure;
-plot(f_axis/1000, X_spec); 
-title('Discovery: Magnitude Spectrum of FDM Signal');
+plot(f_axis_khz, X_spec, 'LineWidth',1.2);
+title('Composite FDM Spectrum');
 xlabel('Frequency (kHz)'); ylabel('Magnitude');
 grid on;
-xlim([80 120]); % Zoom in on the broadcast band
+xlim([60 120]); % Zoom in on the broadcast band
 ```
 
 ### 3.2 Synchronous Demodulation Procedure
+
 Once you have estimated the four carrier frequencies from your plot, you must implement a **Synchronous (Coherent) Demodulator** for each signal.
 
-1.  **Mixing:** Multiply `x_composite` by a local carrier $\cos(2\pi f_{ci} t)$ at your estimated frequency.
-2.  **LTI Filtering:** Use the `lsim` command with your 4th-order Analog Butterworth LPF ($H$) from Part I to isolate the baseband audio.
-3.  **Normalization and Playback:** Scale the resulting signal to a maximum amplitude of 1.0 using `y = y / max(abs(y))` before listening with `sound(y, fs)`.
-
----
+1. **Mixing:** Multiply `x_composite` by a local carrier $\cos(2\pi f_{ci} t)$ at your estimated frequency.
+2. **LTI Filtering:** Use the `conv` command with your 4th-order Analog Butterworth LPF ($H$) from Part I to isolate the baseband audio.
+3. **Normalization and Playback:** Scale the resulting signal to a maximum amplitude of 1.0 using `y = y / max(abs(y))` before listening with `soundsc(y, fs)`.
+4. Downsample the recovered signal from 441.0 kHz to 44.1 kHz for listerning using `m = resample(recovered, 1, 10)`
+5. You can play sound by running `soundsc(m, fs)`
 
 ## 4. Deliverables
 
-Your final project report must include the following four sections:
+### Project Report
 
-### 4.1 Filter and Discovery Analysis
-* **Filter Response:** Provide the magnitude response plot of your 5 kHz Butterworth filter using `freqs(b,a)`.
+Your project report must include the following four sections:
+
 * **Carrier Estimation:** Provide the magnitude spectrum of `x_composite` with all four estimated carrier frequencies ($f_{c1}, f_{c2}, f_{c3}, f_{c4}$) clearly labeled.
 
-### 4.2 Signal Recovery and Identification
-For **each** of the four recovered signals, provide a figure containing:
-1.  The time-domain waveform $y_i(t)$.
-2.  The magnitude spectrum $Y_i(f)$ showing the recovered baseband audio.
-3.  A description of the audio content (e.g., "Signal 1 is a piano," "Signal 2 is a person speaking").
+* **Signal Recovery and Identification:** For each of the four recovered signals, include a figure containing:
+  * The time‑domain waveform \(y_i(t)\)  
+  * The magnitude spectrum \(Y_i(f)\) showing the recovered baseband audio  
+  * A brief description of the audio content (e.g., “This is my voice,” “I love ECE 333”)  
 
-### 4.3 Interference and Bandwidth Diagnostic
-During recovery, you will notice that the signal at **87 kHz** suffers from audible interference. 
-* **The Problem:** One of the other three signals was incorrectly filtered during modulation and has a bandwidth of **7 kHz** instead of the standard 5 kHz.
-* **Your Task:** Identify which signal is the culprit. Use your spectral plots to visually demonstrate how this "wide" signal interferes with the 87 kHz channel. Discuss how the overlap of sidebands in the frequency domain affects the audio quality.
+* **Interference and Bandwidth Diagnostic:**  
+  During recovery, you will notice that two signals contain audible interference. The issue is that one of the signals was incorrectly filtered during modulation and has a bandwidth of **7 kHz** instead of the standard **5 kHz**. Identify which signal is the culprit. Use your spectral plots to visually demonstrate how this “wide” signal interferes with another channel. Discuss how the overlap of sidebands in the frequency domain affects audio quality.
 
-### 4.4 Discussion Questions
-1.  **The Sampling Rate Paradox:** The original audio files were recorded at 44.1 kHz, but the final simulation uses 441 kHz. Based on the **Nyquist Criterion**, explain why the 44.1 kHz rate would be insufficient to represent carriers at 110 kHz. What would happen to the 110 kHz carrier if you stayed at 44.1 kHz?
-2.  **Filter Order Impact:** If you were to use a 2nd-order filter instead of a 4th-order filter for your LPF, would the interference at the 87 kHz channel improve or worsen? Explain your reasoning.
-3.  **Frequency Offset:** If your local oscillator frequency $f_{ci}$ is off by **200 Hz** (e.g., 87.2 kHz instead of 87 kHz), describe the effect on the recovered audio's pitch and clarity.
-4.  **Analog vs. Digital:** In Section 3.1, you used the `fft` (a tool for discrete data). Why is this still a valid way to analyze a "continuous-time" signal in this project, and how does our high sampling rate ($f_s$) justify this?
+* **Discussion Questions:**
+  * **Filter Order Impact:** If you used an 8th‑order filter instead of a 4th‑order filter for your LPF, would the interference caused by the incorrectly filtered signal improve or worsen? Explain your reasoning.  
+  * **Frequency Offset:** If your local oscillator frequency $f_{ci}$$ is off by **200 Hz** (e.g., 87.2 kHz instead of 87 kHz), describe the effect on the recovered audio’s pitch and clarity.  
 
+### Project Code and Audio Files
+
+* **MATLAB Code:** Submit your MATLAB code on Gradescope.
+
+* **Audio Files:** Submit four demodulated audio files.
