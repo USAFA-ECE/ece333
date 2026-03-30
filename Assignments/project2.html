@@ -412,10 +412,8 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">4. Deliverables</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-and-discovery-analysis">4.1 Filter and Discovery Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-recovery-and-identification">4.2 Signal Recovery and Identification</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interference-and-bandwidth-diagnostic">4.3 Interference and Bandwidth Diagnostic</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-questions">4.4 Discussion Questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-report">Project Report</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-code-and-audio-files">Project Code and Audio Files</a></li>
 </ul>
 </li>
 </ul>
@@ -431,7 +429,6 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="demodulation">
 <h1>Demodulation<a class="headerlink" href="#demodulation" title="Permalink to this heading">#</a></h1>
-<p><strong>NOT READY YET</strong></p>
 <section id="intoduction">
 <h2>1. Intoduction<a class="headerlink" href="#intoduction" title="Permalink to this heading">#</a></h2>
 <p>In modern communication, baseband signals (like voice or music) are rarely transmitted directly. Instead, they are shifted to higher frequencies to allow for efficient transmission and to enable multiple signals to share the same medium without interference—a process called <strong>Frequency Division Multiplexing (FDM)</strong>.</p>
@@ -457,7 +454,7 @@ document.write(`
 <p>To restrict our signal’s bandwidth, we use a <strong>Butterworth filter</strong>, known for its “maximally flat” response. This means it maintains a very consistent gain across the frequencies we want to keep (the passband) before rolling off at the cutoff.</p>
 <section id="step-1-defining-the-transfer-function">
 <h4>Step 1: Defining the Transfer Function<a class="headerlink" href="#step-1-defining-the-transfer-function" title="Permalink to this heading">#</a></h4>
-<p>We begin by designing a <strong>4th-order Analog Butterworth Filter</strong> with a cutoff frequency <span class="math notranslate nohighlight">\(f_co = 5\)</span> Hz. We translate this frequency into radians per second (<span class="math notranslate nohighlight">\(\Omega_{co} = 2\pi f_c\)</span>) to work within the Laplace domain.</p>
+<p>We begin by designing a <strong>4th-order Analog Butterworth Filter</strong> with a cutoff frequency <span class="math notranslate nohighlight">\(f_{co} = 5\)</span> Hz. We translate this frequency into radians per second (<span class="math notranslate nohighlight">\(\Omega_{co} = 2\pi f_{co}\)</span>) to work within the Laplace domain.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 1. Analog Filter Design Configuration</span>
 <span class="n">fco</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">                  </span><span class="c">% Cutoff frequency in Hz</span>
 <span class="n">Wco</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fco</span><span class="p">;</span><span class="w">       </span><span class="c">% Convert Cutoff to radians/second (approx 31.4 rad/s)</span>
@@ -477,7 +474,7 @@ document.write(`
 </div>
 <p><a class="reference internal" href="#fig-lowpass-filter-5hz"><span class="std std-numref">Fig. 1</span></a> illustrates the magnitude and phase response. By inspecting the curve at <span class="math notranslate nohighlight">\(5\)</span> Hz (<span class="math notranslate nohighlight">\(31.415\)</span> rad/s), you will observe a gain of approximately <strong><span class="math notranslate nohighlight">\(-3.0\)</span> dB</strong>. In linear terms, this is <span class="math notranslate nohighlight">\(|H(j\Omega_{co})| = 1/\sqrt{2} \approx 0.707\)</span>, which is defined as the point where the signal power is halved.</p>
 <figure class="align-center" id="fig-lowpass-filter-5hz">
-<a class="reference internal image-reference" href="../_images/lpf_5hz.png"><img alt="../_images/lpf_5hz.png" src="../_images/lpf_5hz.png" style="width: 580px;" /></a>
+<a class="reference internal image-reference" href="../_images/lpf_5hz.png"><img alt="../_images/lpf_5hz.png" src="../_images/lpf_5hz.png" style="width: 540px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 1 </span><span class="caption-text">Magnitude and Phase response of a 4th-order analog Butterworth filter with a 5 Hz (-3 dB) cutoff frequency.</span><a class="headerlink" href="#fig-lowpass-filter-5hz" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -490,11 +487,11 @@ document.write(`
 \[x(t) = \cos(2\pi\cdot2t) + \cos(2\pi\cdot5t) + \cos(2\pi\cdot15t)\]</div>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 3. Signal Synthesis and Spectral Analysis</span>
 
-<span class="n">fs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">441000</span><span class="p">;</span><span class="w">              </span><span class="c">% High sampling rate for continuous-time simulation</span>
-<span class="n">T</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">                   </span><span class="c">% 10-second duration</span>
-<span class="n">t</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">:</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">fs</span><span class="p">;</span><span class="w">        </span><span class="c">% Time vector</span>
-<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">);</span><span class="w">            </span><span class="c">% Length of signal</span>
-<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fs</span><span class="o">/</span><span class="n">L</span><span class="p">);</span><span class="w">       </span><span class="c">% Frequency vector for plotting</span>
+<span class="n">fsim</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">441000</span><span class="p">;</span><span class="w">          </span><span class="c">% High sampling rate for continuous-time simulation</span>
+<span class="n">T</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">                 </span><span class="c">% 10-second duration</span>
+<span class="n">t</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">fsim</span><span class="p">:</span><span class="n">T</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">fsim</span><span class="p">;</span><span class="w">  </span><span class="c">% Time vector</span>
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">t</span><span class="p">);</span><span class="w">          </span><span class="c">% Length of signal</span>
+<span class="n">f</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fsim</span><span class="o">/</span><span class="n">L</span><span class="p">);</span><span class="w">   </span><span class="c">% Frequency vector for plotting</span>
 
 <span class="c">% Create a signal with three distinct frequency components</span>
 <span class="n">x</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="mi">5</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="mi">15</span><span class="o">*</span><span class="n">t</span><span class="p">);</span>
@@ -515,9 +512,9 @@ document.write(`
 <span class="nb">grid</span><span class="w"> </span><span class="n">on</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>As shown in <a class="reference internal" href="#signal-2-5-15-hz"><span class="std std-numref">Fig. 2</span></a>, the input spectrum shows three equal spikes. Note that even though we are using the <code class="docutils literal notranslate"><span class="pre">fft</span></code> (a tool often used in digital contexts), we use a very high sampling rate (<span class="math notranslate nohighlight">\(441\)</span> kHz) to accurately approximate the behavior of the continuous-time signal.</p>
+<p>As shown in <a class="reference internal" href="#signal-2-5-15-hz"><span class="std std-numref">Fig. 2</span></a>, the input spectrum shows three equal spikes. Note that even though we are using the <code class="docutils literal notranslate"><span class="pre">fft</span></code> (a tool often used in digital contexts), we use a very high sampling rate (<span class="math notranslate nohighlight">\(f_{sim}=441\)</span> kHz) to accurately approximate the behavior of the <strong>continuous-time signal</strong>.</p>
 <figure class="align-center" id="signal-2-5-15-hz">
-<a class="reference internal image-reference" href="../_images/signal_2_5_15_hz.png"><img alt="../_images/signal_2_5_15_hz.png" src="../_images/signal_2_5_15_hz.png" style="width: 580px;" /></a>
+<a class="reference internal image-reference" href="../_images/signal_2_5_15_hz.png"><img alt="../_images/signal_2_5_15_hz.png" src="../_images/signal_2_5_15_hz.png" style="width: 540px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 2 </span><span class="caption-text">Time-domain waveform and magnitude spectrum of the composite input signal showing components at 2 Hz, 5 Hz, and 15 Hz.</span><a class="headerlink" href="#signal-2-5-15-hz" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -527,8 +524,18 @@ document.write(`
 <h4>Step 3: Simulating the LTI System Response<a class="headerlink" href="#step-3-simulating-the-lti-system-response" title="Permalink to this heading">#</a></h4>
 <p>Finally, we pass our signal through the filter. Since <span class="math notranslate nohighlight">\(H(s)\)</span> represents a continuous-time system (often implemented physically with resistors, capacitors, and op-amps), we use the <code class="docutils literal notranslate"><span class="pre">lsim</span></code> function to simulate the output <span class="math notranslate nohighlight">\(y(t)\)</span>.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 4. LTI System Simulation</span>
-<span class="c">% lsim simulates the time-response of an analog system (H) to an arbitrary input (x)</span>
-<span class="n">y</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">lsim</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">);</span>
+
+<span class="c">% Truncate impulse response (finite-duration approximation)</span>
+<span class="n">t_h</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">fsim</span><span class="p">:</span><span class="mf">0.005</span><span class="p">;</span><span class="w">   </span><span class="c">% 5 ms window</span>
+<span class="n">h</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">impulse</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="w"> </span><span class="n">t_h</span><span class="p">);</span>
+
+<span class="c">% Normalize for unity DC gain</span>
+<span class="n">h</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">h</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">h</span><span class="p">)</span><span class="o">/</span><span class="n">fsim</span><span class="p">);</span>
+
+<span class="c">% Continuous-time filtering via convolution:</span>
+<span class="c">% &#39;same&#39; keeps output length equal to input (matches t),</span>
+<span class="c">% division by fs_sim approximates the CT integral from the sum</span>
+<span class="n">y</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">conv</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;same&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">fs_sim</span><span class="p">;</span>
 
 <span class="c">% Compute the Spectrum of the filtered output</span>
 <span class="n">Y</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="nb">fft</span><span class="p">(</span><span class="n">y</span><span class="p">));</span>
@@ -556,7 +563,7 @@ document.write(`
 <li><p><strong>Stopband:</strong> The <span class="math notranslate nohighlight">\(15\)</span> Hz component has been significantly attenuated, effectively removed from the output.</p></li>
 </ol>
 <figure class="align-center" id="filtered-signal-2-5-15-hz">
-<a class="reference internal image-reference" href="../_images/filtered_signal_2_5_15_hz.png"><img alt="../_images/filtered_signal_2_5_15_hz.png" src="../_images/filtered_signal_2_5_15_hz.png" style="width: 580px;" /></a>
+<a class="reference internal image-reference" href="../_images/filtered_signal_2_5_15_hz.png"><img alt="../_images/filtered_signal_2_5_15_hz.png" src="../_images/filtered_signal_2_5_15_hz.png" style="width: 540px;" /></a>
 <figcaption>
 <p><span class="caption-number">Fig. 3 </span><span class="caption-text">Filtered output showing the preservation of the 2 Hz signal, the 3 dB attenuation of the 5 Hz signal, and the removal of the 15 Hz component.</span><a class="headerlink" href="#filtered-signal-2-5-15-hz" title="Permalink to this image">#</a></p>
 </figcaption>
@@ -572,7 +579,7 @@ document.write(`
 <p>The Modulation Theorem (or Frequency Shifting Property) of the Fourier Transform states that multiplication by a cosine in the time domain results in a shift in the frequency domain:</p>
 <div class="math notranslate nohighlight">
 \[x(t) = m(t) \cos(2\pi f_c t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(f) = \frac{1}{2} [M(f - f_c) + M(f + f_c)]\]</div>
-<p>This mathematical operation creates two “sidebands”—one above the carrier frequency and one below—while the carrier itself is “suppressed” because it does not appear as a standalone impulse in the spectrum unless explicitly added.</p>
+<p>This mathematical operation creates two “sidebands”, one above the carrier frequency and one below, while the carrier itself is “suppressed” because it does not appear as a standalone impulse in the spectrum unless explicitly added.</p>
 </section>
 <section id="step-2-implementation-in-matlab">
 <h4>Step 2: Implementation in MATLAB<a class="headerlink" href="#step-2-implementation-in-matlab" title="Permalink to this heading">#</a></h4>
@@ -630,35 +637,34 @@ document.write(`
 <ol class="arabic simple">
 <li><p><strong>Spectrum Centering:</strong> The baseband signal (originally <span class="math notranslate nohighlight">\(0 \pm 5\)</span> Hz) now occupies the frequency band from <span class="math notranslate nohighlight">\(45\)</span> Hz to <span class="math notranslate nohighlight">\(55\)</span> Hz (and a mirror image in the negative frequencies).</p></li>
 <li><p><strong>Bandwidth Doubling:</strong> While the original message was band-limited to <span class="math notranslate nohighlight">\(5\)</span> Hz, the modulated signal occupies a total bandwidth of <span class="math notranslate nohighlight">\(10\)</span> Hz (<span class="math notranslate nohighlight">\(55 - 45 = 10\)</span>). This is a fundamental characteristic of double-sideband modulation.</p></li>
-<li><p><strong>Phase Reversal:</strong> Notice in the time domain that whenever the message <span class="math notranslate nohighlight">\(m(t)\)</span> crosses zero and becomes negative, the carrier undergoes a <span class="math notranslate nohighlight">\(180^\circ\)</span> phase reversal. This “suppressed carrier” feature is why coherent detection is required at the receiver.</p></li>
 </ol>
 </section>
 </section>
 </section>
-<hr class="docutils" />
 <section id="part-ii-the-demodulation-challenge">
 <h2>3. Part II: The Demodulation Challenge<a class="headerlink" href="#part-ii-the-demodulation-challenge" title="Permalink to this heading">#</a></h2>
-<p>In a communication system, multiple messages are often sent over the same medium by shifting each to a unique frequency “slot.” You are provided with a file named <code class="docutils literal notranslate"><span class="pre">modulated_signals.mat</span></code>. This file contains a composite signal, <code class="docutils literal notranslate"><span class="pre">x_composite</span></code>, which is the sum of four different audio messages modulated onto high-frequency carriers (<span class="math notranslate nohighlight">\(f_{c1}\)</span> through <span class="math notranslate nohighlight">\(f_{c4}\)</span>).</p>
-<p>To accurately represent these continuous-time carriers (which reside between <strong>80 kHz</strong> and <strong>120 kHz</strong>), the simulation uses a sampling rate of <span class="math notranslate nohighlight">\(f_s = 441\)</span> kHz.</p>
+<p>In a communication system, multiple messages are often sent over the same medium by shifting each to a unique frequency “slot.” You are provided with a file named <a class="reference download internal" download="" href="../_downloads/07d5e1deef9dddbc12b4f21c7db5fd46/modulated_signals.mat"><span class="xref download myst">modulated_signals.mat</span></a>. This file contains a composite signal, <code class="docutils literal notranslate"><span class="pre">x_composite</span></code>, which is the sum of four different audio messages modulated onto high-frequency carriers (<span class="math notranslate nohighlight">\(f_{c1}\)</span> through <span class="math notranslate nohighlight">\(f_{c4}\)</span>).</p>
+<p>To accurately represent these continuous-time carriers (which reside between <strong>70 kHz</strong> and <strong>120 kHz</strong>), the simulation uses a sampling rate of <code class="docutils literal notranslate"><span class="pre">fs_sim</span> <span class="pre">=</span> <span class="pre">441</span></code> kHz.</p>
 <section id="spectral-discovery-and-loading">
 <h3>3.1 Spectral Discovery and Loading<a class="headerlink" href="#spectral-discovery-and-loading" title="Permalink to this heading">#</a></h3>
 <p>Your first task is to load the data and “scout” the frequency spectrum to estimate the four unknown carrier frequencies.</p>
 <div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">%% 1. Load the Composite Signal</span>
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="nb">clc</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
 <span class="nb">load</span><span class="p">(</span><span class="s">&#39;modulated_signals.mat&#39;</span><span class="p">);</span><span class="w"> </span>
-<span class="c">% Variables loaded: x_composite, t, fs (441000 Hz)</span>
+<span class="c">% Variables loaded: x_composite, t, fs(44.1 kHz), fs_sim (441 kHz)</span>
 
 <span class="c">%% 2. Spectral Analysis</span>
 <span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">length</span><span class="p">(</span><span class="n">x_composite</span><span class="p">);</span>
-<span class="n">f_axis</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fs</span><span class="o">/</span><span class="n">L</span><span class="p">);</span><span class="w"> </span>
+<span class="n">f_axis_khz</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="p">:</span><span class="n">L</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">fs_sim</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">;</span>
 <span class="c">% Note: fftshift is required to center the spectrum at 0 Hz</span>
 <span class="n">X_spec</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">abs</span><span class="p">(</span><span class="nb">fftshift</span><span class="p">(</span><span class="nb">fft</span><span class="p">(</span><span class="n">x_composite</span><span class="p">)))</span><span class="o">/</span><span class="n">L</span><span class="p">;</span>
 
 <span class="nb">figure</span><span class="p">;</span>
-<span class="nb">plot</span><span class="p">(</span><span class="n">f_axis</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="n">X_spec</span><span class="p">);</span><span class="w"> </span>
-<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Discovery: Magnitude Spectrum of FDM Signal&#39;</span><span class="p">);</span>
+<span class="nb">plot</span><span class="p">(</span><span class="n">f_axis_khz</span><span class="p">,</span><span class="w"> </span><span class="n">X_spec</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;LineWidth&#39;</span><span class="p">,</span><span class="mf">1.2</span><span class="p">);</span>
+<span class="nb">title</span><span class="p">(</span><span class="s">&#39;Composite FDM Spectrum&#39;</span><span class="p">);</span>
 <span class="nb">xlabel</span><span class="p">(</span><span class="s">&#39;Frequency (kHz)&#39;</span><span class="p">);</span><span class="w"> </span><span class="nb">ylabel</span><span class="p">(</span><span class="s">&#39;Magnitude&#39;</span><span class="p">);</span>
 <span class="n">grid</span><span class="w"> </span><span class="s">on</span><span class="p">;</span>
-<span class="nb">xlim</span><span class="p">([</span><span class="mi">80</span><span class="w"> </span><span class="mi">120</span><span class="p">]);</span><span class="w"> </span><span class="c">% Zoom in on the broadcast band</span>
+<span class="nb">xlim</span><span class="p">([</span><span class="mi">60</span><span class="w"> </span><span class="mi">120</span><span class="p">]);</span><span class="w"> </span><span class="c">% Zoom in on the broadcast band</span>
 </pre></div>
 </div>
 </section>
@@ -667,47 +673,43 @@ document.write(`
 <p>Once you have estimated the four carrier frequencies from your plot, you must implement a <strong>Synchronous (Coherent) Demodulator</strong> for each signal.</p>
 <ol class="arabic simple">
 <li><p><strong>Mixing:</strong> Multiply <code class="docutils literal notranslate"><span class="pre">x_composite</span></code> by a local carrier <span class="math notranslate nohighlight">\(\cos(2\pi f_{ci} t)\)</span> at your estimated frequency.</p></li>
-<li><p><strong>LTI Filtering:</strong> Use the <code class="docutils literal notranslate"><span class="pre">lsim</span></code> command with your 4th-order Analog Butterworth LPF (<span class="math notranslate nohighlight">\(H\)</span>) from Part I to isolate the baseband audio.</p></li>
-<li><p><strong>Normalization and Playback:</strong> Scale the resulting signal to a maximum amplitude of 1.0 using <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">y</span> <span class="pre">/</span> <span class="pre">max(abs(y))</span></code> before listening with <code class="docutils literal notranslate"><span class="pre">sound(y,</span> <span class="pre">fs)</span></code>.</p></li>
+<li><p><strong>LTI Filtering:</strong> Use the <code class="docutils literal notranslate"><span class="pre">conv</span></code> command with your 4th-order Analog Butterworth LPF (<span class="math notranslate nohighlight">\(H\)</span>) from Part I to isolate the baseband audio.</p></li>
+<li><p><strong>Normalization and Playback:</strong> Scale the resulting signal to a maximum amplitude of 1.0 using <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">y</span> <span class="pre">/</span> <span class="pre">max(abs(y))</span></code> before listening with <code class="docutils literal notranslate"><span class="pre">soundsc(y,</span> <span class="pre">fs)</span></code>.</p></li>
+<li><p>Downsample the recovered signal from 441.0 kHz to 44.1 kHz for listerning using <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">=</span> <span class="pre">resample(recovered,</span> <span class="pre">1,</span> <span class="pre">10)</span></code></p></li>
+<li><p>You can play sound by running <code class="docutils literal notranslate"><span class="pre">soundsc(m,</span> <span class="pre">fs)</span></code></p></li>
 </ol>
 </section>
 </section>
-<hr class="docutils" />
 <section id="deliverables">
 <h2>4. Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this heading">#</a></h2>
-<p>Your final project report must include the following four sections:</p>
-<section id="filter-and-discovery-analysis">
-<h3>4.1 Filter and Discovery Analysis<a class="headerlink" href="#filter-and-discovery-analysis" title="Permalink to this heading">#</a></h3>
+<section id="project-report">
+<h3>Project Report<a class="headerlink" href="#project-report" title="Permalink to this heading">#</a></h3>
+<p>Your project report must include the following four sections:</p>
 <ul class="simple">
-<li><p><strong>Filter Response:</strong> Provide the magnitude response plot of your 5 kHz Butterworth filter using <code class="docutils literal notranslate"><span class="pre">freqs(b,a)</span></code>.</p></li>
 <li><p><strong>Carrier Estimation:</strong> Provide the magnitude spectrum of <code class="docutils literal notranslate"><span class="pre">x_composite</span></code> with all four estimated carrier frequencies (<span class="math notranslate nohighlight">\(f_{c1}, f_{c2}, f_{c3}, f_{c4}\)</span>) clearly labeled.</p></li>
+<li><p><strong>Signal Recovery and Identification:</strong> For each of the four recovered signals, include a figure containing:</p>
+<ul>
+<li><p>The time‑domain waveform (y_i(t))</p></li>
+<li><p>The magnitude spectrum (Y_i(f)) showing the recovered baseband audio</p></li>
+<li><p>A brief description of the audio content (e.g., “This is my voice,” “I love ECE 333”)</p></li>
+</ul>
+</li>
+<li><p><strong>Interference and Bandwidth Diagnostic:</strong><br />
+During recovery, you will notice that two signals contain audible interference. The issue is that one of the signals was incorrectly filtered during modulation and has a bandwidth of <strong>7 kHz</strong> instead of the standard <strong>5 kHz</strong>. Identify which signal is the culprit. Use your spectral plots to visually demonstrate how this “wide” signal interferes with another channel. Discuss how the overlap of sidebands in the frequency domain affects audio quality.</p></li>
+<li><p><strong>Discussion Questions:</strong></p>
+<ul>
+<li><p><strong>Filter Order Impact:</strong> If you used an 8th‑order filter instead of a 4th‑order filter for your LPF, would the interference caused by the incorrectly filtered signal improve or worsen? Explain your reasoning.</p></li>
+<li><p><strong>Frequency Offset:</strong> If your local oscillator frequency <span class="math notranslate nohighlight">\(f_{ci}\)</span>$ is off by <strong>200 Hz</strong> (e.g., 87.2 kHz instead of 87 kHz), describe the effect on the recovered audio’s pitch and clarity.</p></li>
+</ul>
+</li>
 </ul>
 </section>
-<section id="signal-recovery-and-identification">
-<h3>4.2 Signal Recovery and Identification<a class="headerlink" href="#signal-recovery-and-identification" title="Permalink to this heading">#</a></h3>
-<p>For <strong>each</strong> of the four recovered signals, provide a figure containing:</p>
-<ol class="arabic simple">
-<li><p>The time-domain waveform <span class="math notranslate nohighlight">\(y_i(t)\)</span>.</p></li>
-<li><p>The magnitude spectrum <span class="math notranslate nohighlight">\(Y_i(f)\)</span> showing the recovered baseband audio.</p></li>
-<li><p>A description of the audio content (e.g., “Signal 1 is a piano,” “Signal 2 is a person speaking”).</p></li>
-</ol>
-</section>
-<section id="interference-and-bandwidth-diagnostic">
-<h3>4.3 Interference and Bandwidth Diagnostic<a class="headerlink" href="#interference-and-bandwidth-diagnostic" title="Permalink to this heading">#</a></h3>
-<p>During recovery, you will notice that the signal at <strong>87 kHz</strong> suffers from audible interference.</p>
+<section id="project-code-and-audio-files">
+<h3>Project Code and Audio Files<a class="headerlink" href="#project-code-and-audio-files" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>The Problem:</strong> One of the other three signals was incorrectly filtered during modulation and has a bandwidth of <strong>7 kHz</strong> instead of the standard 5 kHz.</p></li>
-<li><p><strong>Your Task:</strong> Identify which signal is the culprit. Use your spectral plots to visually demonstrate how this “wide” signal interferes with the 87 kHz channel. Discuss how the overlap of sidebands in the frequency domain affects the audio quality.</p></li>
+<li><p><strong>MATLAB Code:</strong> Submit your MATLAB code on Gradescope.</p></li>
+<li><p><strong>Audio Files:</strong> Submit four demodulated audio files.</p></li>
 </ul>
-</section>
-<section id="discussion-questions">
-<h3>4.4 Discussion Questions<a class="headerlink" href="#discussion-questions" title="Permalink to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>The Sampling Rate Paradox:</strong> The original audio files were recorded at 44.1 kHz, but the final simulation uses 441 kHz. Based on the <strong>Nyquist Criterion</strong>, explain why the 44.1 kHz rate would be insufficient to represent carriers at 110 kHz. What would happen to the 110 kHz carrier if you stayed at 44.1 kHz?</p></li>
-<li><p><strong>Filter Order Impact:</strong> If you were to use a 2nd-order filter instead of a 4th-order filter for your LPF, would the interference at the 87 kHz channel improve or worsen? Explain your reasoning.</p></li>
-<li><p><strong>Frequency Offset:</strong> If your local oscillator frequency <span class="math notranslate nohighlight">\(f_{ci}\)</span> is off by <strong>200 Hz</strong> (e.g., 87.2 kHz instead of 87 kHz), describe the effect on the recovered audio’s pitch and clarity.</p></li>
-<li><p><strong>Analog vs. Digital:</strong> In Section 3.1, you used the <code class="docutils literal notranslate"><span class="pre">fft</span></code> (a tool for discrete data). Why is this still a valid way to analyze a “continuous-time” signal in this project, and how does our high sampling rate (<span class="math notranslate nohighlight">\(f_s\)</span>) justify this?</p></li>
-</ol>
 </section>
 </section>
 </section>
@@ -800,10 +802,8 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverables">4. Deliverables</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filter-and-discovery-analysis">4.1 Filter and Discovery Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signal-recovery-and-identification">4.2 Signal Recovery and Identification</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interference-and-bandwidth-diagnostic">4.3 Interference and Bandwidth Diagnostic</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#discussion-questions">4.4 Discussion Questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-report">Project Report</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-code-and-audio-files">Project Code and Audio Files</a></li>
 </ul>
 </li>
 </ul>
