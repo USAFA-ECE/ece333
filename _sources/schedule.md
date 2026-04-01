@@ -41,9 +41,9 @@ This schedule is subject to change as appropriate.
 |32 | Laplace Transform                 | 6.1-6.2          |                 |
 |33 | Electrical Networks with LT       | 6.3-6.4          | HW12            |
 |34 | Block Diagrams                    | 6.5-6.5          |                 |
-|35 | System Realization                | 6.5-6.6          |                 |
-|36 | P3: Sampling                      |                  | HW13            |
-|37 | Review                            |                  | Quiz5 (L29-L35) |
-|38 | GR 3 (L29-L35)                    |                  |                 |
-|39 | TBD                               |                  | P3              |
-|40 | Course Review                     |                  |                 |  
+|35 | System Realization                | 6.5-6.6          | HW13            |
+|36 | Review                            |                  | Quiz5 (L29-L35) |
+|37 | GR 3 (L29-L35)                    |                  |                 |
+|38 | P3: Sampling                      |                  |                 |
+|39 | TBD                               |                  |                 |
+|40 | Course Review                     |                  | P3              |  
