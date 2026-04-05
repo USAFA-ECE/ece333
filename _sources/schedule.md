@@ -3,6 +3,7 @@
 ```{note}
 This schedule is subject to change as appropriate.
 ```
+
 **Last Updated: 27 Jan 2026**
 
 |Lsn| Topics                            |  Reading         | Due             |
@@ -36,8 +37,8 @@ This schedule is subject to change as appropriate.
 |27 | Review                            |                  | Quiz4 (L21-L25) |
 |28 | GR 2 (L15-L25)                    |                  |                 |
 |29 | Sampling                          | 5.1              |                 |
-|30 | Signal Reconstruction & ADC       | 5.2-5.3          | P2              |
-|31 | Spectral Sampling & DFT           | 5.4-5.5          | HW11            |
+|30 | Signal Reconstruction             | 5.2              | P2              |
+|31 | ADC & Spectral Sampling           | 5.3-5.4          | HW11            |
 |32 | Laplace Transform                 | 6.1-6.2          |                 |
 |33 | Electrical Networks with LT       | 6.3-6.4          | HW12            |
 |34 | Block Diagrams                    | 6.5-6.5          |                 |
