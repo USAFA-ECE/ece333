@@ -273,7 +273,7 @@ Once you have estimated the four carrier frequencies from your plot, you must im
 
 Your project report must include the following four sections:
 
-* **Carrier Estimation:** Provide the magnitude spectrum of `x_composite` with all four estimated carrier frequencies ($f_{c1}, f_{c2}, f_{c3}, f_{c4}$) clearly labeled.
+* **Carrier Estimation:** Provide the magnitude spectrum of `x_composite` with all four estimated carrier frequencies ($f_{c1}, f_{c2}, f_{c3}, f_{c4}$) clearly labeled. Note that each carrier frequency is an integer value in kHz.
 
 * **Signal Recovery and Identification:** For each of the four recovered signals, include a figure containing:
   * The time‑domain waveform $y_i(t)$  
