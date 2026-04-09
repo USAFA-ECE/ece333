@@ -276,13 +276,13 @@ Your project report must include the following four sections:
 * **Carrier Estimation:** Provide the magnitude spectrum of `x_composite` with all four estimated carrier frequencies ($f_{c1}, f_{c2}, f_{c3}, f_{c4}$) clearly labeled.
 
 * **Signal Recovery and Identification:** For each of the four recovered signals, include a figure containing:
-  * The time‑domain waveform \(y_i(t)\)  
-  * The magnitude spectrum \(Y_i(f)\) showing the recovered baseband audio  
-  * A brief description of the audio content (e.g., “This is my voice,” “I love ECE 333”)  
+  * The time‑domain waveform $y_i(t)$  
+  * The magnitude spectrum $Y_i(f)$ showing the recovered baseband audio  
+  * A brief description of the audio content (e.g., "This is my voice," "I love ECE 333")  
 
 * **Interference and Bandwidth Diagnostic:**  
   During recovery, you will notice that two signals contain audible interference. The issue is that one of the signals was incorrectly filtered during modulation and has a bandwidth of **7 kHz** instead of the standard **5 kHz**. Identify which signal is the culprit. Use your spectral plots to visually demonstrate how this “wide” signal interferes with another channel. Discuss how the overlap of sidebands in the frequency domain affects audio quality.
- 
+
 * **Discussion Questions:**
   * **Filter Order Impact:** If you used an 8th‑order filter instead of a 4th‑order filter for your LPF, would the interference caused by the incorrectly filtered signal improve or worsen? Explain your reasoning.  
   * **Frequency Offset:** If your local oscillator frequency $f_{ci}$ is off by **200 Hz** (e.g., 87.2 kHz instead of 87 kHz), describe the effect on the recovered audio's pitch and clarity.  
