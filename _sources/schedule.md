@@ -39,10 +39,10 @@ This schedule is subject to change as appropriate.
 |29 | Sampling                          | 5.1              |                 |
 |30 | Signal Reconstruction             | 5.2              | P2              |
 |31 | ADC & Spectral Sampling           | 5.3-5.4          | HW11            |
-|32 | Laplace Transform                 | 6.1-6.2          |                 |
-|33 | Electrical Networks with LT       | 6.3-6.4          | HW12            |
-|34 | Block Diagrams                    | 6.5-6.5          |                 |
-|35 | System Realization                | 6.5-6.6          | HW13            |
+|32 | Laplace Transform                 | 6.1              |                 |
+|33 | LT Properties & LTI Responses     | 6.2-6.3          | HW12            |
+|34 | Electrical Networks with LT       | 6.4              |                 |
+|35 | Block Diagrams                    | 6.5              | HW13            |
 |36 | Review                            |                  | Quiz5 (L29-L35) |
 |37 | GR 3 (L29-L35)                    |                  |                 |
 |38 | P3: Sampling                      |                  |                 |
