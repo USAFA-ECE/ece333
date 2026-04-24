@@ -45,6 +45,6 @@ This schedule is subject to change as appropriate.
 |35 | Block Diagrams                    | 6.5              | HW13            |
 |36 | Review                            |                  | Quiz5 (L29-L35) |
 |37 | GR 3 (L29-L35)                    |                  |                 |
-|38 | P3: Sampling                      |                  |                 |
-|39 | TBD                               |                  |                 |
-|40 | Course Review                     |                  | P3              |  
+|38 | Block 1 Review                    |                  |                 |
+|39 | Block 2 Review                    |                  |                 |
+|40 | Block 3 Review                    |                  |                 |  
