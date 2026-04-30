@@ -48,3 +48,4 @@ This schedule is subject to change as appropriate.
 |38 | Block 1 Review                    |                  |                 |
 |39 | Block 2 Review                    |                  |                 |
 |40 | Block 3 Review                    |                  |                 |  
+|F  | Final Exam (F7 & F8), 2E10        |                  |                 |  
