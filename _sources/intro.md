@@ -1,7 +1,7 @@
 # ECE 333 Signal Processing & Linear Systems
 
 
-## 👨‍🏫 Instructors
+## 👨‍🏫 Instructor
 
 ![name](https://img.shields.io/badge/Instructor-Dr.%20Glen%20Dudevoir-blue) <!--(https://stanbaek.github.io)-->
 ![office](https://img.shields.io/badge/Office-Fairchild%202G4C-red)
