@@ -2,12 +2,17 @@
 
 
 ## 👨‍🏫 Instructors
-[![name](https://img.shields.io/badge/Instructor-Dr.%20Stan%20Baek-blue)](https://stanbaek.github.io)
-![office](https://img.shields.io/badge/Office-Fairchild%202E38-red)
-[![web](https://img.shields.io/badge/Web-stanbaek.github.io-orange)](https://stanbaek.github.io)
 
-![name](https://img.shields.io/badge/Instructor-Lt%20Col%20Matthew%20Booth-blue)
-![office](https://img.shields.io/badge/Office-Fairchild%202E36A-red)
+[![name](https://img.shields.io/badge/Instructor-Dr.%20Glen%20Dudevoir-blue)]<!--(https://stanbaek.github.io)-->
+![office](https://img.shields.io/badge/Office-Fairchild%202G4C-red)
+<!-- [![web](https://img.shields.io/badge/Web-stanbaek.github.io-orange)](https://stanbaek.github.io) -->
+
+<!-- [![name](https://img.shields.io/badge/Instructor-Dr.%20Stan%20Baek-blue)](https://stanbaek.github.io)
+![office](https://img.shields.io/badge/Office-Fairchild%202E38-red)
+[![web](https://img.shields.io/badge/Web-stanbaek.github.io-orange)](https://stanbaek.github.io) -->
+
+<!-- ![name](https://img.shields.io/badge/Instructor-Lt%20Col%20Matthew%20Booth-blue)
+![office](https://img.shields.io/badge/Office-Fairchild%202E36A-red) -->
 
 
 ## 📝 Course information
