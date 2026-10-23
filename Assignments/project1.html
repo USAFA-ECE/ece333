@@ -448,14 +448,14 @@ document.write(`
 <p>Before starting Project 1, ensure that:</p>
 <ul>
 <li><p>MATLAB is installed and has permission to access your microphone. To select the input device MATLAB uses, use the following commands:</p>
-<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% This saves the audio device information to a structure called &#39;info&#39;</span>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% This saves the audio device information to a structure called 'info'</span>
 <span class="n">info</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">audiodevinfo</span><span class="p">;</span><span class="w"> </span>
 
 <span class="c">% This saves the input device information from the info structure to </span>
-<span class="c">% a new structure called &#39;target&#39;; the &#39;x&#39; should be replaced with </span>
+<span class="c">% a new structure called 'target'; the 'x' should be replaced with </span>
 <span class="c">% the Field Number corresponding to the input device you wish to use. </span>
-<span class="c">% For example, you may wish to use your laptop&#39;s internal microphone </span>
-<span class="c">% which may correspond to Field Number 2 in the structure &#39;target&#39;. </span>
+<span class="c">% For example, you may wish to use your laptop's internal microphone </span>
+<span class="c">% which may correspond to Field Number 2 in the structure 'target'. </span>
 <span class="c">% Then you would replace x with 2.</span>
 <span class="n">target</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">info</span><span class="p">.</span><span class="n">input</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w"> </span>
 </pre></div>

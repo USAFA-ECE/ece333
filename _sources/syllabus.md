@@ -16,8 +16,8 @@ The **Grade distribution** for this course is shown below.
 
 |     Prog               |             |     Final              |             |
 |------------------------|-------------|------------------------|-------------|
-|     Homework           |     30%     |     Homework           |     25%     |
-|     Quizzes (2)        |     15%     |     Quizzes (5)        |     10%     |
+|     Homework           |     30%     |     Homework           |     20%     |
+|     Quizzes (2)        |     15%     |     Quizzes (5)        |     15%     |
 |     Project (1)        |     15%     |     Projects (3)       |     10%     |
 |     GR (1)             |     40%     |     GRs (3)            |     30%     |
 |                        |             |     Final Exam         |     25%     |
