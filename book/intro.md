@@ -3,7 +3,7 @@
 
 ## 👨‍🏫 Instructors
 
-[![name](https://img.shields.io/badge/Instructor-Dr.%20Glen%20Dudevoir-blue)]<!--(https://stanbaek.github.io)-->
+![name](https://img.shields.io/badge/Instructor-Dr.%20Glen%20Dudevoir-blue) <!--(https://stanbaek.github.io)-->
 ![office](https://img.shields.io/badge/Office-Fairchild%202G4C-red)
 <!-- [![web](https://img.shields.io/badge/Web-stanbaek.github.io-orange)](https://stanbaek.github.io) -->
 
