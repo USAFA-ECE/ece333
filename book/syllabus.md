@@ -44,7 +44,7 @@ All communication and course material will be provided through a course/section 
 ## 📚 Textbooks
 **Required**
 
-B.P. Lathi and Roger Green, <a href="https://global.oup.com/ushe/product/signal-processing-and-linear-systems-9780190299040?cc=us&lang=en&" target="_blank"> _Signal Processing and Linear systems_</a>, 2th ed. New York, NY, USA: Oxford University Press, 2021.
+B.P. Lathi and Roger Green, <a href="https://global.oup.com/ushe/product/signal-processing-and-linear-systems-9780190299040?cc=us&lang=en&" target="_blank"> _Signal Processing and Linear systems_</a>, 2nd ed. New York, NY, USA: Oxford University Press, 2021.
 
 ## 🤝 Collaboration Policy
 
